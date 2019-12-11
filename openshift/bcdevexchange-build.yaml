@@ -1,0 +1,150 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+labels:
+  app: "${NAME}"
+  tier: frontend
+metadata:
+  name: "${NAME}-build-template"
+objects:
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    metadata:
+      annotations: null
+      creationTimestamp: null
+      labels:
+        shared: "true"
+      name: dotnet-22-rhel7
+    spec:
+      lookupPolicy:
+        local: false
+      tags:
+      - annotations:
+          openshift.io/imported-from: registry.access.redhat.com/dotnet/dotnet-22-rhel7:2.2-2
+        from:
+          kind: DockerImage
+          name: registry.access.redhat.com/dotnet/dotnet-22-rhel7:2.2-2
+        generation: null
+        importPolicy: {}
+        name: "1"
+        referencePolicy:
+          type: "Local"
+    status:
+      dockerImageRepository: ""
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: "${NAME}"
+  - kind: BuildConfig
+    apiVersion: v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+    spec:
+      completionDeadlineSeconds: 14400
+      failedBuildsHistoryLimit: 3
+      nodeSelector: null
+      triggers:
+        - type: ImageChange
+        - type: ConfigChange
+      runPolicy: Serial
+      source:
+        type: Git
+        git:
+          uri: "${SOURCE_REPOSITORY_URL}"
+          ref: "${SOURCE_REPOSITORY_REF}"
+        contextDir: "${SOURCE_CONTEXT_DIR}"
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: dotnet-22-rhel7:1
+          env:
+            - name: DOTNET_STARTUP_PROJECT
+              value: "${DOTNET_STARTUP_PROJECT}"
+            - name: DOTNET_TEST_PROJECTS
+              value: "${DOTNET_TEST_PROJECTS}"
+            - name: DOTNET_RM_SRC
+              value: "${DOTNET_RM_SRC}"
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ${NAME}:${VERSION}
+      resources:
+        requests:
+          cpu: "${CPU_REQUEST}"
+          memory: "${MEMORY_REQUEST}"
+        limits:
+          cpu: "${CPU_LIMIT}"
+          memory: "${MEMORY_LIMIT}"
+parameters:
+  - name: NAME
+    displayName: Name
+    description:
+      The name assigned to all of the resources defined in this template.
+    required: true
+    value: bcdevexchange
+  - name: SOURCE_REPOSITORY_URL
+    displayName: Git Repository URL
+    description: The URL of the repository with your application source code.
+    required: true
+    value: "https://github.com/bcgov/bcdevexchange.git"
+  - name: SOURCE_REPOSITORY_REF
+    displayName: Git Reference
+    description: >-
+      Set this to a branch name, tag or other ref of your repository if you are
+      not using the default branch.
+    required: true
+    value: master
+  - name: SOURCE_CONTEXT_DIR
+    displayName: Context Directory
+    description: >-
+      Set this to the relative path to your project if it is not in the root of
+      your repository.
+    required: false
+    value: ""
+  - name: VERSION
+    required: true
+  - description: A suffix appended to all objects
+    displayName: Name Suffix
+    name: SUFFIX
+    required: true
+  - name: DOTNET_STARTUP_PROJECT
+    displayName: DotNet Startup Project
+    description: The path to the startup project for the .Net application.
+    value: bcdevexchange/bcdevexchange.csproj
+    required: false
+  - name: DOTNET_TEST_PROJECTS
+    displayName: DotNet Test Project(s)
+    description: >-
+      Used to specify the list of test projects to run. This must be project
+      files or folders containing a single project file. dotnet test is invoked
+      for each item.
+    value: |-
+      bcdevexchange.Tests/bcdevexchange.Tests.csproj
+    required: false
+  - name: DOTNET_RM_SRC
+    displayName: Remove DotNet source code
+    description:
+      When set to true, the source code will not be included in the final image.
+    value: "true"
+    required: false
+  - name: CPU_LIMIT
+    displayName: Resources CPU Limit
+    description: The resources CPU limit (in cores) for this build.
+    value: "1"
+    required: false
+  - name: MEMORY_LIMIT
+    displayName: Resources Memory Limit
+    description: The resources Memory limit (in Mi, Gi, etc) for this build.
+    value: 6Gi
+    required: false
+  - name: CPU_REQUEST
+    displayName: Resources CPU Request
+    description: The resources CPU request (in cores) for this build.
+    value: "1"
+    required: false
+  - name: MEMORY_REQUEST
+    displayName: Resources Memory Request
+    description: The resources Memory request (in Mi, Gi, etc) for this build.
+    value: 4Gi
+    required: false
