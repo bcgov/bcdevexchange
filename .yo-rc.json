@@ -1,0 +1,30 @@
+{
+  "generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "jenkins": {
+          "path": ".jenkins",
+          "name": "jenkins",
+          "namespace": "ifttgq-tools",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "ifttgq-tools"
+            },
+            "dev": {
+              "namespace": "ifttgq-tools"
+            },
+            "prod": {
+              "namespace": "ifttgq-tools"
+            }
+          },
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "bcgov",
+          "github_repo": "bcdevexchange",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "d8f99072-ba91-41ad-98df-e5e2ab7fa970"
+        }
+      }
+    }
+  }
+}
