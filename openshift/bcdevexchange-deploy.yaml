@@ -1,0 +1,160 @@
+kind: Template
+apiVersion: v1
+labels:
+  app: "${NAME}"
+  template: "${NAME}-deployment"
+  tier: backend
+metadata:
+  name: "${NAME}-deployment-template"
+  creationTimestamp: null
+objects:
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+      annotations:
+        description: Exposes and load balances the application pods.
+    spec:
+      ports:
+        - name: 8080-tcp
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+      selector:
+        name: "${NAME}${SUFFIX}"
+      type: ClusterIP
+      sessionAffinity: None
+  - kind: Route
+    apiVersion: v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+    spec:
+      host: "${HOST}"
+      path: ""
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+      to:
+        kind: Service
+        name: "${NAME}${SUFFIX}"
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+      annotations:
+        description: "Defines how to deploy ${NAME}"
+    spec:
+      strategy:
+        recreateParams:
+          timeoutSeconds: 2000
+        resources: {}
+        type: Recreate
+        activeDeadlineSeconds: 21600
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - "${NAME}"
+            from:
+              kind: ImageStreamTag
+              namespace: "${IMAGE_NAMESPACE}"
+              name: "${NAME}:${VERSION}"
+      replicas: 1
+      selector:
+        name: ${NAME}${SUFFIX}
+      template:
+        metadata:
+          name: "${NAME}${SUFFIX}"
+          labels:
+            name: ${NAME}${SUFFIX}
+        spec:
+          containers:
+            - name: "${NAME}"
+              image: ""
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              env:
+                - name: ASPNETCORE_ENVIRONMENT
+                  value: "${ASPNETCORE_ENVIRONMENT}"
+              resources:
+                limits:
+                  cpu: "${CPU_LIMIT}"
+                  memory: "${MEMORY_LIMIT}"
+                requests:
+                  cpu: "${CPU_REQUEST}"
+                  memory: "${MEMORY_REQUEST}"
+              readinessProbe:
+                httpGet:
+                  path: /hc
+                  port: 8080
+                  scheme: HTTP
+                initialDelaySeconds: 10
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+              livenessProbe:
+                httpGet:
+                  path: /hc
+                  port: 8080
+                  scheme: HTTP
+                initialDelaySeconds: 10
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+parameters:
+  - name: NAME
+    displayName: Name
+    description:
+      The name assigned to all of the resources defined in this template.
+    required: true
+    value: bcdevexchange
+  - name: VERSION
+    required: true
+  - description: A suffix appended to all objects
+    displayName: Name Suffix
+    name: SUFFIX
+    required: true
+  - name: HOST
+    displayName: Application Hostname
+    description: >-
+      The exposed hostname that will route to the application, if left blank a
+      value will be defaulted.
+    value: ""
+  - name: ASPNETCORE_ENVIRONMENT
+    displayName: AspNetCore Environment
+    description: >-
+      The ASP Net Core deployment environment setting, e.g., Development,
+      Staging, Production
+    required: true
+    value: Development
+  - name: IMAGE_NAMESPACE
+    displayName: Image Namespace
+    description: >-
+      The namespace of the OpenShift project containing the imagestream for the
+      application.
+    required: false
+    value: ifttgq-tools
+  - name: CPU_LIMIT
+    displayName: CPU Limit
+    description: Maximum amount of CPU the container can use.
+    value: "1"
+  - name: MEMORY_LIMIT
+    displayName: Memory Limit
+    description: Maximum amount of memory the container can use.
+    value: 4Gi
+  - name: CPU_REQUEST
+    displayName: CPU Request
+    description: Starting amount of CPU the container can use.
+    value: 100m
+  - name: MEMORY_REQUEST
+    displayName: Memory Request
+    description: Starting amount of memory the container can use.
+    value: 2Gi

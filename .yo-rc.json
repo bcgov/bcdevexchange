@@ -23,6 +23,37 @@
           "github_repo": "bcdevexchange",
           "jenkinsFilePath": ".jenkins/Jenkinsfile",
           "uuid": "d8f99072-ba91-41ad-98df-e5e2ab7fa970"
+        },
+        "main": {
+          "name": "main",
+          "path": ".",
+          "components": {
+            "hello": {
+              "name": "hello"
+            }
+          },
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "ifttgq-tools"
+            },
+            "dev": {
+              "namespace": "ifttgq-dev"
+            },
+            "test": {
+              "namespace": "ifttgq-test"
+            },
+            "prod": {
+              "namespace": "ifttgq-prod"
+            }
+          }
+        },
+        ".": {
+          "jenkinsJobName": "bcdevexchange-prod",
+          "github_owner": "bcgov",
+          "github_repo": "bcdevexchange",
+          "jenkinsFilePath": "Jenkinsfileprod",
+          "uuid": "060502be-1ac8-465e-a412-a5905d432d75"
         }
       }
     }
