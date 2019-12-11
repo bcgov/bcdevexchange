@@ -1,8 +1,113 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<div id="welcome-video">
+        <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="~/video/sample-welcome-video.mp4"></iframe>
+        </div>
+    </div>*@
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@*<div id="videoDiv">
+        <div id="video-block">
+            <video id ="vid" controls>
+                <source src="~/video/sample-welcome-video.mp4" type="video/mp4">
+            </video>
+            <div id="videoMessage">
+                <p>Here is the text</p>
+            </div>
+        </div>
+    </div>*@
+<div class="content">
+    <div class="view">
+        <div class="container">
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <h1 id="intro">Enabling exceptional <space> digital public services <space> for British Columbians. </h1>
+                    <a id="knowmore" class="btn btn-outline-white">Know more > </a>
+                </div>
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Content -->
+    </div>
+
+    <div class="key-value">
+        <div class="key-value-head container row">
+            <h2> How BC DevExchange <br /> can help you </h2>
+        </div>
+        <div class="row key-col">
+            <div class="col-md-4 ">
+                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Learn New Ways of Working</h4>
+                <p id="para-value">
+                    Through workshops, presentations, and formal trainings we are helping BC Public Servants learn and adopt new approaches to team work and technology.
+                </p>
+            </div>
+            <div class="col-md-4 ">
+                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Kickstart a Delivery Team</h4>
+                <p id="para-value">
+                    We help teams develop the capacity to rapidly deliver and improve digital services.
+                </p>
+            </div>
+            <div class="col-md-4 ">
+                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Deliver Quickly and Securely</h4>
+                <p id="para-value">
+                    We operate governments first DevOps platform. Now teams can get their product up and running in hours and release improvements as frequently as they want.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="figure">
+        <div class="row key-col">
+            <div class="col-md-4 figure-col">
+                <h4>150+</h4>
+                <p id="para-value">
+                    Applications on the DevOps platform
+                </p>
+            </div>
+            <div class="col-md-4 figure-col">
+                <h4 id="figure-value">XXX+</h4>
+                <p id="para-value">
+                    Trainings Delivered
+                </p>
+            </div>
+            <div class="col-md-4 figure-col">
+                <h4 id="figure-value">975+</h4>
+                <p id="para-value">
+                    Strong Community of Digital Experts
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="testimonial">
+        <div class="heading-testimonial">
+            <h2>What people have been saying about Us?</h2>
+        </div>
+        <div class="card-deck test-deck">
+            <div class="card test-card">
+                <div class="card-body text-center">
+                    <p class="card-text">"We really think it’s the right way for governments to work. Creating in the open, taking advantage of open source technologies, is the best way to engage your citizens and employees and work with the technology sector. It’s about getting better software and working with people in a more natural way.”</p>
+                </div>
+            </div>
+            <div class="card test-card">
+                <div class="card-body text-center">
+                    <p class="card-text">"We are designing, developing, and shipping digital platforms using modern software practices and open development to advance the state of the art in public services. It's awesome being able to work with the latest tech such as Hyperledger and Kubernetes to build great services for the people of B.C.”</p>
+                </div>
+            </div>
+            <div class="card test-card">
+                <div class="card-body text-center">
+                    <p class="card-text">"The Exchange Lab is an innovative collaboration space where the B.C. Government and the private sector come together to engineer software solutions for the province. During my co-op term, I had the unique opportunity to learn from and work with some of the most enthusiastic agile teams contributing to open-source projects!”</p>
+                </div>
+            </div>
+            <div class="card test-card">
+                <div class="card-body text-center">
+                    <p class="card-text">"The Exchange Lab is an innovative collaboration space where the B.C. Government and the private sector come together to engineer software solutions for the province. During my co-op term, I had the unique opportunity to learn from and work with some of the most enthusiastic agile teams contributing to open-source projects!”</p>
+                    <img class="card-img" src="img_avatar.png" alt="Avatar">
+                    <p>Todd Wilson</p>
+                    <p>Project Director, Enterprise DevOps</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
