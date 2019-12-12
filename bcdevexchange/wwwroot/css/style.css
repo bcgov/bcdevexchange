@@ -17,7 +17,7 @@ nav {
 }
 
 nav ul {
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 780px;
     margin-bottom: 20px;
     padding: 0;
@@ -60,7 +60,7 @@ nav ul li {
 }*/
 
 .view {
-    background-image: url("/img/temp-home1.jpg");
+    background-image: url("/img/homepageimg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;  
