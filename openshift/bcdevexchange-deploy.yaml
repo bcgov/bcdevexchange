@@ -117,12 +117,12 @@ objects:
         app: "${NAME}${SUFFIX}"
     spec:
       scaleTargetRef:
-        kind: Deployment
+        kind: DeploymentConfig
         name: "${NAME}${SUFFIX}"
         apiVersion: apps/v1beta1
-        subresource: scale
       minReplicas: 2
       maxReplicas: 6
+      targetCPUUtilizationPercentage: 80
 parameters:
   - name: NAME
     displayName: Name
