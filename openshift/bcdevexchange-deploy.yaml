@@ -48,10 +48,13 @@ objects:
         description: "Defines how to deploy ${NAME}"
     spec:
       strategy:
-        recreateParams:
-          timeoutSeconds: 2000
-        resources: {}
-        type: Recreate
+        rollingParams:
+          timeoutSeconds: 600
+          intervalSeconds: 1
+          maxSurge: 25%
+          maxUnavailable: 25%
+          UpdatePeriodSeconds: 1
+        type: Rolling
         activeDeadlineSeconds: 21600
       triggers:
         - type: ConfigChange
@@ -122,7 +125,7 @@ objects:
         apiVersion: apps/v1beta1
       minReplicas: 2
       maxReplicas: 6
-      targetCPUUtilizationPercentage: 80
+      targetCPUUtilizationPercentage: 4
 parameters:
   - name: NAME
     displayName: Name
