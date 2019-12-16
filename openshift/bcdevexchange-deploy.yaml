@@ -162,24 +162,30 @@ parameters:
   - name: CPU_LIMIT
     displayName: CPU Limit
     description: Maximum amount of CPU the container can use.
+    required: true
     value: 500m
   - name: MEMORY_LIMIT
     displayName: Memory Limit
     description: Maximum amount of memory the container can use.
+    required: true
     value: 1Gi
   - name: CPU_REQUEST
     displayName: CPU Request
     description: Starting amount of CPU the container can use.
+    required: true
     value: 100m
   - name: MEMORY_REQUEST
     displayName: Memory Request
     description: Starting amount of memory the container can use.
+    required: true
     value: 256Mi
   - name: MIN_REPLICAS
     displayName: Minimum Replica count
     description: Minimum number of replicas
-    value: 1
+    required: true
+    value: "1"
   - name: MAX_REPLICAS
     displayName: Maximum Replica count
     description: Maximum number of replicas
-    value: 2
+    required: true
+    value: "2"
