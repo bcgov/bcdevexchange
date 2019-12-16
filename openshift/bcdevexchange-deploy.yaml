@@ -109,6 +109,20 @@ objects:
                 periodSeconds: 10
                 successThreshold: 1
                 failureThreshold: 3
+  - kind: HorizontalPodAutoscaler
+    apiVersion: autoscaling/v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+      labels:
+        app: "${NAME}${SUFFIX}"
+    spec:
+      scaleTargetRef:
+        kind: Deployment
+        name: "${NAME}${SUFFIX}"
+        apiVersion: apps/v1beta1
+        subresource: scale
+      minReplicas: 2
+      maxReplicas: 6
 parameters:
   - name: NAME
     displayName: Name
