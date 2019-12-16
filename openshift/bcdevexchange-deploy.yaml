@@ -123,9 +123,9 @@ objects:
         kind: DeploymentConfig
         name: "${NAME}${SUFFIX}"
         apiVersion: v1
-      minReplicas: 2
-      maxReplicas: 6
-      targetCPUUtilizationPercentage: 4
+      minReplicas: "${MIN_REPLICAS}"
+      maxReplicas: "${MAX_REPLICAS}"
+      targetCPUUtilizationPercentage: 80
 parameters:
   - name: NAME
     displayName: Name
@@ -175,3 +175,11 @@ parameters:
     displayName: Memory Request
     description: Starting amount of memory the container can use.
     value: 256Mi
+  - name: MIN_REPLICAS
+    displayName: Minimum Replica count
+    description: Minimum number of replicas
+    value: 1
+  - name: MAX_REPLICAS
+    displayName: Maximum Replica count
+    description: Maximum number of replicas
+    value: 2
