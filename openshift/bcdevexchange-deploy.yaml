@@ -123,8 +123,8 @@ objects:
         kind: DeploymentConfig
         name: "${NAME}${SUFFIX}"
         apiVersion: v1
-      minReplicas: "${MIN_REPLICAS}"
-      maxReplicas: "${MAX_REPLICAS}"
+      minReplicas: "${{MIN_REPLICAS}}"
+      maxReplicas: "${{MAX_REPLICAS}}"
       targetCPUUtilizationPercentage: 80
 parameters:
   - name: NAME
