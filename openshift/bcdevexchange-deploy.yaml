@@ -122,7 +122,7 @@ objects:
       scaleTargetRef:
         kind: DeploymentConfig
         name: "${NAME}${SUFFIX}"
-        apiVersion: apps/v1beta1
+        apiVersion: v1
       minReplicas: 2
       maxReplicas: 6
       targetCPUUtilizationPercentage: 4
