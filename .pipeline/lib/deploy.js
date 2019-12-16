@@ -17,7 +17,13 @@ module.exports = (settings)=>{
       'SUFFIX': phases[phase].suffix,
       'VERSION': phases[phase].version,
       'HOST': `${phases[phase].name}${phases[phase].suffix}-${phases[phase].namespace}.pathfinder.gov.bc.ca`,
-      'ASPNETCORE_ENVIRONMENT': phases[phase].aspdotnetenvironment
+      'ASPNETCORE_ENVIRONMENT': phases[phase].aspdotnetenvironment,
+      'MIN_REPLICAS': phases[phase].minreplicas,
+      'MAX_REPLICAS': phases[phase].maxreplicas,
+      'MEMORY_REQUEST':phases[phase].memoryrequest,
+      'MEMORY_LIMIT':phases[phase].memorylimit,
+      'CPU_REQUEST':phases[phase].cpurequest,
+      'CPU_LIMIT':phases[phase].cpulimit
     }
 }))
 

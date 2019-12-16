@@ -48,10 +48,13 @@ objects:
         description: "Defines how to deploy ${NAME}"
     spec:
       strategy:
-        recreateParams:
-          timeoutSeconds: 2000
-        resources: {}
-        type: Recreate
+        rollingParams:
+          timeoutSeconds: 600
+          intervalSeconds: 1
+          maxSurge: 25%
+          maxUnavailable: 25%
+          UpdatePeriodSeconds: 1
+        type: Rolling
         activeDeadlineSeconds: 21600
       triggers:
         - type: ConfigChange
@@ -109,6 +112,20 @@ objects:
                 periodSeconds: 10
                 successThreshold: 1
                 failureThreshold: 3
+  - kind: HorizontalPodAutoscaler
+    apiVersion: autoscaling/v1
+    metadata:
+      name: "${NAME}${SUFFIX}"
+      labels:
+        app: "${NAME}${SUFFIX}"
+    spec:
+      scaleTargetRef:
+        kind: DeploymentConfig
+        name: "${NAME}${SUFFIX}"
+        apiVersion: v1
+      minReplicas: "${{MIN_REPLICAS}}"
+      maxReplicas: "${{MAX_REPLICAS}}"
+      targetCPUUtilizationPercentage: 80
 parameters:
   - name: NAME
     displayName: Name
@@ -145,16 +162,30 @@ parameters:
   - name: CPU_LIMIT
     displayName: CPU Limit
     description: Maximum amount of CPU the container can use.
-    value: "1"
+    required: true
+    value: 500m
   - name: MEMORY_LIMIT
     displayName: Memory Limit
     description: Maximum amount of memory the container can use.
-    value: 4Gi
+    required: true
+    value: 1Gi
   - name: CPU_REQUEST
     displayName: CPU Request
     description: Starting amount of CPU the container can use.
+    required: true
     value: 100m
   - name: MEMORY_REQUEST
     displayName: Memory Request
     description: Starting amount of memory the container can use.
-    value: 2Gi
+    required: true
+    value: 256Mi
+  - name: MIN_REPLICAS
+    displayName: Minimum Replica count
+    description: Minimum number of replicas
+    required: true
+    value: "1"
+  - name: MAX_REPLICAS
+    displayName: Maximum Replica count
+    description: Maximum number of replicas
+    required: true
+    value: "2"
