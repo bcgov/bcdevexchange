@@ -111,7 +111,7 @@ pipeline {
                 // ======================================================================================================
                 sh (
                     returnStdout: true,
-                    script: chmod +777 gradlew && ./gradlew sonarqube --stacktrace --info \ 
+                    script: "chmod +777 gradlew && ./gradlew sonarqube --stacktrace --info \ 
                     -Dsonar.verbose=true \
                     -Dsonar.host.url=${SONARQUBE_URL} \
                     -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
