@@ -14,7 +14,13 @@ const phases = {
     instance: `${name}-build-${changeId}`,
     version: `${version}-${changeId}`,
     tag: `build-${version}-${changeId}`,
-    aspdotnetenvironment: "Development"
+    aspdotnetenvironment: "Development",
+    minreplicas: "1",
+    maxreplicas: "1",
+    memoryrequest: "256Mi",
+    memorylimit: "1Gi",
+    cpurequest: "100m",
+    cpulimit: "500m"
   },
   dev: {
     namespace: "ifttgq-dev",
@@ -25,7 +31,13 @@ const phases = {
     instance: `${name}-dev-${changeId}`,
     version: `${version}-${changeId}`,
     tag: `dev-${version}-${changeId}`,
-    aspdotnetenvironment: "Development"
+    aspdotnetenvironment: "Development",
+    minreplicas: "1",
+    maxreplicas: "2",
+    memoryrequest: "256Mi",
+    memorylimit: "1Gi",
+    cpurequest: "100m",
+    cpulimit: "500m"
   },
   test: {
     namespace: "ifttgq-test",
@@ -36,7 +48,13 @@ const phases = {
     instance: `${name}-test`,
     version: `${version}-${changeId}`,
     tag: `test-${version}`,
-    aspdotnetenvironment: "Staging"
+    aspdotnetenvironment: "Staging",
+    minreplicas: "2",
+    maxreplicas: "6",
+    memoryrequest: "1Gi",
+    memorylimit: "2Gi",
+    cpurequest: "100m",
+    cpulimit: "1"
   },
   prod: {
     namespace: "ifttgq-prod",
@@ -47,7 +65,13 @@ const phases = {
     instance: `${name}-prod`,
     version: `${version}-${changeId}`,
     tag: `prod-${version}`,
-    aspdotnetenvironment: "Production"
+    aspdotnetenvironment: "Production",
+    minreplicas: "2",
+    maxreplicas: "6",
+    memoryrequest: "2Gi",
+    memorylimit: "4Gi",
+    cpurequest: "200m",
+    cpulimit: "1"
   }
 };
 
