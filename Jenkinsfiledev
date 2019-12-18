@@ -101,6 +101,7 @@ pipeline {
                 //
                 // An example can be found here:
                 // - https://github.com/BCDevOps/sonarqube
+                sh "cd sonar-runner && chmod +777 gradlew"
                 dir('sonar-runner') {
                 // ======================================================================================================
                 // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
@@ -111,7 +112,7 @@ pipeline {
                 // ======================================================================================================
                 sh (
                     returnStdout: true,
-                    script: "chmod +777 gradlew && ./gradlew sonarqube --stacktrace --info \ 
+                    script: "./gradlew sonarqube --stacktrace --info \ 
                     -Dsonar.verbose=true \
                     -Dsonar.host.url=${SONARQUBE_URL} \
                     -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
