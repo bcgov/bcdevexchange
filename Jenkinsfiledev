@@ -10,7 +10,7 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 def SONAR_ROUTE_NAMESPACE = 'ifttgq-tools'
 
 // The name of your SonarQube project
-def SONAR_PROJECT_NAME = 'bcdevexchange'
+def SONAR_PROJECT_NAME = 'BC Dev Exchange'
 
 // The project key of your SonarQube project
 def SONAR_PROJECT_KEY = 'bcdevexchange'
@@ -22,7 +22,7 @@ def SONAR_PROJECT_BASE_DIR = '../'
 
 // The source code directory you want to scan.
 // This is relative to the project base directory.
-def SONAR_SOURCES = './'
+def SONAR_SOURCES = './bcdevexchange'
 // ================================================================================================
 
 // Gets the URL associated to a named route.
@@ -111,7 +111,7 @@ pipeline {
                 // ======================================================================================================
                 sh (
                     returnStdout: true,
-                    script: "./gradlew sonarqube --stacktrace --info \
+                    script: "chmod +777 gradlew && ./gradlew sonarqube --stacktrace --info \ 
                     -Dsonar.verbose=true \
                     -Dsonar.host.url=${SONARQUBE_URL} \
                     -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
