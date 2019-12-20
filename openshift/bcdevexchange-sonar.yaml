@@ -4,6 +4,10 @@ metadata:
   name: "${NAME}-build-template"
   creationTimestamp: 
 objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${NAME}"
 - kind: BuildConfig
   apiVersion: v1
   metadata:
