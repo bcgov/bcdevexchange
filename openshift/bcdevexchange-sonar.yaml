@@ -7,7 +7,7 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: "${NAME}"
+    name: "${NAME}-sonar-develop"
 - kind: BuildConfig
   apiVersion: v1
   metadata:
@@ -44,7 +44,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${NAME}-sonar-test:latest
+        name: ${NAME}-sonar-develop:latest
     resources:
       requests:
         cpu: "${CPU_REQUEST}"
