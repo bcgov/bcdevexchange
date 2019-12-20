@@ -22,6 +22,10 @@ module.exports = (settings)=>{
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar.yaml`, {
     'param':{
       'NAME': 'bcdevexchange-sonar',
+      'MEMORY_REQUEST':phases[phase].memoryrequest,
+      'MEMORY_LIMIT':phases[phase].memorylimit,
+      'CPU_REQUEST':phases[phase].cpurequest,
+      'CPU_LIMIT':phases[phase].cpulimit,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
       'SOURCE_REPOSITORY_REF': oc.git.ref,
       'SOURCE_CONTEXT_DIR': ''
