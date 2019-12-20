@@ -134,6 +134,8 @@ echo "---> Restoring application dependencies..."
 dotnet restore "$DOTNET_STARTUP_PROJECT" $RESTORE_OPTIONS
 
 if [ -n "$SONAR_TOKEN" ]; then
+  echo "--> Installing Java ..."
+    yum -y install jenkins java-1.8.0-openjdk
 	echo "---> Running SonarQube Scan..."
   	dotnet tool install --global dotnet-sonarscanner
   	dotnet sonarscanner begin /d:sonar.login=$SONAR_TOKEN /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
