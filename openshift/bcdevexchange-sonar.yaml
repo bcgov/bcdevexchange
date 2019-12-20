@@ -12,9 +12,10 @@ objects:
   apiVersion: v1
   metadata:
     name: "${NAME}-sonar-develop"
-    labels:
-      app: "${NAME}"
   spec:
+      completionDeadlineSeconds: 14400
+      failedBuildsHistoryLimit: 3
+      nodeSelector: null
     triggers:
     - type: ImageChange
     - type: ConfigChange
@@ -29,8 +30,8 @@ objects:
       type: Source
       sourceStrategy:
         from:
-          kind: "${SOURCE_IMAGE_KIND}"
-          name: "dotnet-sonar:latest"
+          kind: ImageStreamTag
+          name: dotnet-sonar:latest
         env:
         - name: DOTNET_STARTUP_PROJECT
           value: "${DOTNET_STARTUP_PROJECT}"
@@ -40,6 +41,10 @@ objects:
           value: "${SONAR_PROJECT}"
         - name: SONAR_URL
           value: "${SONAR_URL}"
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}-sonar-test:latest
     resources:
       requests:
         cpu: "${CPU_REQUEST}"
