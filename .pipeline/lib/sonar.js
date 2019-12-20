@@ -15,7 +15,7 @@ module.exports = (settings)=>{
       'NAME': phases[phase].name,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
       'SOURCE_REPOSITORY_REF': oc.git.ref,
-      'SOURCE_CONTEXT_DIR': '/dotnet-sonar'
+      'SOURCE_CONTEXT_DIR': 'dotnet-sonar'
     }
 }))
 
