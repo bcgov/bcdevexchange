@@ -30,7 +30,7 @@ objects:
       sourceStrategy:
         from:
           kind: "${SOURCE_IMAGE_KIND}"
-          name: "${SOURCE_IMAGE_NAME}:${SOURCE_IMAGE_TAG}"
+          name: "dotnet-sonar:latest"
         env:
         - name: DOTNET_STARTUP_PROJECT
           value: "${DOTNET_STARTUP_PROJECT}"
