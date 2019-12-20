@@ -13,9 +13,9 @@ objects:
   metadata:
     name: "${NAME}-sonar-develop"
   spec:
-      completionDeadlineSeconds: 14400
-      failedBuildsHistoryLimit: 3
-      nodeSelector: null
+    completionDeadlineSeconds: 14400
+    failedBuildsHistoryLimit: 3
+    nodeSelector: null
     triggers:
     - type: ImageChange
     - type: ConfigChange
