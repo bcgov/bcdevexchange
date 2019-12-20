@@ -60,74 +60,75 @@ String getSonarQubePwd() {
   return sonarQubePwd
 }
 
+// The jenkins-python3nodejs template has been purpose built for supporting SonarQube scanning.
+podTemplate(
+label: 'jenkins-python3nodejs',
+name: 'jenkins-python3nodejs',
+serviceAccount: 'jenkins',
+cloud: 'openshift',
+containers: [
+    containerTemplate(
+    name: 'jnlp',
+    image: '172.50.0.2:5000/openshift/jenkins-slave-python3nodejs',
+    resourceRequestCpu: '1000m',
+    resourceLimitCpu: '2000m',
+    resourceRequestMemory: '2Gi',
+    resourceLimitMemory: '4Gi',
+    workingDir: '/tmp',
+    command: '',
+    args: '${computer.jnlpmac} ${computer.name}'
+    )
+]
+){
+node('jenkins-python3nodejs') {
+
+    stage('Checkout Source') {
+    echo "Checking out source code ..."
+    checkout scm
+    }
+
+    stage('SonarQube Analysis') {
+    echo "Performing static SonarQube code analysis ..."
+
+    SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME, SONAR_ROUTE_NAMESPACE).trim()
+    SONARQUBE_PWD = getSonarQubePwd().trim()
+    echo "URL: ${SONARQUBE_URL}"
+    echo "PWD: ${SONARQUBE_PWD}"
+
+    // The `sonar-runner` MUST exist in your project and contain a Gradle environment consisting of:
+    // - Gradle wrapper script(s)
+    // - A simple `build.gradle` file that includes the SonarQube plug-in.
+    //
+    // An example can be found here:
+    // - https://github.com/BCDevOps/sonarqube
+    sh "cd sonar-runner && chmod +777 gradlew"
+    dir('sonar-runner') {
+        // ======================================================================================================
+        // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
+        // The only thing that should be defined at the Gradle Build level is a minimal set of generic defaults.
+        //
+        // For more information on available properties visit:
+        // - https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle
+        // ======================================================================================================
+        sh (
+        returnStdout: true,
+        script: "./gradlew sonarqube --stacktrace --info \
+            -Dsonar.verbose=true \
+            -Dsonar.host.url=${SONARQUBE_URL} \
+            -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
+            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+            -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
+            -Dsonar.sources=${SONAR_SOURCES}"
+        )
+    }
+    }
+}
+}
+
 pipeline {
     agent none
     options {
         disableResume()
-    }
-    // The jenkins-python3nodejs template has been purpose built for supporting SonarQube scanning.
-    podTemplate(
-    label: 'jenkins-python3nodejs',
-    name: 'jenkins-python3nodejs',
-    serviceAccount: 'jenkins',
-    cloud: 'openshift',
-    containers: [
-        containerTemplate(
-        name: 'jnlp',
-        image: '172.50.0.2:5000/openshift/jenkins-slave-python3nodejs',
-        resourceRequestCpu: '1000m',
-        resourceLimitCpu: '2000m',
-        resourceRequestMemory: '2Gi',
-        resourceLimitMemory: '4Gi',
-        workingDir: '/tmp',
-        command: '',
-        args: '${computer.jnlpmac} ${computer.name}'
-        )
-    ]
-    ){
-    node('jenkins-python3nodejs') {
-
-        stage('Checkout Source') {
-        echo "Checking out source code ..."
-        checkout scm
-        }
-
-        stage('SonarQube Analysis') {
-        echo "Performing static SonarQube code analysis ..."
-
-        SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME, SONAR_ROUTE_NAMESPACE).trim()
-        SONARQUBE_PWD = getSonarQubePwd().trim()
-        echo "URL: ${SONARQUBE_URL}"
-        echo "PWD: ${SONARQUBE_PWD}"
-
-        // The `sonar-runner` MUST exist in your project and contain a Gradle environment consisting of:
-        // - Gradle wrapper script(s)
-        // - A simple `build.gradle` file that includes the SonarQube plug-in.
-        //
-        // An example can be found here:
-        // - https://github.com/BCDevOps/sonarqube
-        sh "cd sonar-runner && chmod +777 gradlew"
-        dir('sonar-runner') {
-            // ======================================================================================================
-            // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
-            // The only thing that should be defined at the Gradle Build level is a minimal set of generic defaults.
-            //
-            // For more information on available properties visit:
-            // - https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle
-            // ======================================================================================================
-            sh (
-            returnStdout: true,
-            script: "./gradlew sonarqube --stacktrace --info \
-                -Dsonar.verbose=true \
-                -Dsonar.host.url=${SONARQUBE_URL} \
-                -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
-                -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
-                -Dsonar.sources=${SONAR_SOURCES}"
-            )
-        }
-        }
-    }
     }
     stages {
         stage('Build') {
