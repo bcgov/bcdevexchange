@@ -7,8 +7,6 @@ module.exports = (settings)=>{
   const options = settings.options
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases.build.namespace}, options));
   const phase='sonar'
-  const surl = options.surl
-  const spwd = options.spwd
   let objects = []
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
