@@ -29,7 +29,7 @@ objects:
       type: Docker
       dockerStrategy:
         from:
-          kind: DockerImage
+          kind: ImageStreamTag
           name: registry.access.redhat.com/dotnet/dotnet-22-rhel7:2.2-2
         dockerfilePath: "${DOCKER_FILE_PATH}"
     output:
