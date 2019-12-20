@@ -29,8 +29,8 @@ objects:
       type: Docker
       dockerStrategy:
         from:
-          kind: "${SOURCE_IMAGE_KIND}"
-          name: "${SOURCE_IMAGE_NAME}:${SOURCE_IMAGE_TAG}"
+          kind: DockerImage
+          name: registry.access.redhat.com/dotnet/dotnet-22-rhel7:2.2-2
         dockerfilePath: "${DOCKER_FILE_PATH}"
     output:
       to:
@@ -62,7 +62,7 @@ parameters:
   description: The 'kind' (type) of the  source image; typically ImageStreamTag, or
     DockerImage.
   required: false
-  value: DockerImage
+  value: ImageStreamTag 
 - name: SOURCE_IMAGE_NAME
   displayName: Source Image Name
   description: The name of the source image.
