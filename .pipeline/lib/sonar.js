@@ -13,8 +13,6 @@ module.exports = (settings)=>{
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar-build.yaml`, {
     'param':{
       'NAME': phases[phase].name,
-      'SUFFIX': phases[phase].suffix,
-      'VERSION': phases[phase].version,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
       'SOURCE_REPOSITORY_REF': oc.git.ref,
       'SOURCE_CONTEXT_DIR': '/dotnet-sonar'
@@ -24,8 +22,6 @@ module.exports = (settings)=>{
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar.yaml`, {
     'param':{
       'NAME': 'bcdevexchange-sonar',
-      'SUFFIX': phases[phase].suffix,
-      'VERSION': phases[phase].version,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
       'SOURCE_REPOSITORY_REF': oc.git.ref,
       'SOURCE_CONTEXT_DIR': ''
