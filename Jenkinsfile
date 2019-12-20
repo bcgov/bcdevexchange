@@ -86,7 +86,7 @@ pipeline {
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
         }
-        /*stage('SonarScan') {
+        stage('SonarScan') {
             agent { label 'build' }
             steps {
                 script{
@@ -95,35 +95,10 @@ pipeline {
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
                     echo "PWD: ${SONARQUBE_PWD}"
-                    // The `sonar-runner` MUST exist in your project and contain a Gradle environment consisting of:
-                    // - Gradle wrapper script(s)
-                    // - A simple `build.gradle` file that includes the SonarQube plug-in.
-                    //
-                    // An example can be found here:
-                    // - https://github.com/BCDevOps/sonarqube
-                    sh "cd sonar-runner && chmod +777 gradlew"
-                    dir('sonar-runner') {
-                    // ======================================================================================================
-                    // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
-                    // The only thing that should be defined at the Gradle Build level is a minimal set of generic defaults.
-                    //
-                    // For more information on available properties visit:
-                    // - https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle
-                    // ======================================================================================================
-                     sh (
-                        returnStdout: true,
-                        script: "./gradlew sonarqube --stacktrace --info -Dsonar.verbose=true \
-                        -Dsonar.host.url=${SONARQUBE_URL} \
-                        -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
-                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                        -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
-                        -Dsonar.sources=${SONAR_SOURCES}"
-                    )
-                    }
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --surl=${SONARQUBE_URL} --spwd=${SONARQUBE_PWD}"
                 }
-                
             }   
-        }*/
+        }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
             steps {

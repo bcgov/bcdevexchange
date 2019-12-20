@@ -134,41 +134,39 @@ echo "---> Restoring application dependencies..."
 dotnet restore "$DOTNET_STARTUP_PROJECT" $RESTORE_OPTIONS
 
 if [ -n "$SONAR_TOKEN" ]; then
-  echo "--> Installing Java ..."
-    sudo yum -y install jenkins java-1.8.0-openjdk
 	echo "---> Running SonarQube Scan..."
   	dotnet tool install --global dotnet-sonarscanner
   	dotnet sonarscanner begin /d:sonar.login=$SONAR_TOKEN /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
   	dotnet build "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
   	dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
-fi
-# build and publish the application for production usage
-echo "---> Publishing application..."
-dotnet publish /m:1 "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION" \
-    --self-contained false /p:AssemblyVersion=$VERSION_PREFIX$BUILDNUMBER /p:FileVersion=$VERSION_PREFIX$BUILDNUMBER /p:PublishWithAspNetCoreTargetManifest=$DOTNET_ASPNET_STORE -o "$DOTNET_APP_PATH"
+else
+  # build and publish the application for production usage
+  echo "---> Publishing application..."
+  dotnet publish /m:1 "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION" \
+      --self-contained false /p:AssemblyVersion=$VERSION_PREFIX$BUILDNUMBER /p:FileVersion=$VERSION_PREFIX$BUILDNUMBER /p:PublishWithAspNetCoreTargetManifest=$DOTNET_ASPNET_STORE -o "$DOTNET_APP_PATH"
 
-# check if the assembly used by the script exists
-if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
-  echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
-  exit 1
-fi
+  # check if the assembly used by the script exists
+  if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
+    echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
+    exit 1
+  fi
 
-# Create run script in publish folder
-cat << EOF >"$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
+  # Create run script in publish folder
+  cat << EOF >"$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
 #!/bin/bash
 exec dotnet ${APP_DLL_NAME} \$@
 EOF
-	chmod +x "$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
+  chmod +x "$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
 
-	if [ "$DOTNET_PACK" == "true" ]; then
-	  echo "---> Packing application..."
-	  fix-permissions $DOTNET_APP_PATH
-	  tar -czf /opt/app-root/app.tar.gz -C $DOTNET_APP_PATH .
-	fi
+  if [ "$DOTNET_PACK" == "true" ]; then
+    echo "---> Packing application..."
+    fix-permissions $DOTNET_APP_PATH
+    tar -czf /opt/app-root/app.tar.gz -C $DOTNET_APP_PATH .
+  fi
 
-	# cleanup NuGet artifacts
-	rm -rf ~/{.local,.nuget}
+  # cleanup NuGet artifacts
+  rm -rf ~/{.local,.nuget}
 
-	# fix permissions
-	fix-permissions /opt/app-root
-
+  # fix permissions
+  fix-permissions /opt/app-root
+fi

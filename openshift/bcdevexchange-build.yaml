@@ -65,12 +65,6 @@ objects:
               value: "${DOTNET_TEST_PROJECTS}"
             - name: DOTNET_RM_SRC
               value: "${DOTNET_RM_SRC}"
-            - name: SONAR_TOKEN
-              value: "${SONAR_TOKEN}"
-            - name: SONAR_PROJECT
-              value: "${SONAR_PROJECT}"
-            - name: SONAR_URL
-              value: "${SONAR_URL}"
       output:
         to:
           kind: ImageStreamTag
