@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # S2I Assemble Script
+
 # This script is based on the S2I assemble script for dotnet 2, with the following extra features:
 #
 # 1. A Sonarqube scan can be done on the source
 # 2. Dotnet tests can be done
-# 3. Or a regular build for production of an application image can be done.
+# 3. Or a regular build for production of an application image can be done
 
 set -e
 
@@ -139,6 +140,7 @@ if [ -n "$SONAR_TOKEN" ]; then
   	dotnet sonarscanner begin /d:sonar.login=$SONAR_TOKEN /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
   	dotnet build "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
   	dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+
 else
   # build and publish the application for production usage
   echo "---> Publishing application..."
@@ -169,4 +171,4 @@ EOF
 
   # fix permissions
   fix-permissions /opt/app-root
-fi
+  fi
