@@ -94,6 +94,7 @@ pipeline {
                 }
                 changed {
                     echo 'Things were different before...'
+                    commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${REPO_NAME}-${JOB_NAME}")
                 }
             } 
         }
