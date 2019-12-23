@@ -81,6 +81,7 @@ pipeline {
             post {
                 always {
                     echo 'One way or another, I have finished'
+                    commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=")
                     deleteDir() /* clean up our workspace */
                 }
                 success {
@@ -94,7 +95,6 @@ pipeline {
                 }
                 changed {
                     echo 'Things were different before...'
-                    commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${REPO_NAME}-${JOB_NAME}")
                 }
             } 
         }
