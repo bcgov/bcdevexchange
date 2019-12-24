@@ -118,7 +118,7 @@ pipeline {
                 }
             }  
             post {
-                sucess{
+                success{
                     notifyStageStatus('SonarScan', 'SUCCESS')
                 }
                 failure{
@@ -156,7 +156,7 @@ pipeline {
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
             post {
-                sucess{
+                success{
                     notifyStageStatus('Build', 'SUCCESS')
                 }
                 failure{
@@ -172,7 +172,7 @@ pipeline {
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
             }
             post {
-                sucess{
+                success{
                     createDeploymentStatus("Dev", 'SUCCESS')
                     notifyStageStatus('Deploy(Dev)', 'SUCCESS')
                 }
