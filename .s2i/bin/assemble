@@ -135,11 +135,11 @@ echo "---> Restoring application dependencies..."
 dotnet restore "$DOTNET_STARTUP_PROJECT" $RESTORE_OPTIONS
 
 if [ -n "$SONAR_TOKEN" ]; then
-	echo "---> Running SonarQube Scan..."
+	echo "---> Running SonarQube Scan... with password $SONAR_PWD"
   	dotnet tool install --global dotnet-sonarscanner
-  	dotnet sonarscanner begin /d:sonar.login=$SONAR_TOKEN /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
+  	dotnet sonarscanner begin /d:sonar.login="admin" /d:sonar.password="$SONAR_PWD" /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
   	dotnet build "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
-  	dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+  	dotnet sonarscanner end /d:sonar.login="admin"
 
 else
   # build and publish the application for production usage

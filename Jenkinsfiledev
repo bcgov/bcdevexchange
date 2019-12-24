@@ -52,7 +52,7 @@ String getUrlForRoute(String routeName, String projectNameSpace = '') {
 String getSonarQubePwd() {
 
   sonarQubePwd = sh (
-    script: 'oc env dc/sonarqube --list | awk  -F  "=" \'/SONARQUBE_ADMINPW/{print $2}\'',
+    script: 'oc get secret sonarqube-admin-password -o go-template --template="{{.data.password|base64decode}}"',
     returnStdout: true
   ).trim()
 
@@ -74,7 +74,7 @@ pipeline {
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
                     echo "PWD: ${SONARQUBE_PWD}"
-                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD}"
                 }
             }  
             post {

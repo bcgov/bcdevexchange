@@ -41,6 +41,8 @@ objects:
           value: "${SONAR_PROJECT}"
         - name: SONAR_URL
           value: "${SONAR_URL}"
+        - name: SONAR_PWD
+          value: "${SONAR_PWD}"
     output:
       to:
         kind: ImageStreamTag
@@ -134,3 +136,9 @@ parameters:
   description: The SonarQube URL
   required: false
   value: https://sonarqube-ifttgq-tools.pathfinder.gov.bc.ca
+- name: SONAR_PWD
+  displayName: SonarQube Password
+  description: The SonarQube password
+  required: false
+  value: ''
+

@@ -7,6 +7,9 @@ module.exports = (settings)=>{
   const options = settings.options
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases.build.namespace}, options));
   const phase='sonar'
+  const sonarPwd=options.sonarPwd
+  const sonarUrl=options.sonarUrl
+  const projectName='bcdevexchange-' + options.pr
   let objects = []
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
@@ -28,7 +31,10 @@ module.exports = (settings)=>{
       'CPU_LIMIT':phases[phase].cpulimit,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
       'SOURCE_REPOSITORY_REF': oc.git.ref,
-      'SOURCE_CONTEXT_DIR': ''
+      'SOURCE_CONTEXT_DIR': '',
+      'SONAR_URL': sonarUrl,
+      'SONAR_PWD': sonarPwd,
+      'SONAR_PROJECT': projectName
     }
 }))
 
