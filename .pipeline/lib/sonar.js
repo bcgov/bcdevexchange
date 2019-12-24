@@ -14,14 +14,14 @@ module.exports = (settings)=>{
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
 // Uncomment below if you need to build the base image again
-//   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar-build.yaml`, {
-//     'param':{
-//       'NAME': phases[phase].name,
-//       'SOURCE_REPOSITORY_URL': oc.git.http_url,
-//       'SOURCE_REPOSITORY_REF': oc.git.ref,
-//       'SOURCE_CONTEXT_DIR': 'dotnet-sonar'
-//     }
-// }))
+  objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar-build.yaml`, {
+    'param':{
+      'NAME': phases[phase].name,
+      'SOURCE_REPOSITORY_URL': oc.git.http_url,
+      'SOURCE_REPOSITORY_REF': oc.git.ref,
+      'SOURCE_CONTEXT_DIR': 'dotnet-sonar'
+    }
+}))
 
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar.yaml`, {
     'param':{
