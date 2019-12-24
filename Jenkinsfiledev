@@ -108,7 +108,7 @@ pipeline {
                     SONARQUBE_PROJECT = "BCDevExchange"
                     if (env.CHANGE_TARGET != "master")
                     {
-                        SONARQUBE_PROJECT = SONARQUBE_PROJECT + "=PR-${CHANGE_ID}"
+                        SONARQUBE_PROJECT = SONARQUBE_PROJECT + "-PR-${CHANGE_ID}"
                     }
 
                     SONARQUBE_PWD = getSonarQubePwd().trim()
