@@ -60,8 +60,7 @@ def notifyStageStatus(String name, String status) {
 // Create deployment status and pass to Jenkins-GitHub library
 def createDeploymentStatus(String environment, String status) {
   def ghDeploymentId = new GitHubHelper().createDeployment(
-    this,
-    "${SOURCE_REPO_REF}",
+    this,"$SOURCE_REPO_REF",
     [
       'environment': environment,
       'task': "deploy:pull:${CHANGE_ID}"
