@@ -329,3 +329,7 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 node_modules/
+
+# This is to exclude this folder out of all the bin folders
+!.s2i/bin
+

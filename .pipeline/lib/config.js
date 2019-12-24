@@ -22,6 +22,23 @@ const phases = {
     cpurequest: "100m",
     cpulimit: "500m"
   },
+  sonar: {
+    namespace: "ifttgq-tools",
+    name: "dotnet-sonar",
+    phase: "build",
+    changeId: changeId,
+    suffix: `-build-${changeId}`,
+    instance: `${name}-build-${changeId}`,
+    version: `${version}-${changeId}`,
+    tag: `build-${version}-${changeId}`,
+    aspdotnetenvironment: "Development",
+    minreplicas: "1",
+    maxreplicas: "1",
+    memoryrequest: "4Gi",
+    memorylimit: "6Gi",
+    cpurequest: "500m",
+    cpulimit: "1"
+  },
   dev: {
     namespace: "ifttgq-dev",
     name: `${name}`,

@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # S2I Assemble Script
-# For the BC Dev Exchange Website project
+
 # This script is based on the S2I assemble script for dotnet 2, with the following extra features:
+#
+# 1. A Sonarqube scan can be done on the source
+# 2. Dotnet tests can be done
+# 3. Or a regular build for production of an application image can be done
 
 set -e
 
@@ -131,45 +135,40 @@ echo "---> Restoring application dependencies..."
 dotnet restore "$DOTNET_STARTUP_PROJECT" $RESTORE_OPTIONS
 
 if [ -n "$SONAR_TOKEN" ]; then
-	echo "---> Running SonarQube Scan..."
+	echo "---> Running SonarQube Scan... with password $SONAR_PWD"
   	dotnet tool install --global dotnet-sonarscanner
-  	dotnet sonarscanner begin /d:sonar.login=$SONAR_TOKEN /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
+  	dotnet sonarscanner begin /d:sonar.login="$SONAR_TOKEN" /d:sonar.password="$SONAR_PWD" /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
   	dotnet build "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
-  	dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
-elif [ -n "$SNYK_TOKEN" ]; then
-	# Run the snyk scan.  Note SNYK_TOKEN is automatically used by the snyk scanner for authentication.
-	echo "---> Running Snyk Scan..."
-	snyk test --file="$DOTNET_STARTUP_PROJECT"
-elif [ -n "$DOTNET_TEST" ]; then
-	dotnet test "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
+  	dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" /d:sonar.password="$SONAR_PWD"
+
 else
-	# build and publish the application for production usage
-	echo "---> Publishing application..."
-	dotnet publish /m:1 "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION" \
-		 --self-contained false /p:AssemblyVersion=$VERSION_PREFIX$BUILDNUMBER /p:FileVersion=$VERSION_PREFIX$BUILDNUMBER /p:PublishWithAspNetCoreTargetManifest=$DOTNET_ASPNET_STORE -o "$DOTNET_APP_PATH"
+  # build and publish the application for production usage
+  echo "---> Publishing application..."
+  dotnet publish /m:1 "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION" \
+      --self-contained false /p:AssemblyVersion=$VERSION_PREFIX$BUILDNUMBER /p:FileVersion=$VERSION_PREFIX$BUILDNUMBER /p:PublishWithAspNetCoreTargetManifest=$DOTNET_ASPNET_STORE -o "$DOTNET_APP_PATH"
 
-	# check if the assembly used by the script exists
-	if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
-	  echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
-	  exit 1
-	fi
+  # check if the assembly used by the script exists
+  if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
+    echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
+    exit 1
+  fi
 
-	# Create run script in publish folder
-	cat << EOF >"$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
+  # Create run script in publish folder
+  cat << EOF >"$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
 #!/bin/bash
 exec dotnet ${APP_DLL_NAME} \$@
 EOF
-	chmod +x "$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
+  chmod +x "$DOTNET_APP_PATH/$DOTNET_DEFAULT_CMD"
 
-	if [ "$DOTNET_PACK" == "true" ]; then
-	  echo "---> Packing application..."
-	  fix-permissions $DOTNET_APP_PATH
-	  tar -czf /opt/app-root/app.tar.gz -C $DOTNET_APP_PATH .
-	fi
+  if [ "$DOTNET_PACK" == "true" ]; then
+    echo "---> Packing application..."
+    fix-permissions $DOTNET_APP_PATH
+    tar -czf /opt/app-root/app.tar.gz -C $DOTNET_APP_PATH .
+  fi
 
-	# cleanup NuGet artifacts
-	rm -rf ~/{.local,.nuget}
+  # cleanup NuGet artifacts
+  rm -rf ~/{.local,.nuget}
 
-	# fix permissions
-	fix-permissions /opt/app-root
-fi
+  # fix permissions
+  fix-permissions /opt/app-root
+  fi
