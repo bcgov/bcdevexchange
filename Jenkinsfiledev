@@ -1,6 +1,5 @@
-// ================================================================================================
-// SonarQube Scanner Settings
-// ------------------------------------------------------------------------------------------------
+
+import bcgov.GitHubHelper
 
 // The name of the SonarQube route.  Used to dynamically get the URL for SonarQube.
 def SONAR_ROUTE_NAME = 'sonarqube'
@@ -81,8 +80,7 @@ pipeline {
             post {
                 always {
                     echo 'One way or another, I have finished'
-                    commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=")
-                    deleteDir() /* clean up our workspace */
+                    GitHubHelper.commentOnPullRequest(this, "SonarQube Analysis: ${SONARQUBE_URL});
                 }
                 success {
                     echo 'I succeeeded!'
