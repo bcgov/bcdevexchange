@@ -41,6 +41,8 @@ objects:
           value: "${SONAR_URL}"
         - name: SONAR_PWD
           value: "${SONAR_PWD}"
+        - name: SONAR_TOKEN
+          value: "${SONAR_TOKEN}"
     output:
       to:
         kind: ImageStreamTag
@@ -124,6 +126,11 @@ parameters:
   description: The SonarQube project to add data to
   required: false
   value: bcdevexchange
+- name: SONAR_TOKEN
+  displayName: Sonar token (username)
+  description: Sonar token (username) for the Project
+  required: false
+  value: admin
 - name: SONAR_URL
   displayName: SonarQube URL
   description: The SonarQube URL

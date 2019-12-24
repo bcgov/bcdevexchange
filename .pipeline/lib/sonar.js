@@ -36,6 +36,7 @@ module.exports = (settings)=>{
       'SONAR_URL': sonarUrl,
       'SONAR_PWD': sonarPwd,
       'SONAR_PROJECT': projectName,
+      'SONAR_TOKEN': 'admin',
       'CHANGE_ID': changeId
     }
 }))

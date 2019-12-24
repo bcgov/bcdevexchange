@@ -12,10 +12,10 @@ def SONAR_PROJECT_BASE_DIR = '../'
 
 def SONAR_SOURCES = './bcdevexchange'
 
-def SOURCE_REPO_REF = "pull/${CHANGE_ID}/head"
+def SOURCE_REPO_REF = 'pull/${CHANGE_ID}/head'
 
-def APP_SITE = "https://bcdevexchange-dev-" 
-def DEV_URL = "-ifttgq-dev.pathfinder.gov.bc.ca/"
+def APP_SITE = 'https://bcdevexchange-dev-' 
+def DEV_URL = '-ifttgq-dev.pathfinder.gov.bc.ca/'
 
 // Gets the URL associated to a named route.
 @NonCPS
@@ -61,7 +61,7 @@ def notifyStageStatus(String name, String status) {
 def createDeploymentStatus(String environment, String status) {
   def ghDeploymentId = new GitHubHelper().createDeployment(
     this,
-    SOURCE_REPO_REF,
+    ${SOURCE_REPO_REF},
     [
       'environment': environment,
       'task': "deploy:pull:${CHANGE_ID}"
@@ -114,6 +114,7 @@ pipeline {
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
                     echo "PWD: ${SONARQUBE_PWD}"
+                    echo "Project: ${SONARQUBE_PROJECT}"
                     sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
                 }
             }  
