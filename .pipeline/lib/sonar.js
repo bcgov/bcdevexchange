@@ -14,7 +14,6 @@ module.exports = (settings)=>{
   let objects = []
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
-// Uncomment below if you need to build the base image again
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bcdevexchange-sonar-build.yaml`, {
     'param':{
       'NAME': phases[phase].name,
