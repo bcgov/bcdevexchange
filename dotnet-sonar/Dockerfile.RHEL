@@ -7,4 +7,4 @@ USER 0
 # Install Java JDK 8
 RUN yum -y install java-1.8.0-openjdk
 
-USER 1001
+USER 0
