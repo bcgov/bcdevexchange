@@ -58,32 +58,31 @@ def notifyStageStatus(String name, String status) {
 }
 
 // Create deployment status and pass to Jenkins-GitHub library
-def createDeploymentStatus(String environment, String status) {
-  def SOURCE_REPO_REF = 'pull/${CHANGE_ID}/head'
-  def ghDeploymentId = new GitHubHelper().createDeployment(
-    this,
-    SOURCE_REPO_REF,
-    [
-      'environment': environment,
-      'task': "deploy:pull:${CHANGE_ID}"
-    ]
-  )
+//def createDeploymentStatus(String environment, String status) {
+//  def ghDeploymentId = new GitHubHelper().createDeployment(
+//    this,
+//    SOURCE_REPO_REF,
+//    [
+//      'environment': environment,
+//      'task': "deploy:pull:${CHANGE_ID}"
+//    ]
+//  )
+//
+//  new GitHubHelper().createDeploymentStatus(
+//    this,
+//    ghDeploymentId,
+//    status,
+//    ['targetUrl': "https://${APP_SITE}${CHANGE_ID}${DEV_URL}"]
+//  )
 
-  new GitHubHelper().createDeploymentStatus(
-    this,
-    ghDeploymentId,
-    status,
-    ['targetUrl': "https://${APP_SITE}${CHANGE_ID}${DEV_URL}"]
-  )
-
-  if (status.equalsIgnoreCase('SUCCESS')) {
-    echo "${environment} deployment successful at https://${APP_SITE}${CHANGE_ID}${DEV_URL}"
-  } else if (status.equalsIgnoreCase('PENDING')) {
-    echo "${environment} deployment pending..."
-  } else if (status.equalsIgnoreCase('FAILURE')) {
-    echo "${environment} deployment failed"
-  }
-}
+//  if (status.equalsIgnoreCase('SUCCESS')) {
+//    echo "${environment} deployment successful at https://${APP_SITE}${CHANGE_ID}${DEV_URL}"
+//  } else if (status.equalsIgnoreCase('PENDING')) {
+//    echo "${environment} deployment pending..."
+//  } else if (status.equalsIgnoreCase('FAILURE')) {
+//    echo "${environment} deployment failed"
+//  }
+//}
 
 // Creates a comment and pass to Jenkins-GitHub library
 def commentOnPR(String comment) {
