@@ -35,8 +35,6 @@ objects:
         env:
         - name: DOTNET_STARTUP_PROJECT
           value: "${DOTNET_STARTUP_PROJECT}"
-        - name: SONAR_TOKEN
-          value: "${SONAR_TOKEN}"
         - name: SONAR_PROJECT
           value: "${SONAR_PROJECT}"
         - name: SONAR_URL
@@ -121,11 +119,6 @@ parameters:
   description: The resources Memory request (in Mi, Gi, etc) for this build.
   required: true
   value: 4Gi
-- name: SONAR_TOKEN
-  displayName: SonarQube Token
-  description: The SonarQube user token
-  required: false
-  value: 'be9bbf0aaa33fc714028ccd9ac163538a9fff089'
 - name: SONAR_PROJECT
   displayName: SonarQube Project
   description: The SonarQube project to add data to

@@ -1,37 +1,23 @@
-
 import bcgov.GitHubHelper
 
-// The name of the SonarQube route.  Used to dynamically get the URL for SonarQube.
 def SONAR_ROUTE_NAME = 'sonarqube'
 
-// The namespace in which the SonarQube route resides.  Used to dynamically get the URL for SonarQube.
-// Leave blank if the pipeline is running in same namespace as the route.
 def SONAR_ROUTE_NAMESPACE = 'ifttgq-tools'
 
-// The name of your SonarQube project
 def SONAR_PROJECT_NAME = 'BC Dev Exchange'
 
-// The project key of your SonarQube project
 def SONAR_PROJECT_KEY = 'bcdevexchange'
 
-// The base directory of your project.
-// This is relative to the location of the `sonar-runner` directory within your project.
-// More accurately this is relative to the Gradle build script(s) that manage the SonarQube Scanning
 def SONAR_PROJECT_BASE_DIR = '../'
 
-// The source code directory you want to scan.
-// This is relative to the project base directory.
 def SONAR_SOURCES = './bcdevexchange'
-// ================================================================================================
+
+def SOURCE_REPO_REF = "pull/${CHANGE_ID}/head"
+
+def APP_SITE = "https://bcdevexchange-dev-" 
+def DEV_URL = "-ifttgq-dev.pathfinder.gov.bc.ca/"
 
 // Gets the URL associated to a named route.
-// If you are attempting to access a route outside the local namespace (the namespace in which this script is running)
-// The Jenkins service account from the local namespace will need 'view' access to the remote namespace.
-// For example:
-// Using the oc cli directly:
-//   oc policy add-role-to-user view system:serviceaccount:devex-von-bc-registries-agent-tools:jenkins -n view devex-von-tools
-// Or using the openshift-developer-tools (https://github.com/BCDevOps/openshift-developer-tools) sripts:
-//   assignRole.sh -u system:serviceaccount:devex-von-bc-registries-agent-tools:jenkins -r view devex-von-tools
 @NonCPS
 String getUrlForRoute(String routeName, String projectNameSpace = '') {
 
@@ -59,6 +45,53 @@ String getSonarQubePwd() {
   return sonarQubePwd
 }
 
+// Notify stage status and pass to Jenkins-GitHub library
+def notifyStageStatus(String name, String status) {
+  def sha1 = GIT_COMMIT
+  if(env.CHANGE_TARGET != 'master') {
+    sha1 = GitHubHelper.getPullRequestLastCommitId(this)
+  }
+
+  GitHubHelper.createCommitStatus(
+    this, sha1, status, BUILD_URL, '', "Stage: ${name}"
+  )
+}
+
+// Create deployment status and pass to Jenkins-GitHub library
+def createDeploymentStatus(String environment, String status) {
+  def ghDeploymentId = new GitHubHelper().createDeployment(
+    this,
+    SOURCE_REPO_REF,
+    [
+      'environment': environment,
+      'task': "deploy:pull:${CHANGE_ID}"
+    ]
+  )
+
+  new GitHubHelper().createDeploymentStatus(
+    this,
+    ghDeploymentId,
+    status,
+    ['targetUrl': "https://${APP_SITE}${CHANGE_ID}${DEV_URL}"]
+  )
+
+  if (status.equalsIgnoreCase('SUCCESS')) {
+    echo "${environment} deployment successful at https://${APP_SITE}${CHANGE_ID}${DEV_URL}"
+  } else if (status.equalsIgnoreCase('PENDING')) {
+    echo "${environment} deployment pending..."
+  } else if (status.equalsIgnoreCase('FAILURE')) {
+    echo "${environment} deployment failed"
+  }
+}
+
+// Creates a comment and pass to Jenkins-GitHub library
+def commentOnPR(String comment) {
+  if(env.CHANGE_TARGET != 'master') {
+    GitHubHelper.commentOnPullRequest(this, comment)
+  }
+}
+
+
 pipeline {
     agent none
     options {
@@ -68,20 +101,36 @@ pipeline {
         stage('SonarScan') {
             agent { label 'build' }
             steps {
+                notifyStageStatus('SonarScan', 'PENDING')
                 script{
                     echo "Performing static SonarQube code analysis ..."
                     SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME, SONAR_ROUTE_NAMESPACE).trim()
+                    SONARQUBE_PROJECT = "BCDevExchange"
+                    if (env.CHANGE_TARGET != "master")
+                    {
+                        SONARQUBE_PROJECT = SONARQUBE_PROJECT + "=PR-${CHANGE_ID}"
+                    }
+
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
                     echo "PWD: ${SONARQUBE_PWD}"
-                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
                 }
             }  
             post {
+                sucess{
+                    notifyStageStatus('SonarScan', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('SonarScan', 'FAILURE')
+                }
                 changed {
                     script{
-                        echo 'Processing finished'
-                        GitHubHelper.commentOnPullRequest(this, "SonarQube Analysis: ${SONARQUBE_URL}")
+                        // Comment on Pull Request if build changes to successful
+                        if(currentBuild.currentResult.equalsIgnoreCase('SUCCESS')) {
+                            echo "Posting SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}"
+                            commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}")
+                        }
                     }
                 }
             } 
@@ -89,6 +138,7 @@ pipeline {
         stage('Build') {
             agent { label 'build' }
             steps {
+                notifyStageStatus('Build', 'PENDING')
                 script {
                     def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
@@ -105,12 +155,31 @@ pipeline {
                 echo "Building ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
+            post {
+                sucess{
+                    notifyStageStatus('Build', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Build', 'FAILURE')
+                }
+            }
         }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
             steps {
+                notifyStageStatus('Deploy(Dev)', 'PENDING')
                 echo "Deploying ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+            }
+            post {
+                sucess{
+                    createDeploymentStatus("Dev", 'SUCCESS')
+                    notifyStageStatus('Deploy(Dev)', 'SUCCESS')
+                }
+                failure{
+                    createDeploymentStatus("Dev", 'FAILURE')
+                    notifyStageStatus('Deploy(Dev)', 'FAILURE')
+                }
             }
         }
         stage('Deploy (TEST)') {
