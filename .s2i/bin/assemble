@@ -139,7 +139,7 @@ if [ -n "$SONAR_TOKEN" ]; then
   	dotnet tool install --global dotnet-sonarscanner
   	dotnet sonarscanner begin /d:sonar.login="admin" /d:sonar.password="$SONAR_PWD" /k:"$SONAR_PROJECT" /d:sonar.host.url=$SONAR_URL
   	dotnet build "$DOTNET_STARTUP_PROJECT" -f "$DOTNET_FRAMEWORK" -c "$DOTNET_CONFIGURATION"
-  	dotnet sonarscanner end /d:sonar.login="admin"
+  	dotnet sonarscanner end /d:sonar.login="admin" /d:sonar.password="$SONAR_PWD"
 
 else
   # build and publish the application for production usage
