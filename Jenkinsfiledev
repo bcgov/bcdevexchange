@@ -80,7 +80,7 @@ pipeline {
             post {
                 always {
                     echo 'One way or another, I have finished'
-                    GitHubHelper.commentOnPullRequest(this, "SonarQube Analysis: ${SONARQUBE_URL});
+                    GitHubHelper.commentOnPullRequest(this, "SonarQube Analysis: ${SONARQUBE_URL})
                 }
                 success {
                     echo 'I succeeeded!'
