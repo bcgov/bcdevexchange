@@ -7,11 +7,11 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: "${NAME}-sonar-develop"
+    name: "${NAME}-${CHANGE_ID}-develop"
 - kind: BuildConfig
   apiVersion: v1
   metadata:
-    name: "${NAME}-sonar-develop"
+    name: "${NAME}-${CHANGE_ID}-develop"
   spec:
     completionDeadlineSeconds: 14400
     failedBuildsHistoryLimit: 3
@@ -44,7 +44,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${NAME}-sonar-develop:latest
+        name: ${NAME}-${CHANGE_ID}-develop:latest
     resources:
       requests:
         cpu: "${CPU_REQUEST}"
@@ -134,4 +134,9 @@ parameters:
   description: The SonarQube password
   required: false
   value: ''
+- name: CHANGE_ID
+  displayName: Pull request Id
+  description: The pull request Id
+  required: false
+  value: "master"
 

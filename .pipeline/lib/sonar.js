@@ -10,6 +10,7 @@ module.exports = (settings)=>{
   const sonarPwd=options.sonarPwd
   const sonarUrl=options.sonarUrl
   const projectName=options.project
+  const changeId=options.pr
   let objects = []
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
@@ -35,7 +36,8 @@ module.exports = (settings)=>{
       'SOURCE_CONTEXT_DIR': '',
       'SONAR_URL': sonarUrl,
       'SONAR_PWD': sonarPwd,
-      'SONAR_PROJECT': projectName
+      'SONAR_PROJECT': projectName,
+      'CHANGE_ID': changeId
     }
 }))
 
