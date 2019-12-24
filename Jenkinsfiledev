@@ -174,11 +174,11 @@ pipeline {
             }
             post {
                 success{
-                    createDeploymentStatus("Dev", 'SUCCESS')
+                   // createDeploymentStatus("Dev", 'SUCCESS')
                     notifyStageStatus('Deploy(Dev)', 'SUCCESS')
                 }
                 failure{
-                    createDeploymentStatus("Dev", 'FAILURE')
+                   // createDeploymentStatus("Dev", 'FAILURE')
                     notifyStageStatus('Deploy(Dev)', 'FAILURE')
                 }
             }
