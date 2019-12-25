@@ -1,0 +1,149 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: "${NAME}-build-template"
+  creationTimestamp: 
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-${CHANGE_ID}-develop"
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-${CHANGE_ID}-develop"
+  spec:
+    completionDeadlineSeconds: 14400
+    failedBuildsHistoryLimit: 3
+    nodeSelector: null
+    triggers:
+    - type: ImageChange
+    - type: ConfigChange
+    runPolicy: Serial
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_REPOSITORY_URL}"
+        ref: "${SOURCE_REPOSITORY_REF}"
+      contextDir: "${SOURCE_CONTEXT_DIR}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: dotnet-sonar:latest
+        env:
+        - name: DOTNET_STARTUP_PROJECT
+          value: "${DOTNET_STARTUP_PROJECT}"
+        - name: SONAR_PROJECT
+          value: "${SONAR_PROJECT}"
+        - name: SONAR_URL
+          value: "${SONAR_URL}"
+        - name: SONAR_PWD
+          value: "${SONAR_PWD}"
+        - name: SONAR_TOKEN
+          value: "${SONAR_TOKEN}"
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}-${CHANGE_ID}-develop:latest
+    resources:
+      requests:
+        cpu: "${CPU_REQUEST}"
+        memory: "${MEMORY_REQUEST}"
+      limits:
+        cpu: "${CPU_LIMIT}"
+        memory: "${MEMORY_LIMIT}"
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name assigned to all of the resources defined in this template.
+  required: true
+  value: bcdevexchange-sonar
+- name: SOURCE_REPOSITORY_URL
+  displayName: Git Repo URL
+  description: The URL to your GIT repo.
+  required: true
+  value: https://github.com/bcgov/bcdevexchange.git
+- name: SOURCE_REPOSITORY_REF
+  displayName: Git Reference
+  description: The git reference or branch.
+  required: true
+  value: develop
+- name: SOURCE_CONTEXT_DIR
+  displayName: Source Context Directory
+  description: The source context directory.
+  required: false
+  value: ''
+- name: SOURCE_IMAGE_KIND
+  displayName: Source Image Kind
+  description: The 'kind' (type) of the  source image; typically ImageStreamTag, or
+    DockerImage.
+  required: false
+  value: ImageStreamTag
+- name: SOURCE_IMAGE_NAME
+  displayName: Source Image Name
+  description: The name of the source image.
+  required: false
+  value: dotnet-sonar
+- name: SOURCE_IMAGE_TAG
+  displayName: Source Image Tag
+  description: The tag of the source image.
+  required: false
+  value: latest
+- name: DOTNET_STARTUP_PROJECT
+  displayName: DotNet Startup Project
+  description: The path to the startup project for the .Net application.
+  required: false
+  value: bcdevexchange/bcdevexchange.csproj
+- name: OUTPUT_IMAGE_TAG
+  displayName: Output Image Tag
+  description: The tag given to the built image.
+  required: false
+  value: latest
+- name: CPU_LIMIT
+  displayName: Resources CPU Limit
+  description: The resources CPU limit (in cores) for this build.
+  required: true
+  value: '1'
+- name: MEMORY_LIMIT
+  displayName: Resources Memory Limit
+  description: The resources Memory limit (in Mi, Gi, etc) for this build.
+  required: true
+  value: 6Gi
+- name: CPU_REQUEST
+  displayName: Resources CPU Request
+  description: The resources CPU request (in cores) for this build.
+  required: true
+  value: '1'
+- name: MEMORY_REQUEST
+  displayName: Resources Memory Request
+  description: The resources Memory request (in Mi, Gi, etc) for this build.
+  required: true
+  value: 4Gi
+- name: SONAR_PROJECT
+  displayName: SonarQube Project
+  description: The SonarQube project to add data to
+  required: false
+  value: bcdevexchange
+- name: SONAR_TOKEN
+  displayName: Sonar token (username)
+  description: Sonar token (username) for the Project
+  required: false
+  value: admin
+- name: SONAR_URL
+  displayName: SonarQube URL
+  description: The SonarQube URL
+  required: false
+  value: https://sonarqube-ifttgq-tools.pathfinder.gov.bc.ca
+- name: SONAR_PWD
+  displayName: SonarQube Password
+  description: The SonarQube password
+  required: false
+  value: ''
+- name: CHANGE_ID
+  displayName: Pull request Id
+  description: The pull request Id
+  required: false
+  value: "master"
+
