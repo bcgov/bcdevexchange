@@ -1,21 +1,31 @@
+def HAS_CHANGED = true
+
 pipeline {
     agent none
     options {
         disableResume()
     }
     stages {
-        stage('Build') {
+        stage('Pre Build') {
             agent { label 'build' }
             steps {
                 script {
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep '^.jenkins/' | grep -v 'Jenkinsfile' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
-                        currentBuild.rawBuild.delete()
-                        error("No changes detected in the path ('^.jenkins/')")
+                        HAS_CHANGED = false
+                        echo "No changes so skipping all stages, setting HAS_CHANGED to ${HAS_CHANGED}"
                     }
                 }
+            }
+        }
+        stage('Build') {
+            agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
+            steps {
                 echo "Aborting all running jobs ..."
                 script {
                     abortAllPreviousBuildInProgress(currentBuild)
@@ -27,6 +37,9 @@ pipeline {
         }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 echo "Deploying ..."
                 sh "cd .jenkins/.pipeline && chmod +777 npmw && ./npmw ci && DEBUG=info* ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
@@ -34,6 +47,10 @@ pipeline {
         }
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+                beforeInput true
+            }
             input {
                 message "Should we continue with deployment to PROD?"
                 ok "Yes!"
@@ -45,6 +62,10 @@ pipeline {
         }
         stage('Acceptance') {
             agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+                beforeInput true
+            }
             input {
                 message "Should we continue with cleanup?"
                 ok "Yes!"

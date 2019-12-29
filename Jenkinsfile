@@ -5,18 +5,7 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 
 def SONAR_ROUTE_NAMESPACE = 'ifttgq-tools'
 
-def SONAR_PROJECT_NAME = 'BC Dev Exchange'
-
-def SONAR_PROJECT_KEY = 'bcdevexchange'
-
-def SONAR_PROJECT_BASE_DIR = '../'
-
-def SONAR_SOURCES = './bcdevexchange'
-
-def SOURCE_REPO_REF = 'pull/${CHANGE_ID}/head'
-
-def APP_SITE = 'https://bcdevexchange-dev-' 
-def DEV_URL = '-ifttgq-dev.pathfinder.gov.bc.ca/'
+def HAS_CHANGED = true
 
 // Gets the URL associated to a named route.
 @NonCPS
@@ -58,33 +47,6 @@ def notifyStageStatus(String name, String status) {
   )
 }
 
-// Create deployment status and pass to Jenkins-GitHub library
-//def createDeploymentStatus(String environment, String status) {
-//  def ghDeploymentId = new GitHubHelper().createDeployment(
-//    this,
-//    SOURCE_REPO_REF,
-//    [
-//      'environment': environment,
-//      'task': "deploy:pull:${CHANGE_ID}"
-//    ]
-//  )
-//
-//  new GitHubHelper().createDeploymentStatus(
-//    this,
-//    ghDeploymentId,
-//    status,
-//    ['targetUrl': "https://${APP_SITE}${CHANGE_ID}${DEV_URL}"]
-//  )
-
-//  if (status.equalsIgnoreCase('SUCCESS')) {
-//    echo "${environment} deployment successful at https://${APP_SITE}${CHANGE_ID}${DEV_URL}"
-//  } else if (status.equalsIgnoreCase('PENDING')) {
-//    echo "${environment} deployment pending..."
-//  } else if (status.equalsIgnoreCase('FAILURE')) {
-//    echo "${environment} deployment failed"
-//  }
-//}
-
 // Creates a comment and pass to Jenkins-GitHub library
 def commentOnPR(String comment) {
   if(env.CHANGE_TARGET != 'master') {
@@ -99,8 +61,30 @@ pipeline {
         disableResume()
     }
     stages {
+        stage('Pre Build') {
+            agent { label 'build' }
+            steps {
+                script {
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
+                    echo "${filesInThisCommitAsString}"
+                    if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
+                        HAS_CHANGED = false
+                        echo "No changes so skipping all stages, setting HAS_CHANGED to ${HAS_CHANGED}"
+                    }
+
+                    if (HAS_CHANGED == true) {
+                        echo "Aborting all running jobs ..."
+                        abortAllPreviousBuildInProgress(currentBuild)
+                    }
+                }
+            }
+        }
         stage('SonarScan') {
             agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('SonarScan', 'PENDING')
                 script{
@@ -114,7 +98,6 @@ pipeline {
 
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
-                    echo "PWD: ${SONARQUBE_PWD}"
                     echo "Project: ${SONARQUBE_PROJECT}"
                     sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
                 }
@@ -139,21 +122,11 @@ pipeline {
         }
         stage('Build') {
             agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('Build', 'PENDING')
-                script {
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD", returnStatus: false, returnStdout: true).trim()
-                    def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
-                    echo "${filesInThisCommitAsString}"
-                    if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
-                        currentBuild.rawBuild.delete()
-                        error("No changes detected in the path")
-                    }
-                }
-                echo "Aborting all running jobs ..."
-                script {
-                    abortAllPreviousBuildInProgress(currentBuild)
-                }
                 echo "Building ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
@@ -168,18 +141,19 @@ pipeline {
         }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('Deploy(Dev)', 'PENDING')
-                echo "Deploying ..."
+                echo "Deploying to Dev..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
             }
             post {
                 success{
-                   // createDeploymentStatus("Dev", 'SUCCESS')
                     notifyStageStatus('Deploy(Dev)', 'SUCCESS')
                 }
                 failure{
-                   // createDeploymentStatus("Dev", 'FAILURE')
                     notifyStageStatus('Deploy(Dev)', 'FAILURE')
                 }
             }
@@ -187,7 +161,7 @@ pipeline {
         stage('Deploy (TEST)') {
             agent { label 'deploy' }
             when {
-                expression { return env.CHANGE_TARGET == 'master';}
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
                 beforeInput true
             }
             input {
@@ -195,14 +169,23 @@ pipeline {
                 ok "Yes!"
             }
             steps {
-                echo "Deploying ..."
+                notifyStageStatus('Deploy(Test)', 'PENDING')
+                echo "Deploying to Test..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Test)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Test)', 'FAILURE')
+                }
             }
         }
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             when {
-                expression { return env.CHANGE_TARGET == 'master';}
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
                 beforeInput true
             }
             input {
@@ -210,8 +193,17 @@ pipeline {
                 ok "Yes!"
             }
             steps {
-                echo "Deploying ..."
+                notifyStageStatus('Deploy(Prod)', 'PENDING')
+                echo "Deploying to Prod..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Prod)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Prod)', 'FAILURE')
+                }
             }
         }
     }

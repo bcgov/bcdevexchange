@@ -25,7 +25,7 @@ const phases = {
   sonar: {
     namespace: "ifttgq-tools",
     name: "dotnet-sonar",
-    phase: "build",
+    phase: "sonar",
     changeId: changeId,
     suffix: `-build-${changeId}`,
     instance: `${name}-build-${changeId}`,
