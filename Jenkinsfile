@@ -72,6 +72,11 @@ pipeline {
                         HAS_CHANGED = false
                         echo "No changes so skipping all stages, setting HAS_CHANGED to ${HAS_CHANGED}"
                     }
+
+                    if (HAS_CHANGED == true) {
+                        echo "Aborting all running jobs ..."
+                        abortAllPreviousBuildInProgress(currentBuild)
+                    }
                 }
             }
         }
@@ -122,19 +127,6 @@ pipeline {
             }
             steps {
                 notifyStageStatus('Build', 'PENDING')
-                script {
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD", returnStatus: false, returnStdout: true).trim()
-                    def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
-                    echo "${filesInThisCommitAsString}"
-                    if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
-                        currentBuild.rawBuild.delete()
-                        error("No changes detected in the path")
-                    }
-                }
-                echo "Aborting all running jobs ..."
-                script {
-                    abortAllPreviousBuildInProgress(currentBuild)
-                }
                 echo "Building ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
