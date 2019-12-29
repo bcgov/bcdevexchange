@@ -49,6 +49,7 @@ pipeline {
             agent { label 'deploy' }
             when {
                 expression { return HAS_CHANGED == true;}
+                beforeInput true
             }
             input {
                 message "Should we continue with deployment to PROD?"

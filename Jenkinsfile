@@ -5,6 +5,8 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 
 def SONAR_ROUTE_NAMESPACE = 'ifttgq-tools'
 
+def HAS_CHANGED = true
+
 // Gets the URL associated to a named route.
 @NonCPS
 String getUrlForRoute(String routeName, String projectNameSpace = '') {
@@ -59,8 +61,25 @@ pipeline {
         disableResume()
     }
     stages {
+        stage('Pre Build') {
+            agent { label 'build' }
+            steps {
+                script {
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
+                    echo "${filesInThisCommitAsString}"
+                    if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
+                        HAS_CHANGED = false
+                        echo "No changes so skipping all stages, setting HAS_CHANGED to ${HAS_CHANGED}"
+                    }
+                }
+            }
+        }
         stage('SonarScan') {
             agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('SonarScan', 'PENDING')
                 script{
@@ -74,7 +93,6 @@ pipeline {
 
                     SONARQUBE_PWD = getSonarQubePwd().trim()
                     echo "URL: ${SONARQUBE_URL}"
-                    echo "PWD: ${SONARQUBE_PWD}"
                     echo "Project: ${SONARQUBE_PROJECT}"
                     sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
                 }
@@ -99,6 +117,9 @@ pipeline {
         }
         stage('Build') {
             agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('Build', 'PENDING')
                 script {
@@ -128,6 +149,9 @@ pipeline {
         }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
             steps {
                 notifyStageStatus('Deploy(Dev)', 'PENDING')
                 echo "Deploying to Dev..."
@@ -145,7 +169,7 @@ pipeline {
         stage('Deploy (TEST)') {
             agent { label 'deploy' }
             when {
-                expression { return env.CHANGE_TARGET == 'master';}
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
                 beforeInput true
             }
             input {
@@ -169,7 +193,7 @@ pipeline {
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             when {
-                expression { return env.CHANGE_TARGET == 'master';}
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
                 beforeInput true
             }
             input {
