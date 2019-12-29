@@ -6,16 +6,16 @@ pipeline {
         disableResume()
     }
     stages {
-        stage('PreBuild') {
+        stage('Pre Build') {
             agent { label 'build' }
             steps {
                 script {
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep '^.jenkins/' | grep -v 'Jenkinsfile' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
-                        currentBuild.rawBuild.delete()
                         HAS_CHANGED = false
+                        echo "No changes so skipping all stages, setting HAS_CHANGED to ${HAS_CHANGED}"
                     }
                 }
             }

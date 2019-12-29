@@ -5,19 +5,6 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 
 def SONAR_ROUTE_NAMESPACE = 'ifttgq-tools'
 
-def SONAR_PROJECT_NAME = 'BC Dev Exchange'
-
-def SONAR_PROJECT_KEY = 'bcdevexchange'
-
-def SONAR_PROJECT_BASE_DIR = '../'
-
-def SONAR_SOURCES = './bcdevexchange'
-
-def SOURCE_REPO_REF = 'pull/${CHANGE_ID}/head'
-
-def APP_SITE = 'https://bcdevexchange-dev-' 
-def DEV_URL = '-ifttgq-dev.pathfinder.gov.bc.ca/'
-
 // Gets the URL associated to a named route.
 @NonCPS
 String getUrlForRoute(String routeName, String projectNameSpace = '') {
