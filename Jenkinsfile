@@ -58,33 +58,6 @@ def notifyStageStatus(String name, String status) {
   )
 }
 
-// Create deployment status and pass to Jenkins-GitHub library
-//def createDeploymentStatus(String environment, String status) {
-//  def ghDeploymentId = new GitHubHelper().createDeployment(
-//    this,
-//    SOURCE_REPO_REF,
-//    [
-//      'environment': environment,
-//      'task': "deploy:pull:${CHANGE_ID}"
-//    ]
-//  )
-//
-//  new GitHubHelper().createDeploymentStatus(
-//    this,
-//    ghDeploymentId,
-//    status,
-//    ['targetUrl': "https://${APP_SITE}${CHANGE_ID}${DEV_URL}"]
-//  )
-
-//  if (status.equalsIgnoreCase('SUCCESS')) {
-//    echo "${environment} deployment successful at https://${APP_SITE}${CHANGE_ID}${DEV_URL}"
-//  } else if (status.equalsIgnoreCase('PENDING')) {
-//    echo "${environment} deployment pending..."
-//  } else if (status.equalsIgnoreCase('FAILURE')) {
-//    echo "${environment} deployment failed"
-//  }
-//}
-
 // Creates a comment and pass to Jenkins-GitHub library
 def commentOnPR(String comment) {
   if(env.CHANGE_TARGET != 'master') {
@@ -175,11 +148,9 @@ pipeline {
             }
             post {
                 success{
-                   // createDeploymentStatus("Dev", 'SUCCESS')
                     notifyStageStatus('Deploy(Dev)', 'SUCCESS')
                 }
                 failure{
-                   // createDeploymentStatus("Dev", 'FAILURE')
                     notifyStageStatus('Deploy(Dev)', 'FAILURE')
                 }
             }
@@ -195,8 +166,17 @@ pipeline {
                 ok "Yes!"
             }
             steps {
+                notifyStageStatus('Deploy(Test)', 'PENDING')
                 echo "Deploying ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Test)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Test)', 'FAILURE')
+                }
             }
         }
         stage('Deploy (PROD)') {
@@ -210,8 +190,17 @@ pipeline {
                 ok "Yes!"
             }
             steps {
+                notifyStageStatus('Deploy(Prod)', 'PENDING')
                 echo "Deploying ..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Prod)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Prod)', 'FAILURE')
+                }
             }
         }
     }
