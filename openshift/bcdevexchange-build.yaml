@@ -148,3 +148,18 @@ parameters:
     description: The resources Memory request (in Mi, Gi, etc) for this build.
     value: 4Gi
     required: false
+  - name: SONAR_TOKEN
+    displayName: Sonar Token
+    description: The Sonar token required to access the sonar server
+    value: "be9bbf0aaa33fc714028ccd9ac163538a9fff089"
+    required: false
+  - name: SONAR_PROJECT
+    displayName: Sonar Project
+    description: The Sonar project identifier
+    value: "bcdevexchange"
+    required: false
+  - name: SONAR_URL
+    displayName: Sonar URL
+    description: The sonar server url
+    value: "https://sonarqube-ifttgq-tools.pathfinder.gov.bc.ca"
+    required: false
