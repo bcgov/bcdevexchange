@@ -143,7 +143,7 @@ pipeline {
             agent { label 'deploy' }
             steps {
                 notifyStageStatus('Deploy(Dev)', 'PENDING')
-                echo "Deploying ..."
+                echo "Deploying to Dev..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
             }
             post {
@@ -167,7 +167,7 @@ pipeline {
             }
             steps {
                 notifyStageStatus('Deploy(Test)', 'PENDING')
-                echo "Deploying ..."
+                echo "Deploying to Test..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
             }
             post {
@@ -191,7 +191,7 @@ pipeline {
             }
             steps {
                 notifyStageStatus('Deploy(Prod)', 'PENDING')
-                echo "Deploying ..."
+                echo "Deploying to Prod..."
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
             }
             post {
