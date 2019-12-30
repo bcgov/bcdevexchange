@@ -50,7 +50,6 @@ namespace bcdevexchange
 
             app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
