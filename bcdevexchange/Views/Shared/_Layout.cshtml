@@ -4,52 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.1/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/styles.css">
     <title>@ViewData["Title"] - bcdevexchange</title>
 </head>
 <body>
-    <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">bcdevexchange</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>*@
-        <div class="bg-div">
-            <img class="logo-img" src="~/img/bcdevexchange-logo-whitetext.png" ALT="align box">
-            <nav class="fixed-top justify-content-end">
-                <ul>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-            </nav>
+    <div class="viewport-screen">
+        <div class="container dm-banner">
+            <h5 class="dm-banner-text">Looking for Code With Us or Sprint With Us Opportunities? They’ve moved to <a href="https://bcdevexchange.org/" class="btn btn-default dm-banner-btn">Digital Marketplace</a></h5>
         </div>
-    </header>
+        <nav class="navbar navbar-expand-sm">
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Views/Home/Index.cshtml"><img class="bcdevx-logo" src="~/img/bcdevexchange-logo-whitetext.png" ALT="align box" /></a>
+                </li>
+            </ul>
+            <ul class="nav-content">
+                <li class="nav-item">
+                    <a class="nav-link nav-content-link" href="~/Views/Home/AboutUs.cshtml">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-content-link" href="~/Views/Home/Learning.cshtml">Learning</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-content-link" href="~/Views/Home/ExchangeLab.cshtml">Exchange Lab</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link nav-content-link" href="~/Views/Home/DevOpsPlatform.cshtml">DevOps Platform</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
     <div>
         @RenderBody()
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container copyright">
-            &copy; 2019 BC DevExchange. All rights reserved. <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
 
 </body>
 </html>

@@ -1,0 +1,159 @@
+﻿body {
+    background-color: black;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    align-items:center;
+    justify-content:center;
+    margin:0;
+}
+.viewport-screen {
+    max-width: none;
+    width: 100%;
+}
+.dm-banner {
+    background-color: blue;
+    height: 60px;
+    color: white;
+    left:0;
+    right:0;
+    position:relative;
+    max-width:100%;
+}
+.dm-banner h5 {
+    padding: 0.5em;
+    text-align: center;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+.dm-banner-btn {
+    background-color: #FFFFFF;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    color: #0065F2;
+}
+.dm-banner-btn:hover {
+    color: #0065F2;
+}
+.navbar {
+    background-color: #181818;
+    height: 60px;
+    width:auto;
+    max-width:100%;
+    position:relative;
+    position: center;
+    left: 0;
+    right: 0;
+    overflow:hidden;
+}
+.bcdevx-logo {
+    background-color: #181818;
+    width: 140px;
+    height: 36px;
+    float: left;
+}
+.nav-item {
+    float: right;
+    background-color: #181818;
+}
+.nav-item a {
+    float: right;
+    color: white;
+    background-color: #181818;
+}
+.nav-content-link {
+    height: 24px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    /*opacity: 0.5;*/
+    letter-spacing: 0.1px;
+    text-align:center;
+}
+.nav-content-link:hover {
+    text-decoration:underline;                                                                                                                          
+}
+.home-image {
+    background-image: url("/img/bcdevx-home-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    margin-bottom: 5px;
+    text-align: center;
+    position: relative;
+    color: #FFFFFF;
+    filter:brightness(85%);
+    width: 100%;
+    max-width:none;
+}
+.home-tagline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    margin-top:25px;
+}
+.home-tagline-text {
+    height: 60px;
+    width: 1110px;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 56px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    text-align: center;
+}
+.home-tagline-subtext {
+    height: 48px;
+    width: 720px;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 190px;
+}
+.grid-cont1 {
+background-color:gray;
+height: 700px;
+width:100%;
+max-width:none;
+}
+/*.grid-row {
+    background-color: gray;
+    margin-top: 40px;
+}
+.col2-img {
+    background-image: url("/img/sampleimg.jpg");
+    background-color:gray;
+}
+.col1-text {
+    height:200px;
+    width:200px;
+}*/
+.grid-cont2 {
+    background-color: #181818;
+    height: 700px;
+    width: 100%;
+    max-width: none;
+}
+.row {
+padding-top:80px;
+}
+.col-bold-text {
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    color: #FFFFFF;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.fa fa-envelope-o {
+    color:white;
+    margin-top:50px;
+}
