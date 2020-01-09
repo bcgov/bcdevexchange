@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@*First part*@
 <div class="container home-image">
     <div class="home-tagline">
         <div class="home-tagline-text">
@@ -15,39 +17,58 @@
         </div>
     </div>
 </div>
-<div class="container grid-cont1">
-    @*<div class="row grid-row">
-            <div class="col-md-6 col-text">
-                <span class="bold-text">Still developing and deploying applications the traditional way?</span>
-                <span class="home-tagline-subtext">With the DevOps Platform, we are helping develop and deploy applications faster in Gov</span>
-                <span class="col1-subtext">
-                    100+
-                    <span class="home-tagline-subtext">applications on the BC Gov DevOps platform</span>
-                </span>
-            </div>
-            <div class="col-md-6 col2-img">
-            </div>
-        </div>*@
-</div>
+
+@*Second part*@
 <div class="container grid-cont2">
-    <div class="row">
-        <div class="col1 col-md-6">
+    <div class="col21">
+        <p class="col-bold-text">Still developing and deploying applications the traditional way?</p>
+        <p class="col-subtext">With the DevOps Platform, we are helping develop and deploy applications faster in Gov </p>
+        <br>
+        <br>
+        <p class="col-bold-text">100+</p>
+        <p class="col-subtext-grid2">applications on the BC Gov<br />DevOps platform</p>
+        <a href="~/Views/Home/DevOpsPlatform.cshtml" class="btn btn-default community-btn" style="width:150px;">Learn More</a>
+    </div>
+    <div class="col22">
+        <img class="col22-img" src="~/img/bcdevx-home-image.jpg" alt="bcdevExchange-img">
+    </div>
+</div>
+
+@*Third part*@
+<div class="container grid-cont3">
+    <div class="col31">
+        <img class="col31-img" src="~/img/bcdevx-home-image.jpg" alt="bcdevExchange-img">
+    </div>
+    <div class="col32">
+        <p class="col-bold-text">Trying to be Agile but still not sure how?</p>
+        <p class="col-subtext">With the Lab Residency at the Exchange Lab, we help teams accelerate their Agile Journey </p>
+        <br>
+        <br>
+        <p class="col-bold-text">10+</p>
+        <p class="col-subtext-grid2">teams from different BC Gov Ministries<br/>have graduated from the Exchange Lab </p>
+        <a href="~/Views/Home/ExchangeLab.cshtml" class="btn btn-default community-btn" style="width:150px;">Learn More</a>
+    </div>
+</div>
+
+@*Fourth part*@
+
+@*Fifth part*@
+<div class="container grid-cont5">
+    <div class="row row5">
+        <div class="col51 col-md-6">
             <p class="col-bold-text">Be a part of the community</p>
-            <i class="fa fa-envelope-o" style="font-size:48px;color:white"></i>
-            <span class="col-subtext">Subscribe to our newsletter to stay up-to- date on what’s happening at the Lab</span>
-            <a href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" class="btn btn-default subscribe-btn">Subscribe</a>
+            <span><i class="fa fa-envelope-o" style="font-size:32px;color:white;margin-top:80px;margin-bottom:50px;"></i></span>
+            <p class="col-subtext">Subscribe to our newsletter to stay up-to- date on what’s happening at the Lab</p>
+            <a href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" class="btn btn-default community-btn">Subscribe</a>
         </div>
-        <div class="col-md-6">
-            <i class="fab fa-rocketchat"></i>
-            <span>Join 1,000+ community members on our messaging platform to connect, get help, and add your voice.</span>
-            <button class="btn btn-default">Subscribe</button>
-            <span>Have an IDIR or  BC Gov GitHub account?</span>
-            <div class="">
-                <span>Don’t have an IDIR or BC Gov GitHub account? Send us an email at</span>
-                <a></a>
-            </div>
+        <div class="col52 col-md-6">
+            <span><i class="fab fa-rocketchat" style="font-size:32px;color:red;margin-top:160px;margin-bottom:40px;"></i></span>
+            <p class="col-subtext">Join 1,000+ community members on our messaging platform to connect, get help, and add your voice.</p>
+            <a href="https://chat.pathfinder.gov.bc.ca" class="btn btn-default community-btn" style="width:200px;">Login to RocketChat</a>
+            <p class="under-text">Have an IDIR or  BC Gov GitHub account?</p>
+            <p class="small-text">Don’t have an IDIR or BC Gov GitHub account? Send us an email at</p>
+            <p class="email">BCDevExchange@gov.bc.ca</p>
         </div>
     </div>
 </div>
 
-https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50

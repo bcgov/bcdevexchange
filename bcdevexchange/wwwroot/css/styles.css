@@ -1,4 +1,5 @@
-﻿body {
+﻿/*Body-Base Layout*/
+body {
     background-color: black;
     max-width: none;
     width: 100%;
@@ -11,6 +12,7 @@
     max-width: none;
     width: 100%;
 }
+/*Banner*/
 .dm-banner {
     background-color: blue;
     height: 60px;
@@ -38,6 +40,7 @@
 .dm-banner-btn:hover {
     color: #0065F2;
 }
+/*Navbar*/
 .navbar {
     background-color: #181818;
     height: 60px;
@@ -76,13 +79,13 @@
 .nav-content-link:hover {
     text-decoration:underline;                                                                                                                          
 }
+/*(Hero image) First Part*/
 .home-image {
     background-image: url("/img/bcdevx-home-image.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 700px;
-    margin-bottom: 5px;
     text-align: center;
     position: relative;
     color: #FFFFFF;
@@ -101,8 +104,8 @@
 .home-tagline-text {
     height: 60px;
     width: 1110px;
-    color: white;
-    font-family:Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 56px;
     font-weight: bold;
     letter-spacing: -1px;
@@ -119,32 +122,75 @@
     margin-top: 30px;
     margin-left: 190px;
 }
-.grid-cont1 {
-background-color:gray;
-height: 700px;
-width:100%;
-max-width:none;
-}
-/*.grid-row {
-    background-color: gray;
-    margin-top: 40px;
-}
-.col2-img {
-    background-image: url("/img/sampleimg.jpg");
-    background-color:gray;
-}
-.col1-text {
-    height:200px;
-    width:200px;
-}*/
+/*Second Part*/
 .grid-cont2 {
+    background-color: #2D2D2D;
+    height: 700px;
+    width: 100%;
+    max-width: none;
+    margin-top:0px;
+}
+.col21 {
+    height: 444px;
+    width: 635px;
+    margin: 128px 640px 128px 165px;
+    position: absolute;
+    padding: 5px;
+    color: #FFFFFF;
+    float: left;
+}
+.col22-img {
+    float:right;
+    text-align:right;
+    height: 550px;
+    width: 570px;
+    background-color: #000000;
+    margin: 75px 165px 75px 165px;
+}
+.col22 {
+    height: 700px;
+    width: 50%;
+    text-align:right;
+    float:right;
+}
+.col-subtext-grid2 {
+    margin-top: 0px;
+    height: 50px;
+    width: 445px;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+/*third part*/
+.grid-cont3 {
+    background-color: #181818;
+    height: 700px;
+    width: 100%;
+    max-width: none;
+    margin-top: 0px;
+}
+.col31-img {
+    float: left;
+    text-align: left;
+    height: 550px;
+    width: 570px;
+    margin:75px 720px 75px 165px;
+}
+/*Fifth part*/
+.grid-cont5 {
     background-color: #181818;
     height: 700px;
     width: 100%;
     max-width: none;
 }
-.row {
+.row5 {
 padding-top:80px;
+padding-left:100px;
+}
+.col51 {
+padding-left:40px;
 }
 .col-bold-text {
     font-size: 40px;
@@ -153,7 +199,56 @@ padding-top:80px;
     color: #FFFFFF;
     font-family:Arial, Helvetica, sans-serif;
 }
-.fa fa-envelope-o {
+.col-subtext {
+    margin-top:20px;
+    height: 50px;
+    width: 445px;
+    color: #FFFFFF;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.community-btn {
+    height: 48px;
+    width: 160px;
+    background-color: #0065F2;
     color:white;
-    margin-top:50px;
+    margin-top:20px;
+}
+.col52 {
+    padding-right:120px;
+    padding-left:70px;
+}
+.under-text {
+    height: 30px;
+    width: 190px;
+    color: #FFFFFF;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    line-height: 14px;
+    margin-top:10px;
+}
+.small-text {
+    height: 36px;
+    width: 310px;
+    color: #FFFFFF;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+.email {
+    height: 20px;
+    width: 190px;
+    color: #0065F2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+/*Footer*/
+.footer {
+    border-color:black;
+    text-align:center;
+    margin-bottom: 20px;
 }
