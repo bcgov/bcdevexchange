@@ -1,74 +1,146 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "HomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@*First part*@
-<div class="container home-image">
-    <div class="home-tagline">
-        <div class="home-tagline-text">
-            <p>Struggling to do Agile/DevOps in BC Gov?</p>
-        </div>
-        <div class="home-tagline-subtext">
-            <p>
-                We, at BCDevExchange, are helping Ministries of BC Government, Canada
-                learn new ways of working and implement digital solutions faster.
-            </p>
-        </div>
-    </div>
-</div>
-
-@*Second part*@
-<div class="container grid-cont2">
-    <div class="col21">
-        <p class="col-bold-text">Still developing and deploying applications the traditional way?</p>
-        <p class="col-subtext">With the DevOps Platform, we are helping develop and deploy applications faster in Gov </p>
-        <br>
-        <br>
-        <p class="col-bold-text">100+</p>
-        <p class="col-subtext-grid2">applications on the BC Gov<br />DevOps platform</p>
-        <a href="~/Views/Home/DevOpsPlatform.cshtml" class="btn btn-default community-btn" style="width:150px;">Learn More</a>
-    </div>
-    <div class="col22">
-        <img class="col22-img" src="~/img/bcdevx-home-image.jpg" alt="bcdevExchange-img">
-    </div>
-</div>
-
-@*Third part*@
-<div class="container grid-cont3">
-    <div class="col31">
-        <img class="col31-img" src="~/img/bcdevx-home-image.jpg" alt="bcdevExchange-img">
-    </div>
-    <div class="col32">
-        <p class="col-bold-text">Trying to be Agile but still not sure how?</p>
-        <p class="col-subtext">With the Lab Residency at the Exchange Lab, we help teams accelerate their Agile Journey </p>
-        <br>
-        <br>
-        <p class="col-bold-text">10+</p>
-        <p class="col-subtext-grid2">teams from different BC Gov Ministries<br/>have graduated from the Exchange Lab </p>
-        <a href="~/Views/Home/ExchangeLab.cshtml" class="btn btn-default community-btn" style="width:150px;">Learn More</a>
-    </div>
-</div>
-
-@*Fourth part*@
-
-@*Fifth part*@
-<div class="container grid-cont5">
-    <div class="row row5">
-        <div class="col51 col-md-6">
-            <p class="col-bold-text">Be a part of the community</p>
-            <span><i class="fa fa-envelope-o" style="font-size:32px;color:white;margin-top:80px;margin-bottom:50px;"></i></span>
-            <p class="col-subtext">Subscribe to our newsletter to stay up-to- date on what’s happening at the Lab</p>
-            <a href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" class="btn btn-default community-btn">Subscribe</a>
-        </div>
-        <div class="col52 col-md-6">
-            <span><i class="fab fa-rocketchat" style="font-size:32px;color:red;margin-top:160px;margin-bottom:40px;"></i></span>
-            <p class="col-subtext">Join 1,000+ community members on our messaging platform to connect, get help, and add your voice.</p>
-            <a href="https://chat.pathfinder.gov.bc.ca" class="btn btn-default community-btn" style="width:200px;">Login to RocketChat</a>
-            <p class="under-text">Have an IDIR or  BC Gov GitHub account?</p>
-            <p class="small-text">Don’t have an IDIR or BC Gov GitHub account? Send us an email at</p>
-            <p class="email">BCDevExchange@gov.bc.ca</p>
+<div class="landing">
+    <!-- header-banner start -->
+    <div class="banner_area">
+        <div class="banner_inner">
+            <div class="single_banner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="banner_text ">
+                                <h1> Struggling to do Agile/DevOps in BC Gov? </h1>
+                                <p>
+                                    We, at BCDevExchange, are helping Ministries of BC Government, Canada <br>
+                                    learn new ways of working and implement digital solution faster.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- header-banner end -->
+    <!-- section2 start -->
+    <div class="section_main light_bg set-height">
+        <div class="section_inner">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="outer">
+                            <div class="middle">
+                                <div class="inner inner2">
+                                    <h2 class="heading2">Still developing and deploying applications the traditional way?</h2>
+                                    <br>
+                                    <p class="para1">With the DevOps Platform, we are helping develop <br>and deploy applications faster in Gov</p>
+                                    <br>
+                                    <h2 class="number">100+</h2>
+                                    <p class="para1">applications on the BC Gov <br>DevOps platform</p>
+                                    <br>
+                                    <a href="#" class="blue_btn">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <img class="sec_image" src="img/home_img/001.jpg" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section2 end -->
+    <!-- section3 start -->
+    <div class="section_main dark_bg set-height">
+        <div class="section_inner">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <img class="sec_image" src="img/home_img/002.jpg" alt="image">
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="outer">
+                            <div class="middle">
+                                <div class="inner inner3">
+                                    <h2 class="heading2">Trying to be Agile but still not sure how?</h2>
+                                    <p class="para1">With the Lab Residency at the Exchange Lab, we help <br>teams accelerate their Agile Journey</p>
+                                    <br>
+                                    <h2 class="number">10+</h2>
+                                    <p class="para1">teams from diffrent BC Gov Ministries <br>have geaduated from thr Exchange Lab</p>
+                                    <br>
+                                    <a href="#" class="blue_btn">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section3 end -->
+    <!-- section4 start -->
+    <div class="section_main light_bg set-height">
+        <div class="section_inner">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="outer">
+                            <div class="middle">
+                                <div class="inner inner2 inner4">
+                                    <h2 class="heading2">Having a hard time building your <br>teams' competencies in Gov?</h2>
+                                    <p class="para1">We are making learning easier and fun with trainings in <br>Agile, Scrum, DevOps.</p>
+                                    <br>
+                                    <h2 class="number">1400+</h2>
+                                    <p class="para1">People from across BC Gov Ministries <br>have been trained</p>
+                                    <br>
+                                    <a href="#" class="blue_btn">Explore the trainings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <img class="sec_image" src="img/home_img/003.jpg" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section4 end -->
+    <!-- section5 start -->
+    <div class="section_main dark_bg">
+        <div class="section_inner">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="heading2">Be a part of the community</h2>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <p class="icons"><span><i class="fa fa-envelope" aria-hidden="true"></i></span></p>
+                        <p class="para1">Subscribe to our newsletter to stay up-to-date on <br>what's happening at the Lab</p>
+                        <br>
+                        <a href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" class="blue_btn">Subscribe</a>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mob-space-top">
+                        <p class="icons"><span><i class="fa fa-comments" aria-hidden="true"></i></span></p>
+                        <p class="para1">Join 1,000+ community members on our messaging <br>platform to connect, get help, and add your voice.</p>
+                        <br>
+                        <a href="https://chat.pathfinder.gov.bc.ca/home" class="blue_btn">Login to RocketChat</a>
+                        <span class="small_text">Have an IDIP or BC Gov GitHub <br>account?</span>
+                        <br>
+                        <br>
+                        <span class="medium_text">Don't have an IDIR or BC Gov GitHub account? <br>Send us an email at</span>
+                        <a href="#" class="link">BCDevExchange@gov.bc.ca</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section5 end -->
 </div>
-
