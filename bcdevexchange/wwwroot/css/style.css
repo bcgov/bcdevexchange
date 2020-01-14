@@ -7,6 +7,20 @@
     overflow-x: hidden;
     max-width: 1300px;
 }
+/* About Us */
+
+.about-us {
+    color: #FFFFFF;
+}
+
+.about-us__title {
+    text-align: center;
+    max-width: 45em;
+}
+
+.about-us__people {
+    text-align: center;
+}
 
 /* Navigation */
 nav {
