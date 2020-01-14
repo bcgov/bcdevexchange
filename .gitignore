@@ -100,6 +100,11 @@ ipch/
 *.VC.db
 *.VC.VC.opendb
 
+# Visual Studio code
+
+.vscode/*
+
+
 # Visual Studio profiler
 *.psess
 *.vsp

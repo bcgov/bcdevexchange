@@ -1,55 +1,133 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>
+        BCDevExchange
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="manifest" href="#"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <!-- JS here -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="~/css/style.css">
-    <title>@ViewData["Title"] - bcdevexchange</title>
+    @*<script src="js/bootstrap.min.js"></script>*@
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">bcdevexchange</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
+        <div class="header-area ">
+            <div class="header-top_area d-none d-lg-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-md-7 ">
+                            <p class="top-content">Looking for Code With Us or Sprint With Us Opportunities? They've moved to</p>
+                        </div>
+                        <div class="col-xl-5 col-md-5">
+                            <a href="https://bcdevexchange.org/" class="topbar-btn">Digital Marketplace</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>*@
-        <div class="bg-div">
-            <img class="logo-img" src="~/img/bcdevexchange-logo-whitetext.png" ALT="align box">
-            <nav class="fixed-top justify-content-end">
-                <ul>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="/AboutUs">About Us</a></li>
-                </ul>
-            </nav>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light main-menu" data-overlay data-sticky="top">
+                        <div class="container">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="img/logo.png" alt="">
+                                </a>
+                            </div>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsBtn"
+                                    aria-controls="navbarsBtn" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarsBtn">
+                                <div class="">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li><a class="active" href="#">DevOps Platform</a></li>
+                                        <li><a href="#">Exchange Lab</a></li>
+                                        <li><a href="#">Learning</a></li>
+                                        <li><a href="AboutUs">About Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
         </div>
     </header>
+    <!-- header end -->
 
     <div>
         @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container copyright">
-            &copy; 2019 BC DevExchange. All rights reserved. <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- footer start -->
+    <footer class="footer dark_bg">
+        <div class="footer_top">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 col-lg-4">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img class="footer-logo" src="img/footer_logo.png" alt="footer-logo">
+                                </a>
+                            </div>
+                            <p>3rd Floor, 1012 <br>Douglas Street <br>Victoria BC <br> V8W 2C3</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-md-8 col-lg-8">
+                        <div class="footer_widget_links">
+                            <ul>
+                                <li><a href="#">DevOps Platform</a></li>
+                                <li><a href="#">Exchange Lab</a></li>
+                                <li><a href="#">Trainings</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="social_icons">
+                <div class="conteiner">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-lg-12">
+                            <p class="social-footer">
+                                <a href="#"><span><i class="fa fa-github-square" aria-hidden="true"></i></span></a>
+                                <a href="#"><span><i class="fa fa-linkedin-square" aria-hidden="true"></i></span></a>
+                                <a href="#"><span><i class="fa fa-twitter-square" aria-hidden="true"></i></span></a>
+                                <a href="#"><span><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>
+                                <a href="#"><span><i class="fa fa-envelope" aria-hidden="true"></i></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <div class="copy-right_text">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <p class="copy_right text-left">&copy; 2020 BC DevExchange. All right reserved.</p>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <p class="privacy_link text-right"><span><a href="#">Privacy Policy</a></span> <span><a href="#">Terms of Service</a></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-
+    <!-- footer end -->
 </body>
 </html>
