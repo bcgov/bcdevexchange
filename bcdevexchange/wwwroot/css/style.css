@@ -307,6 +307,7 @@ h3 {
     background: #181818;
     color: #FFFFFF;
     margin: 0;
+    padding-top: 5rem;
 }
 
 .about-us h1 h2 h3 h4 h5{
@@ -323,12 +324,20 @@ h3 {
     margin:0 auto;
 }
 
+
+
 .about-us__people {
     text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 8rem
 }
 
 .about-us__contact {
   text-align: left;
+}
+
+.card {
+  background-color: #181818;
 }
 
 .card-deck-wrapper {
