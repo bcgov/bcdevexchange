@@ -304,16 +304,76 @@ h3 {
 /*------------------- About Us -------------------*/
 
 .about-us {
+    background: #181818;
     color: #FFFFFF;
+    margin: 0;
+}
+
+.about-us h1 h2 h3 h4 h5{
+    color: #FFFFFF;
+}
+
+.about-us a {
+    color: #0065f2;
 }
 
 .about-us__title {
     text-align: center;
     max-width: 45em;
+    margin:0 auto;
 }
 
 .about-us__people {
     text-align: center;
+}
+
+.card-deck-wrapper {
+    text-align: center;
+    max-width: 60rem;
+    margin:0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+.card-body {
+    background: #181818;
+}
+
+h5.card-title {
+    text-align: left;
+    color: #FFFFFF;
+}
+p.card-subtitle {
+    text-align: left;
+    color: #FFFFFF; 
+} 
+/* Responsive styling for the deck */
+@media (min-width: 0) {
+  .card-deck .card {
+    flex: 0 0 calc(100% - 30px);
+  }
+}
+@media (min-width: 576px) {
+  .card-deck .card {
+    flex: 0 0 calc(50% - 30px);
+  }
+}
+@media (min-width: 768px) {
+  .card-deck .card {
+    flex: 0 0 calc(33.3333333333% - 30px);
+  }
+}
+@media (min-width: 992px) {
+  .card-deck .card {
+    flex: 0 0 calc(25% - 30px);
+  }
+}
+@media (min-width: 1200px) {
+  .card-deck .card {
+    flex: 0 0 calc(25% - 30px);
+  }
 }
 
 /*------------------- Training Page CSS -------------------*/
