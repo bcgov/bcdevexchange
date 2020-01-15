@@ -327,6 +327,10 @@ h3 {
     text-align: center;
 }
 
+.about-us__contact {
+  text-align: left;
+}
+
 .card-deck-wrapper {
     text-align: center;
     max-width: 60rem;
