@@ -21,3 +21,5 @@ If version 3.* is running, it will need to be downgraded
 To run the site locally execute the command, `dotnet run`, in the bcdevexchange folder.
 
 It will be hosted on the url `http://localhost:5000`
+
+If you require hot reloading the web page will need to be run through VS codes debug and run feature as Razor and .cshtml files are excluded from `dotnet   watch run` functionality.
