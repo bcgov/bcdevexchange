@@ -103,7 +103,7 @@ ipch/
 # Visual Studio code
 
 .vscode/*
-
+bcdevexchange/.vscode/*
 
 # Visual Studio profiler
 *.psess
