@@ -322,6 +322,7 @@ h3 {
     text-align: center;
     max-width: 45em;
     margin:0 auto;
+    font-size: 1.2rem;
 }
 
 
@@ -352,6 +353,7 @@ h3 {
 
 .card-body {
     background: #181818;
+    padding-left: 0;
 }
 
 h5.card-title {
