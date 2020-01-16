@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using bcdevexchange.Models;
+using System.Threading.Tasks;
 
 namespace bcdevexchange.Controllers
 {
@@ -7,6 +9,13 @@ namespace bcdevexchange.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet("learning")]
+        public async Task<IActionResult> GetEvents()
+        {
+            var events =await EventBriteResponse.GetEventBriteResponseAsync();
+            return View("Learning",events);
         }
 
     }
