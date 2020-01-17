@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using bcdevexchange.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace bcdevexchange.Controllers
 {
@@ -14,8 +15,10 @@ namespace bcdevexchange.Controllers
         [HttpGet("learning")]
         public async Task<IActionResult> GetEvents()
         {
-            var events =await EventBriteResponse.GetEventBriteResponseAsync();
-            return View("Learning",events);
+            Dictionary<string, object> model = new Dictionary<string, object> { };
+            var events =await Event.GetAllEventsAsync();
+            model.Add("events", events);
+            return View("Learning", model);
         }
 
     }
