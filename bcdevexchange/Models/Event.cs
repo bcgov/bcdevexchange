@@ -16,6 +16,9 @@ namespace bcdevexchange.Models
         [JsonProperty("description")]
         public EventBriteString Description { get; set; }
 
+        [JsonProperty("logo")]
+        public LogoImage Logo { get; set; }
+
         [JsonProperty("start")]
         public EventBriteDateTime Start { get; set; }
 
@@ -32,56 +35,23 @@ namespace bcdevexchange.Models
         public string OrganizationId { get; set; }
 
         [JsonProperty("online_event")]
-        public static bool OnlineEvent { get; set; }
+        public bool OnlineEvent { get; set; }
 
         [JsonProperty("is_free")]
-        public static bool IsFree { get; set; }
+        public bool IsFree { get; set; }
 
         [JsonProperty("venue_id")]
-        public static string VenueId { get; set; }
+        public string VenueId { get; set; }
 
         [JsonProperty("category_id")]
-        public static string CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
-        [JsonProperty("subcategory_id")]
-        public static string SubcategoryId { get; set; }
+        [JsonProperty("format_id")]
+        public string FormatId { get; set; }
 
-        public static async Task<List<Event>> GetAllEventsAsync()
-        {
-            List<Event> events = new List<Event>();
-            bool hasMoreItems = false;
-            string continuationToken = string.Empty;
+        [JsonProperty("series_id")]
+        public string SeriesId { get; set; }
 
-            do
-            {
-                var client = new HttpClient();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("7XC6QWZD2N54OO7PDHIC");
-                string baseUrl = "https://www.eventbriteapi.com/v3/organizations/228490647317/events/";
-                if (hasMoreItems == true)
-                {
-                    baseUrl = baseUrl + $"?continuation={continuationToken}"; 
-                }
-                var req = new HttpRequestMessage(HttpMethod.Get, baseUrl);
-                req.Headers.Add("Authorization", "Bearer 7XC6QWZD2N54OO7PDHIC");
-                var httpResponse = await client.SendAsync(req);
-
-
-                if (!httpResponse.IsSuccessStatusCode)
-                {
-                    throw new Exception("Cannot retrieve events");
-                }
-
-                var content = await httpResponse.Content.ReadAsStringAsync();
-                var eventBriteResponse = JsonConvert.DeserializeObject<EventBriteResponse>(content);
-                hasMoreItems = eventBriteResponse.PageInfo.HasMoreItems;
-                continuationToken = eventBriteResponse.PageInfo.Continuation;
-
-                events.AddRange(eventBriteResponse.Events);
-            }
-            while (hasMoreItems);
-
-            return events;
-        }
     }
 }
    

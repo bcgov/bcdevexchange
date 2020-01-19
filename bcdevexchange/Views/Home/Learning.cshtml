@@ -22,106 +22,116 @@
 </div>
 <!-- header-banner end -->
 
-@if(@Model["events"] != null)
+@if (@Model["events"] != null)
 {
-        <!-- section2 start -->
-        <div class="section_main light_bg">
-            <div class="section_inner">
-                <div class="conteiner">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12">
-                            <h2 class="heading2">Courses</h2>
-                            <br>
-                        </div>
-                    </div>
-                    @foreach (var eve in @Model["events"])
-                    {
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="course-wrap">
-                                    <img class="sec_image" src="~/img/home_img/01.jpg" alt="image">
-                                    <div class="course-content">
-                                        <h4>@eve.Name.Text</h4>
-                                        <p>@eve.Description.Text</p>
-                                        <a href="@eve.Url" class="view-details">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            @*<div class="col-xl-6 col-md-6">
-                                <div class="course-wrap">
-                                    <img class="sec_image" src="img/home_img/02.jpg" alt="image">
-                                    <div class="course-content">
-                                        <h4>Digital Leadership</h4>
-                                        <p>The course is designed for leaders who are Band 3 and above and are responsible for high performing Agile Teams</p>
-                                        <a href="#" class="view-details">View Details</a>
-                                    </div>
-                                </div>
-                            </div>*@
-                        </div>
-                    }
-
-                        @*<div class="row">
-                            <div class="col-xl-6 col-md-6">
-                                <div class="course-wrap">
-                                    <img class="sec_image" src="img/home_img/03.jpg" alt="image">
-                                    <div class="course-content">
-                                        <h4>Discover DevOps</h4>
-                                        <p>An introduction to what DevOps is, how it works, and why it is important for product owners and other team members to understand</p>
-                                        <a href="#" class="view-details">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6">
-                                <div class="course-wrap">
-                                    <img class="sec_image" src="img/home_img/04.jpg" alt="image">
-                                    <div class="course-content">
-                                        <h4>OpenShift 101</h4>
-                                        <p>The training session will cover Devops platform training (application operational tasks)</p>
-                                        <a href="#" class="view-details">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-                    </div>
-            </div>
-        </div>
-        <!-- section2 end -->
-    
-}
-    <!-- section4 start -->
+    <!-- section2 start -->
     <div class="section_main light_bg">
         <div class="section_inner">
             <div class="conteiner">
                 <div class="row">
-                    <div class="col-xl-6 col-md-6 tab-100">
-                        <h4 class="heading4">Is there a course you wish we offered? <br>Got an idea for an event?</h4>
+                    <div class="col-xl-12 col-md-12">
+                        <h2 class="heading2">Courses</h2>
                         <br>
-                        <h4 class="heading4">We'd love to hear from you.</h4>
-                        <br>
-                        <br>
-                        <span class="small_text">Send us an email at</span>
-                        <a href="#" class="link">BCDevExchange@gov.bc.ca</a>
                     </div>
-                    <div class="col-xl-6 col-md-6 tab-100 team-wrap">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="team">
-                                    <img src="img/home_img/06.jpg" alt="Diana">
-                                    <div class="team-info">
-                                        <h4>Diana De Cotiis</h4>
-                                        <p>Training Co-ordinator</p>
-                                        <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
-                                    </div>
+                </div>
+                
+                <div class="row">
+                    @foreach (var cour in @Model["courses"])
+                    {
+                        <div class="col-xl-6 col-md-6">
+                            <div class="course-wrap">
+                                @if (cour.Logo != null && cour.Logo.Url != null)
+                                {
+                                    <img class="sec_image" src="@cour.Logo.Url" alt="image">
+                                }
+                                else
+                                {
+                                    <img class="sec_image" src="" alt="image">
+                                }
+                                <div class="course-content">
+                                    <h4>@cour.Name.Text</h4>
+                                    <p>@cour.Description.Text</p>
+                                    <a href="@cour.Url" class="view-details">View Details</a>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="team">
-                                    <img src="img/home_img/07.jpg" alt="Ari Herschberg">
-                                    <div class="team-info">
-                                        <h4>Ari Herschberg</h4>
-                                        <p>Events Co-ordinator</p>
-                                        <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
-                                    </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section_main light_bg">
+        <div class="section_inner">
+            <div class="conteiner">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12">
+                        <h2 class="heading2">Events</h2>
+                        <br>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    @foreach (var eve in @Model["events"])
+                    {
+                        <div class="col-xl-6 col-md-6">
+                            <div class="course-wrap">
+                                @if (eve.Logo != null && eve.Logo.Url != null)
+                                {
+                                    <img class="sec_image" src="@eve.Logo.Url" alt="image">
+                                }
+                                else
+                                {
+                                    <img class="sec_image" src="" alt="image">
+                                }
+                                <div class="course-content">
+                                    <h4>@eve.Name.Text</h4>
+                                    <p class="description">@eve.Description.Text</p>
+                                    <a href="@eve.Url" class="view-details">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section2 end -->
+
+}
+<!-- section4 start -->
+<div class="section_main light_bg">
+    <div class="section_inner">
+        <div class="conteiner">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 tab-100">
+                    <h4 class="heading4">Is there a course you wish we offered? <br>Got an idea for an event?</h4>
+                    <br>
+                    <h4 class="heading4">We'd love to hear from you.</h4>
+                    <br>
+                    <br>
+                    <span class="small_text">Send us an email at</span>
+                    <a href="#" class="link">BCDevExchange@gov.bc.ca</a>
+                </div>
+                <div class="col-xl-6 col-md-6 tab-100 team-wrap">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="team">
+                                <img src="img/home_img/06.jpg" alt="Diana">
+                                <div class="team-info">
+                                    <h4>Diana De Cotiis</h4>
+                                    <p>Training Co-ordinator</p>
+                                    <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="team">
+                                <img src="img/home_img/07.jpg" alt="Ari Herschberg">
+                                <div class="team-info">
+                                    <h4>Ari Herschberg</h4>
+                                    <p>Events Co-ordinator</p>
+                                    <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
                                 </div>
                             </div>
                         </div>
@@ -130,4 +140,5 @@
             </div>
         </div>
     </div>
-    <!-- section4 end -->
+</div>
+<!-- section4 end -->
