@@ -5,50 +5,50 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 @using Microsoft.AspNetCore.Html
 
 @functions{
-    public IHtmlContent CreateCard(string name, string title, string fileName){
-        return Html.Raw($@"
-            <div class='card my-3'>
-                <img src='img/exchange_people/{fileName}' class='card-img-top' alt='Test Person'>
-                <div class='card-body'>
-                    <h5 class='card-title'>{name}</h5>
-                    <p class='card-subtitle'>{title}</p>
-                </div>
-            </div>
-        ");
-    }
+public IHtmlContent CreateCard(string name, string title, string fileName){
+return Html.Raw($@"
+<div class='card my-3'>
+    <img src='img/exchange_people/{fileName}' class='card-img-top' alt='Test Person'>
+    <div class='card-body'>
+        <h5 class='card-title'>{name}</h5>
+        <p class='card-subtitle'>{title}</p>
+    </div>
+</div>
+");
+}
 }
 
-        <div class="about-us">
+<div class="about-us">
 
-            <div class="about-us__title">
-                <h4 class="about-us">Vision</h4>
-                <h1 class="about-us">We help remove barriers and create capabilities to accelerate better service
-                    delivery.</h1>
+    <div class="about-us__title">
+        <h4 class="about-us">Vision</h4>
+        <h1 class="about-us">We help remove barriers and create capabilities to accelerate better service
+            delivery.</h1>
+    </div>
+
+    <div class="about-us__people">
+        <h2 class="about-us">Our Team</h2>
+        <div class="card-deck-wrapper">
+            <div class="card-deck">
+                @CreateCard("Ari Hershberg", "Senior Program Analyst", "ari.jpg")
+                @CreateCard("Rumon Carter", "Executive Director, Digital Delivery & CSI Lab", "rumon.jpg")
+                @CreateCard("Cailey Jones", "Dev Ops", "cailey.jpg")
+                @CreateCard("Diana Decotiis", "Education and Training Coordinator", "diana.png")
+                @CreateCard("Pop Kanjanakantorn", "Project Coordinator", "pop.jpg")
+                @CreateCard("Jonathan Sharman", "Developer", "jonSharman.png")
             </div>
-
-            <div class="about-us__people">
-                <h2 class="about-us">Our Team</h2>
-                <div class="card-deck-wrapper">
-                    <div class="card-deck">
-                        @CreateCard("Ari Hershberg", "Senior Program Analyst", "ari.jpg")
-                        @CreateCard("Rumon Carter", "Executive Director, Digital Delivery & CSI Lab", "rumon.jpg")
-                        @CreateCard("Cailey Jones", "Dev Ops", "cailey.jpg")
-                        @CreateCard("Diana Decotiis", "Education and Training Coordinator", "diana.png")
-                        @CreateCard("Pop Kanjanakantorn", "Project Coordinator", "pop.jpg")
-                        @CreateCard("Jonathan Sharman", "Developer", "jonSharman.png")   
-                    </div>
-                    <div class="about-us__contact">
-                        <h2 class="about-us">Want to join our lovely team?</h2>
-                        <h3 class="about-us">We'd love to hear from you.</h3>
-                        <h4 class="about-us">
-                            Send us your resume at: <br>
-                            <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a>
-                        </h4>
-                    </div>
-                </div>
-
+            <div class="about-us__contact">
+                <h2 class="about-us">Want to join our lovely team?</h2>
+                <h3 class="about-us">We'd love to hear from you.</h3>
+                <h4 class="about-us">
+                    Send us your resume at: <br>
+                    <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a>
+                </h4>
             </div>
-
-
-
         </div>
+
+    </div>
+
+
+
+</div>

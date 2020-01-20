@@ -9,5 +9,11 @@ namespace bcdevexchange.Controllers
             return View();
         }
 
+        [HttpGet("ExchangeLab")]
+        public IActionResult ExchangeLab()
+        {
+            return View("ExchangeLab");
+        }
+
     }
 }
