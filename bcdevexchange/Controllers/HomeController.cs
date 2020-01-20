@@ -15,5 +15,11 @@ namespace bcdevexchange.Controllers
             return View("ExchangeLab");
         }
 
+        [HttpGet("AboutUs")]
+        public IActionResult AboutUs()
+        {
+            return View("AboutUs");
+        }
+
     }
 }
