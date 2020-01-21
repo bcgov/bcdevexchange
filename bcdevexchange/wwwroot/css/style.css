@@ -321,7 +321,18 @@ h3 {
   /* margin-left: 0; */
 }
 
+.exchange-lab-content-container {
+  background-color: #181818;
+  padding-left: 10rem;
+}
 
+.exchange-lab-content-container h1{
+  color: white;
+}
+
+.exchange-lab-content-container h3{
+  color: white;
+}
 
 .exchange_lab_banner_text h1 {
   color: white;
