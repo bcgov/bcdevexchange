@@ -85,6 +85,8 @@ objects:
               env:
                 - name: ASPNETCORE_ENVIRONMENT
                   value: "${ASPNETCORE_ENVIRONMENT}"
+                - name: BEARER_TOKEN
+                  value: "${BEARER_TOKEN}"  
               resources:
                 limits:
                   cpu: "${CPU_LIMIT}"
@@ -150,6 +152,12 @@ parameters:
     description: >-
       The ASP Net Core deployment environment setting, e.g., Development,
       Staging, Production
+    required: true
+    value: Development
+  - name: BEARER_TOKEN
+    displayName: Bearer Token
+    description: >-
+      EventBrite Token
     required: true
     value: Development
   - name: IMAGE_NAMESPACE

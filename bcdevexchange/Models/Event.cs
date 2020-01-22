@@ -52,6 +52,8 @@ namespace bcdevexchange.Models
         [JsonProperty("series_id")]
         public string SeriesId { get; set; }
 
+        [JsonProperty("is_series")]
+        public bool IsSeries { get; set; }
     }
 }
    

@@ -12,6 +12,7 @@ namespace bcdevexchange.Service
     public class EventBriteService : IEventBriteService
     {
         private HttpClient client = new HttpClient();
+        private string bearertoken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
@@ -42,7 +43,7 @@ namespace bcdevexchange.Service
                 }
 
                 var req = new HttpRequestMessage(HttpMethod.Get, baseUrl);
-                req.Headers.Add("Authorization", "Bearer 7XC6QWZD2N54OO7PDHIC");
+                req.Headers.Add("Authorization", bearertoken);
                 var httpResponse = await client.SendAsync(req);
 
 
@@ -62,7 +63,10 @@ namespace bcdevexchange.Service
             while (hasMoreItems);
 
             var filteredEvents = events.Where(e => e.Start.Utc >= DateTime.UtcNow.Date);
-            return filteredEvents.GroupBy(x => x.SeriesId).Select(y => y.OrderBy(x => x.Start.Utc).First());
+            var nonSeriesEvents = filteredEvents.Where(e => e.IsSeries == false).ToList();
+            var seriesEvents = filteredEvents.Where(e => e.IsSeries == true).GroupBy(x => x.SeriesId).Select(y => y.OrderBy(x => x.Start.Utc).First()).ToList();
+            seriesEvents.AddRange(nonSeriesEvents);
+            return seriesEvents;
         }
     }
 }
