@@ -8,19 +8,18 @@ public IHtmlContent CreateImageWithLeftSideText( string title, string text, stri
 return Html.Raw($@"
 <div class='left-picture'>
     <div class='section_inner'>
-        <div class='container'>
+        <div class='left-picture-container'>
             <div class='row'>
                 <div class='col-xl-6 col-md-6'>
                     <div class='outer'>
                         <div class='middle'>
-                            <h2>{title}</h2>
-                            <h3>{text}</h3>
-                            <h2>{fileName}</h2>
+                            <h2 class='exchange-lab'>{title}</h2>
+                            <h3 class='exchange-lab'>{text}</h3>
                         </div>
                     </div>
                 </div>
                 <div class='col-xl-6 col-md-6'>
-                    <img class='sec_image' src='img/home_img/003.jpg' alt='image'>
+                    <img class='sec_image' src='/img/exchange_lab_photos/{fileName}' alt='image'>
                 </div>
             </div>
         </div>
@@ -32,18 +31,17 @@ public IHtmlContent CreateImageWithRightSideText( string title, string text, str
 return Html.Raw($@"
 <div class='right-picture'>
     <div class='section_inner'>
-        <div class='container'>
+        <div class='right-picture-container'>
             <div class='row'>
                 <div class='col-xl-6 col-md-6'>
-                    <img class='sec_image' src='img/home_img/002.jpg' alt='image'>
+                    <img class='sec_image' src='/img/exchange_lab_photos/{fileName}' alt='image'>
                 </div>
                 <div class='col-xl-6 col-md-6'>
                     <div class='outer'>
                         <div class='middle'>
                             <div class='inner inner3'>
-                                <h2>{title}</h2>
-                                <h3>{text}</h3>
-                                <h2>{fileName}</h2>
+                                <h2 class='exchange-lab'>{title}</h2>
+                                <h3 class='exchange-lab'>{text}</h3>
                             </div>
                         </div>
                     </div>
@@ -81,80 +79,130 @@ return Html.Raw($@"
     </div>
 
     <div class="exchange-lab-content-container">
-        <div class="col-12">
-            <h1>What happens at the Lab?</h1>
-        </div>
+        
+        <h1>What happens at the Lab?</h1>
+        
         @CreateImageWithRightSideText(
             "",
             "Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.", 
-            "img/home_img/002.jpg"
+            "001.jpg"
         )
         @CreateImageWithLeftSideText(
             "",
             "Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems.", 
-            "img/home_img/002.jpg"
+            "004.jpg"
         )
         @CreateImageWithRightSideText(
             "",
             "Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year.", 
-            "img/home_img/002.jpg"
+            "002.jpg"
         )
         @CreateImageWithLeftSideText(
             "",
             "Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.", 
-            "img/home_img/002.jpg"
+            "003.jpg"
         )
     </div>
 
 
     <!-- section3 end -->
     <!-- section4 start -->
-    <div class="section_main light_bg set-height">
-        <div class="section_inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="outer">
-                            <div class="middle">
-                                <div class="inner inner2 inner4">
-                                    <h2 class="heading2">TimelineTimelineTimelineTimelineTimelineTimelineTimeline</h2>
-                                </div>
+
+<div class="section_main light_bg set-height">
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="outer">
+                <div class="middle">
+                    <div class="inner inner2">
+                        <h1 class='exchange-lab'>Timeline</h1>
+                        <h3 class='exchange-lab'>
+                            Not every journey is the same, but given what we have seen 
+                            to be possible when the right conditions are in place, here 
+                            is want you can expect from a digital delivery team in the lab.
+                        </h3>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="section_inner">
+                <div class="container">
+                    <div class="timeline">
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h2>By Q1</h2>
+                                <li>Program areas build a team and align their organization to support Agile delivery</li>
+                                <li>Teams clarify the problem they are trying to solve</li>
+                                <li>Tems build a prototype and engage directly with users to learn what is most important to them</li>
+                            </div>
+                        </div>
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                            <h2>By Q2</h2>
+                            <p>Teams release a real digital product (considered an alpha product) 
+                                to users and build trust in their organization that they are making
+                                solid progress. They can communicate their “velocity” and have high 
+                                trust and productivity.</p>
+                            <p>Within six months, teams refine the product by getting feedback directly
+                                from users. They start coaching other teams and offering solutions back
+                                to the community.</p>
+                            </div>
+                        </div>
+                                            <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h2>By Q3</h2>
+                                <p>Teams are ready to release a beta product to the public. They have solid infrastructure
+                                    and technical excellence so that they can quickly respond to changing requirements or 
+                                    unexpected issues. Vendor team mates coach new public service talent that will remain 
+                                    in the team.</p>
                             </div>
                         </div>
                     </div>
+                    @* The final element of the timeline is outside the
+                     timeline-container for responsive styling *@
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                        <h2>By Q4</h2>
+                        <p>Teams are ready to graduate. The product is ready for a live status and ongoing improvements 
+                            in a stable production environment. The home organization is capable of supporting the ongoing 
+                            productivity of the team, with new problems to solve.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <div class="exchange-lab-content-container">
-        <div class="col-12">
-            <h1>While in residence at the Exchange Lab, your team will benefit from:</h1>
-        </div>
+        <h1>While in residence at the Exchange Lab, your team will benefit from:</h1>
+        
         @CreateImageWithRightSideText(
             "A Place to Call Home",
             "Insulated from the status quo operations of your home organization, your team will have a dedicated room where they can focus and sprint towards their goal.", 
-            ""
+            "001.jpg"
         )
         @CreateImageWithLeftSideText(
             "Training & Coaching",
             "We will facilitate formal training for your team, help them make connections with other community members, and help bring your organization along for the journey.", 
-            ""
+            "004.jpg"
         )
         @CreateImageWithRightSideText(
             "Experts on Tap",
             "Your team will have access to experts who can offer guidance in Service Design, Privacy and Security, Behavioural Insights, Integrated Data, and Social Media.", 
-            ""
+            "002.jpg"
         )
         @CreateImageWithLeftSideText(
             "Platform Services",
             "Your team will get access to and support to use a suite of DevOps tools, including a hybrid-cloud container platform, so they can fully control the development and deployment of their product.", 
-            ""
+            "003.jpg"
         )
         @CreateImageWithRightSideText(
             "Community",
             "Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.", 
-            ""
+            "002.jpg"
         )
     </div>
 
