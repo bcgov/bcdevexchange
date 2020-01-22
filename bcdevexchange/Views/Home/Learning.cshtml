@@ -2,8 +2,6 @@
     ViewData["Title"] = "HomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@model bcdevexchange.Models.Event
-    @model bcdevexchange.Models.EventBriteResponse*@
 <!-- header-banner start -->
 <div class="banner_training">
     <div class="banner_inner">
@@ -51,7 +49,7 @@
                                 <div class="course-content">
                                     <h4>@cour.Name.Text</h4>
                                     <p>@cour.Description.Text</p>
-                                    <a href="@cour.Url" class="view-details">View Details</a>
+                                    <a href="@cour.Url" class="view-details">Register</a>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +84,10 @@
                                 }
                                 <div class="course-content">
                                     <h4>@eve.Name.Text</h4>
-                                    <p class="description">@eve.Description.Text</p>
-                                    <a href="@eve.Url" class="view-details">View Details</a>
+                                    
+                                        <p>@eve.Description.Text</p>
+                                    
+                                    <a href="@eve.Url" class="view-details">Register</a>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
     <!-- section2 end -->
 
 }
-<!-- section4 start -->
+<!-- section3 start -->
 <div class="section_main light_bg">
     <div class="section_inner">
         <div class="conteiner">
@@ -141,4 +141,4 @@
         </div>
     </div>
 </div>
-<!-- section4 end -->
+<!-- section3 end -->

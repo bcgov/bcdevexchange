@@ -1,4 +1,5 @@
 ﻿using bcdevexchange.Models;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace bcdevexchange.Service
 {
     public class EventBriteService : IEventBriteService
     {
+        private HttpClient client = new HttpClient();
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
@@ -31,8 +33,7 @@ namespace bcdevexchange.Service
             string continuationToken = string.Empty;
 
             do
-            {
-                var client = new HttpClient();
+            { 
                 string baseUrl = "https://www.eventbriteapi.com/v3/organizations/228490647317/events/";
 
                 if (hasMoreItems == true)

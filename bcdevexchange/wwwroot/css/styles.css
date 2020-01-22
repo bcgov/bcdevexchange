@@ -336,7 +336,7 @@ h3 {
 }
 
 
-/*------------------- Training Page CSS -------------------*/
+/*------------------- Learning-------------------*/
 .banner_training {
     background: url(../img/home_img/banner-min-training.png);
     min-height: 85vh;
@@ -346,15 +346,15 @@ h3 {
     height: 85vh;
 }
 
-    .banner_training .container {
-        width: 100%;
-        max-width: 100% !important;
-        height: 100%;
-    }
+.banner_training .container {
+    width: 100%;
+    max-width: 100% !important;
+    height: 100%;
+}
 
-        .banner_text_training, .banner_training .container .row {
-            height: 100%;
-        }
+.banner_text_training, .banner_training .container .row {
+    height: 100%;
+}
 
 .banner_training .container .col-xl-12 {
     padding: 20% 0;
@@ -378,25 +378,24 @@ h3 {
     margin-bottom: 2em;
     min-height: 510px;
 }
-.description {
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-}
 .course-content {
     padding: 1em;
 }
 
-    .course-content h4 {
-        color: #fff;
-        font-weight: 600;
-    }
+.course-content h4 {
+    color: #fff;
+    font-weight: 600;
+}
 
-    .course-content p {
-        color: #fff;
-        margin-top: 20px;
-        font-size: 15px;
-        min-height: 85px;
-    }
+.course-content p {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 15px;
+    min-height: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .view-details {
     color: #0065f2;

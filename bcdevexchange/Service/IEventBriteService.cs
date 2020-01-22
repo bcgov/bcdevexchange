@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bcdevexchange
 {
-    interface IEventBriteService
+    public interface IEventBriteService
     {
         Task<IEnumerable<Event>> GetAllEventsAsync();
         Task<IEnumerable<Event>> GetAllCoursesAsync();
