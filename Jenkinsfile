@@ -158,9 +158,9 @@ pipeline {
                 script{
                     notifyStageStatus('Deploy(Dev)', 'PENDING')
                     echo "Deploying to Dev..."
-                    BearerToken = getEventBriteBearerToken().trim()
-                    echo "URL: ${BearerToken}"
-                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=dev"   
+                    BEARER_TOKEN = getEventBriteBearerToken().trim()
+                    echo "URL: ${BEARER_TOKEN}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=dev"   
                 }
                 
             }
@@ -187,9 +187,9 @@ pipeline {
                 script{
                 notifyStageStatus('Deploy(Test)', 'PENDING')
                 echo "Deploying to Test..."
-                Bearer_Token = getEventBriteBearerToken().trim()
-                echo "URL: ${Bearer_Token}"
-                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=test"
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "URL: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=test"
                 }
             }
             post {
@@ -215,9 +215,9 @@ pipeline {
                 script{
                 notifyStageStatus('Deploy(Prod)', 'PENDING')
                 echo "Deploying to Prod..."
-                Bearer_Token = getEventBriteBearerToken().trim()
-                echo "URL: ${Bearer_Token}"
-                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=prod"
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "URL: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=prod"
                 }
             }
             post {
