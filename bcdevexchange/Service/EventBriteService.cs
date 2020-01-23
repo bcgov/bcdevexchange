@@ -1,6 +1,7 @@
 ﻿using bcdevexchange.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,6 +13,18 @@ namespace bcdevexchange.Service
     {
         private HttpClient client = new HttpClient();
         private string bearertoken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
+
+        public EventBriteService()
+        {
+            Console.WriteLine("Constructor called");
+            foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+            {
+                Console.WriteLine("{0} = {1}", de.Key, de.Value);
+            }
+
+            Console.WriteLine(bearertoken);
+        }
+
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
@@ -48,7 +61,7 @@ namespace bcdevexchange.Service
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
-                    throw new Exception("Cannot retrieve events");
+                    throw new Exception($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}, ${bearertoken}");
                 }
 
                 var content = await httpResponse.Content.ReadAsStringAsync();
