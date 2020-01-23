@@ -1,0 +1,1 @@
+This folder contains the photos of the humans that work at the exchange lab.  It will be accessed by the AboutUs view.
