@@ -39,7 +39,7 @@ String getSonarQubePwd() {
 String getEventBriteBearerToken() {
 
   eventBriteToken = sh (
-    script: 'oc get secret eventbrite-bearertoken -o go-template --template="{{.data.password|base64decode}}"',
+    script: 'oc get secret eventbrite-token -o go-template --template="{{.data.password|base64decode}}"',
     returnStdout: true
   ).trim()
 

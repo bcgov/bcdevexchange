@@ -55,7 +55,7 @@ namespace bcdevexchange.Service
                 }
 
                 var req = new HttpRequestMessage(HttpMethod.Get, baseUrl);
-                req.Headers.Add("Authorization", bearertoken);
+                req.Headers.Add("Authorization", $"Bearer {bearertoken}");
                 var httpResponse = await client.SendAsync(req);
 
 
