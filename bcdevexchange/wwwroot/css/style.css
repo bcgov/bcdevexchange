@@ -329,6 +329,17 @@ h3 {
   padding-bottom: 4rem;
 }
 
+.exchange-lab-content-container h3 {
+  font-size: 18px;
+}
+
+
+.exchange-lab-content-container-bg h3 {
+  font-size: 18px;
+}
+
+
+
 .exchange-lab-content-container-bg {
   background-color: #2d2d2d;
   padding-left: 10rem;
