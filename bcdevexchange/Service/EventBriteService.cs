@@ -14,17 +14,6 @@ namespace bcdevexchange.Service
         private HttpClient client = new HttpClient();
         private string bearertoken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
 
-        public EventBriteService()
-        {
-            Console.WriteLine("Constructor called");
-            foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
-            {
-                Console.WriteLine("{0} = {1}", de.Key, de.Value);
-            }
-
-            Console.WriteLine(bearertoken);
-        }
-
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
@@ -58,10 +47,9 @@ namespace bcdevexchange.Service
                 req.Headers.Add("Authorization", $"Bearer {bearertoken}");
                 var httpResponse = await client.SendAsync(req);
 
-
                 if (!httpResponse.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}, ${bearertoken}");
+                    throw new Exception($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}");
                 }
 
                 var content = await httpResponse.Content.ReadAsStringAsync();
