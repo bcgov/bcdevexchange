@@ -585,11 +585,12 @@ p.card-subtitle {
   }
 }
 
+.logo img {
+  height: 60px;
+  width: auto;
+}
+
 @media only screen and (max-width: 1024px) {
-  .logo img {
-    width: 180px;
-    padding: 10px;
-  }
   .inner {
     width: 350px;
   } 
