@@ -308,6 +308,7 @@ h3 {
   position: absolute;
   top: 50%;
   left: 50%;
+  padding-right: 25%;
   transform: translate(-50%, -50%);
   width: 100%;
 }
@@ -324,15 +325,29 @@ h3 {
 .exchange-lab-content-container {
   background-color: #181818;
   padding-left: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.exchange-lab-content-container-bg {
+  background-color: #2d2d2d;
+  padding-left: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .exchange-lab-content-container h1{
   color: white;
 }
 
-/* .exchange-lab-content-container h3{
-  color: white;
-} */
+.exchange-lab-content-container-bg a {
+  color: #0065f2;
+}
+
+.exchange-lab-content-container a {
+  color: #0065f2;
+}
+
 .exchange-lab {
   color: white;
 }
@@ -354,36 +369,21 @@ h3 {
   margin-left: 0;
 }
 
-/*------------------- Timeline stuff -------------------*/
 
+@media screen and (max-width: 600px) {
+  .exchange-lab-content-container-bg{
+    padding-left: 2rem;
+  }
+  .exchange-lab-content-container{
+    padding-left: 2rem;
+  }
+  .exchange_lab_banner_text{
+    padding-left: 2rem;
+  } 
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-* {
-  box-sizing: border-box;
-} */
-
-/* Set a background color */
-/* body {
-  background-color: #474e5d;
-  font-family: Helvetica, sans-serif;
-} */
+/*------------------- Start Timeline style -------------------*/
 
 /* The actual timeline (the vertical ruler) */
 .timeline {
@@ -401,7 +401,7 @@ h3 {
   top: 20px;
   bottom: -20px;
   left: 50%;
-  margin-left: -3px;
+  margin-left: 3px;
 }
 
 /* Container around content */
@@ -420,7 +420,7 @@ h3 {
   height: 25px;
   right: -17px;
   background-color: white;
-  border: 4px solid #FF9F55;
+  border: 4px solid white;
   top: 15px;
   border-radius: 50%;
   z-index: 1;
@@ -466,8 +466,7 @@ h3 {
 
 /* Fix the circle for containers on the right side */
 .right::after {
-  left: -16px;
-  /* left: -12px; */
+  left: -6px;
 }
 
 /* The actual content */
@@ -483,7 +482,7 @@ h3 {
 @media screen and (max-width: 600px) {
 /* Place the timelime to the left */
   .timeline::after {
-    left: 31px;
+    left: 22px;
   }
 
 /* Full-width containers */
@@ -514,7 +513,7 @@ h3 {
 
 
 
-/*------------------- End Timeline stuff -------------------*/
+/*------------------- End Timeline Styling -------------------*/
 
 
 

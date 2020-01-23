@@ -5,6 +5,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 @using Microsoft.AspNetCore.Html
 @functions{
 public IHtmlContent CreateImageWithLeftSideText( string title, string text, string fileName){
+    string titleHTML = title!=""?"<h2 class='exchange-lab'>"+title+"</h2>": ""  ;
 return Html.Raw($@"
 <div class='left-picture'>
     <div class='section_inner'>
@@ -13,7 +14,7 @@ return Html.Raw($@"
                 <div class='col-xl-6 col-md-6'>
                     <div class='outer'>
                         <div class='middle'>
-                            <h2 class='exchange-lab'>{title}</h2>
+                            {titleHTML}
                             <h3 class='exchange-lab'>{text}</h3>
                         </div>
                     </div>
@@ -28,6 +29,7 @@ return Html.Raw($@"
 ");
 }
 public IHtmlContent CreateImageWithRightSideText( string title, string text, string fileName){
+        string titleHTML = title!=""?"<h2 class='exchange-lab'>"+title+"</h2>": ""  ;
 return Html.Raw($@"
 <div class='right-picture'>
     <div class='section_inner'>
@@ -40,7 +42,7 @@ return Html.Raw($@"
                     <div class='outer'>
                         <div class='middle'>
                             <div class='inner inner3'>
-                                <h2 class='exchange-lab'>{title}</h2>
+                                {titleHTML}
                                 <h3 class='exchange-lab'>{text}</h3>
                             </div>
                         </div>
@@ -107,13 +109,14 @@ return Html.Raw($@"
 
     <!-- section3 end -->
     <!-- section4 start -->
+<div class="exchange-lab-content-container-bg">
 
 <div class="section_main light_bg set-height">
-    <div class="row">
-        <div class="col-xl-12 col-md-12">
-            <div class="outer">
+    @* <div class="row">
+        <div class="col-xl-12 col-md-12"> *@
+            @* <div class="outer">
                 <div class="middle">
-                    <div class="inner inner2">
+                    <div class="inner inner2"> *@
                         <h1 class='exchange-lab'>Timeline</h1>
                         <h3 class='exchange-lab'>
                             Not every journey is the same, but given what we have seen 
@@ -121,11 +124,11 @@ return Html.Raw($@"
                             is want you can expect from a digital delivery team in the lab.
                         </h3>
                         
-                    </div>
+                    @* </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> *@
+        @* </div>
+    </div> *@
         <div class="row">
             <div class="section_inner">
                 <div class="container">
@@ -170,7 +173,7 @@ return Html.Raw($@"
                             productivity of the team, with new problems to solve.</p>
                         </div>
                     </div>
-
+</div>
                 </div>
             </div>
         </div>
@@ -204,6 +207,15 @@ return Html.Raw($@"
             "Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.", 
             "002.jpg"
         )
+    </div>
+
+    <div class="exchange-lab-content-container-bg">
+        <h1 class='exchange-lab'>How do we get into the Lab?
+</h1>
+        <h3 class='exchange-lab'>
+            If you’re interested in sponsoring a team at the Lab, please email us at:
+            <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a>
+        </h3>
     </div>
 
 </div>
