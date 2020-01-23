@@ -158,7 +158,7 @@ pipeline {
                 script{
                     notifyStageStatus('Deploy(Dev)', 'PENDING')
                     echo "Deploying to Dev..."
-                    BearerToken = getEventBriteBearerToken.trim()
+                    BearerToken = getEventBriteBearerToken().trim()
                     echo "URL: ${BearerToken}"
                     sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=dev"   
                 }
@@ -187,7 +187,7 @@ pipeline {
                 script{
                 notifyStageStatus('Deploy(Test)', 'PENDING')
                 echo "Deploying to Test..."
-                Bearer_Token = getEventBriteBearerToken.trim()
+                Bearer_Token = getEventBriteBearerToken().trim()
                 echo "URL: ${Bearer_Token}"
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=test"
                 }
@@ -215,7 +215,7 @@ pipeline {
                 script{
                 notifyStageStatus('Deploy(Prod)', 'PENDING')
                 echo "Deploying to Prod..."
-                Bearer_Token = getEventBriteBearerToken.trim()
+                Bearer_Token = getEventBriteBearerToken().trim()
                 echo "URL: ${Bearer_Token}"
                 sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${Bearer_Token} --env=prod"
                 }
