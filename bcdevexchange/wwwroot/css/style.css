@@ -439,10 +439,13 @@ p.card-subtitle {
   font-weight: 600;
 }
 .course-content p {
-  color: #fff;
-  margin-top: 20px;
-  font-size: 15px;
-  min-height: 85px;
+   color: #fff;
+   margin-top: 20px;
+   font-size: 15px;
+   min-height: 85px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 .view-details {
   color: #0065f2;
