@@ -62,7 +62,8 @@ namespace bcdevexchange.Service
             while (hasMoreItems);
 
             var filteredEvents = events.Where(e => e.Start.Utc >= DateTime.UtcNow.Date);
-            var nonSeriesEvents = filteredEvents.Where(e => e.IsSeries == false).ToList();
+            var liveEvents = filteredEvents.Where(e => e.Status == "live");
+            var nonSeriesEvents = liveEvents.Where(e => e.IsSeries == false).ToList();
             var seriesEvents = filteredEvents.Where(e => e.IsSeries == true).GroupBy(x => x.SeriesId).Select(y => y.OrderBy(x => x.Start.Utc).First()).ToList();
             seriesEvents.AddRange(nonSeriesEvents);
             return seriesEvents;
