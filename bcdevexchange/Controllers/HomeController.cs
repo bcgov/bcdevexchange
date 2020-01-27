@@ -12,8 +12,6 @@ namespace bcdevexchange.Controllers
     {
         private IMemoryCache memoryCache;
         private IEventBriteService eventBriteService;
-        private static readonly string coursesKey = "coursesKey";
-        private static readonly string eventsKey = "eventsKey";
 
         public HomeController(IMemoryCache cache, IEventBriteService service)
         {
@@ -27,11 +25,11 @@ namespace bcdevexchange.Controllers
             {
                 IEnumerable<Event> result;
 
-                if (key == coursesKey)
+                if (key == Constants.CoursesKey)
                 {
                     result = await this.eventBriteService.GetAllCoursesAsync();
                 }
-                else if (key == eventsKey)
+                else if (key == Constants.EventsKey)
                 {
                     result = await this.eventBriteService.GetAllEventsAsync();
                 }
@@ -43,7 +41,7 @@ namespace bcdevexchange.Controllers
                 events = result.ToList();
 
 
-                var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(40));
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(Constants.ExpirationTimeInMinutes));
 
                 // Save data in cache.
                 memoryCache.Set(key, events, cacheEntryOptions);
@@ -79,8 +77,8 @@ namespace bcdevexchange.Controllers
         public async Task<IActionResult> GetEvents()
         {
             Dictionary<string, object> model = new Dictionary<string, object> { };
-            var events = await this.GetFromCache(eventsKey);
-            var courses = await this.GetFromCache(coursesKey);
+            var events = await this.GetFromCache(Constants.EventsKey);
+            var courses = await this.GetFromCache(Constants.CoursesKey);
             model.Add("events", events);
             model.Add("courses", courses);
             return View("Learning", model);

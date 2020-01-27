@@ -139,7 +139,7 @@ h3 {
   background: #f5f5f5;
 }
 
-.conteiner {
+.home-container {
   width: 80%;
   margin: 0 auto;
 }
@@ -772,7 +772,7 @@ p.card-subtitle {
 }
 /*------------ Media Queries -------------*/
 @media only screen and (min-width: 1560px) {
-    .conteiner {
+    .home-container {
     width: 70%;
   }
   .course-wrap {
@@ -852,10 +852,13 @@ p.card-subtitle {
   }
 }
 
+.logo img {
+  width: 210px;
+}
+
 @media only screen and (max-width: 1024px) {
   .logo img {
     width: 180px;
-    padding: 10px;
   }
   .inner {
     width: 350px;
