@@ -5,20 +5,23 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace bcdevexchange.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger logger;
         private IMemoryCache memoryCache;
         private IEventBriteService eventBriteService;
         private static readonly string coursesKey = "coursesKey";
         private static readonly string eventsKey = "eventsKey";
 
-        public HomeController(IMemoryCache cache, IEventBriteService service)
+        public HomeController(IMemoryCache cache, IEventBriteService service, ILogger<HomeController> logger)
         {
             this.memoryCache = cache;
             this.eventBriteService = service;
+            this.logger = logger;
         }
 
         public async Task<IList<Event>> GetFromCache(string key)
@@ -37,11 +40,13 @@ namespace bcdevexchange.Controllers
                 }
                 else
                 {
+                    logger.LogInformation($"The key is invalid {key}");
                     throw new ArgumentException($"invalid key {key}");
                 }
 
                 events = result.ToList();
 
+                logger.LogInformation($"The number of {key} received: {events.Count}");
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(40));
 

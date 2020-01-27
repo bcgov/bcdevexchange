@@ -1,4 +1,5 @@
 ﻿using bcdevexchange.Models;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,17 @@ namespace bcdevexchange.Service
     {
         private HttpClient client = new HttpClient();
         private string bearertoken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
+        private readonly ILogger logger;
 
+        public EventBriteService(ILogger<EventBriteService> logger)
+        {
+            this.logger = logger;
+        }
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
             var courses = eveAll.Where(e => e.FormatId == "9");
+            logger.LogInformation($"Received Courses {courses.Count()}");
             return courses;
         }
 
@@ -24,6 +31,7 @@ namespace bcdevexchange.Service
         {
             var eveAll = await GetAllAsync();
             var events = eveAll.Where(e => e.FormatId != "9");
+            logger.LogInformation($"Received Events {events.Count()}");
             return events;
         }
 
@@ -48,6 +56,7 @@ namespace bcdevexchange.Service
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
+                    logger.LogError($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}");
                     throw new Exception($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}");
                 }
 

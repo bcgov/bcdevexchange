@@ -339,3 +339,5 @@ node_modules/
 # This is to exclude this folder out of all the bin folders
 !.s2i/bin
 
+# This is to exclude environment file
+.env
