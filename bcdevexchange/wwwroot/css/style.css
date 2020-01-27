@@ -482,14 +482,6 @@ h3 {
 }
 
 /* The actual content */
-/* .timeline-content p, h2, li{
-  padding: 20px 30px;
-  color:white;
-  position: relative;
-  border-radius: 6px;
-} */
-
-/* The actual content */
 div.timeline-content p, 
 div.timeline-content h2, 
 div.timeline-content li{
