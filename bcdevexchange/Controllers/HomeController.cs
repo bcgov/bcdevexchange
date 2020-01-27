@@ -55,7 +55,6 @@ namespace bcdevexchange.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         [HttpGet("ExchangeLab")]
         public IActionResult ExchangeLab()
         {
@@ -66,7 +65,8 @@ namespace bcdevexchange.Controllers
         public IActionResult AboutUs()
         {
             return View("AboutUs");
-=======
+        }
+
         [HttpGet("learning")]
         public async Task<IActionResult> GetEvents()
         {
@@ -76,7 +76,6 @@ namespace bcdevexchange.Controllers
             model.Add("events", events);
             model.Add("courses", courses);
             return View("Learning", model);
->>>>>>> e179a92355d18ef935419faeb530f301aafc3e81
         }
 
     }
