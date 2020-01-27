@@ -6,16 +6,19 @@
     <ProjectGuid>{8FE75E7A-794F-430E-A7EA-11ABB144AC3D}</ProjectGuid>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove=".env" />
+  </ItemGroup>
+
 
   <ItemGroup>
+    <PackageReference Include="DotNetEnv" Version="1.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
