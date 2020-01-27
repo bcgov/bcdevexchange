@@ -333,6 +333,19 @@ h3 {
   color: white;
   size: 16px
 }
+
+div.dev_hub_block h2,
+div.dev_hub_block p,
+div.dev_hub_block {
+  text-align: center;
+  /* margin:auto; */
+}
+
+div.dev_hub_block a {
+  display: inline-block;
+}
+
+
 /*----------------- End Dev Ops Platform Page -----------------*/
 
 
