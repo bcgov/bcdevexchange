@@ -481,12 +481,11 @@ h3 {
   left: -6px;
 }
 
-/* The actual content */
+/* The timeline content */
 div.timeline-content p, 
 div.timeline-content h2, 
 div.timeline-content li{
   padding: 20px 30px;
-  /* background-color: white; */
   color:white;
   position: relative;
   border-radius: 6px;
