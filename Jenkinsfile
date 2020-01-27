@@ -35,6 +35,16 @@ String getSonarQubePwd() {
   return sonarQubePwd
 }
 
+@NonCPS
+String getEventBriteBearerToken() {
+
+  eventBriteToken = sh (
+    script: 'oc get secret eventbrite-token -o go-template --template="{{.data.password|base64decode}}"',
+    returnStdout: true
+  ).trim()
+
+  return eventBriteToken
+}
 // Notify stage status and pass to Jenkins-GitHub library
 def notifyStageStatus(String name, String status) {
   def sha1 = GIT_COMMIT
@@ -145,9 +155,14 @@ pipeline {
                 expression { return HAS_CHANGED == true;}
             }
             steps {
-                notifyStageStatus('Deploy(Dev)', 'PENDING')
-                echo "Deploying to Dev..."
-                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+                script{
+                    notifyStageStatus('Deploy(Dev)', 'PENDING')
+                    echo "Deploying to Dev..."
+                    BEARER_TOKEN = getEventBriteBearerToken().trim()
+                    echo "Token: ${BEARER_TOKEN}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=dev"   
+                }
+                
             }
             post {
                 success{
@@ -169,9 +184,13 @@ pipeline {
                 ok "Yes!"
             }
             steps {
+                script{
                 notifyStageStatus('Deploy(Test)', 'PENDING')
                 echo "Deploying to Test..."
-                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "Token: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=test"
+                }
             }
             post {
                 success{
@@ -193,9 +212,13 @@ pipeline {
                 ok "Yes!"
             }
             steps {
+                script{
                 notifyStageStatus('Deploy(Prod)', 'PENDING')
                 echo "Deploying to Prod..."
-                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "Token: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=prod"
+                }
             }
             post {
                 success{
