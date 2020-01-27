@@ -57,7 +57,7 @@ a:focus {
 
 /* line 29, ../../Arafath/CL/CL October/213. Business/HTML/scss/theme-default.scss */
 a:focus,
-a:hover{
+a:hover {
   text-decoration: none;
   color: #0065f2;
 }
@@ -148,15 +148,18 @@ h3 {
   background: #0065f2;
   line-height: 4em;
 }
+
 .main-header-area {
   background: #181818;
   line-height: 3em;
 }
+
 .header-area .main-header-area .main-menu ul li {
   display: inline-block;
   position: relative;
   margin: 10px 15px;
 }
+
 .header-area .main-header-area .main-menu ul li a {
   color: #fff;
 }
@@ -389,9 +392,9 @@ p.card-subtitle {
   }
 }
 
-/*------------------- Training Page CSS -------------------*/
+/*------------------- Learning Page CSS -------------------*/
 .banner_training {
-    background: url(../img/home_img/banner-min.jpg);
+    background: url(../img/home_img/Learning.jpg);
     min-height: 85vh;
     background-size: cover;
     background-position: top center;
@@ -406,8 +409,8 @@ p.card-subtitle {
 .banner_text_training, .banner_training .container .row {
   height: 100%;
 }
-.babber_training .container .col-xl-12 {
-  padding: 0px;
+.banner_training .container .col-xl-12 {
+  padding: 20% 0;
 }
 .banner_text_training h1 {
   display: inline-block;
@@ -434,10 +437,13 @@ p.card-subtitle {
   font-weight: 600;
 }
 .course-content p {
-  color: #fff;
-  margin-top: 20px;
-  font-size: 15px;
-  min-height: 85px;
+   color: #fff;
+   margin-top: 20px;
+   font-size: 15px;
+   min-height: 85px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 .view-details {
   color: #0065f2;
