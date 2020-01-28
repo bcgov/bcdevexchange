@@ -60,6 +60,18 @@ namespace bcdevexchange.Controllers
             return View();
         }
 
+        [HttpGet("ExchangeLab")]
+        public IActionResult ExchangeLab()
+        {
+            return View("ExchangeLab");
+        }
+
+        [HttpGet("AboutUs")]
+        public IActionResult AboutUs()
+        {
+            return View("AboutUs");
+        }
+
         [HttpGet("learning")]
         public async Task<IActionResult> GetEvents()
         {
