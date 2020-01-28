@@ -3,26 +3,37 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace bcdevexchange.Service
 {
     public class EventBriteService : IEventBriteService
     {
-        private HttpClient client = new HttpClient();
-        private string bearertoken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
+        private HttpClient client;
+        private string bearerToken;
         private readonly ILogger logger;
-
-        public EventBriteService(ILogger<EventBriteService> logger)
+        public EventBriteService(ILogger<EventBriteService> logger) 
         {
             this.logger = logger;
+            var executablePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var envfile = Path.Combine(executablePath, Constants.EnvPath);
+            
+            if (File.Exists(envfile))
+            {
+                DotNetEnv.Env.Load(envfile);
+                Console.WriteLine($"Loading from environment file {envfile}");
+            }
+            client = new HttpClient();
+            bearerToken = Environment.GetEnvironmentVariable("BEARER_TOKEN");
         }
         public async Task<IEnumerable<Event>> GetAllCoursesAsync()
         {
             var eveAll = await GetAllAsync();
-            var courses = eveAll.Where(e => e.FormatId == "9");
+            var courses = eveAll.Where(e => e.FormatId == Constants.CourseFormatId);
             logger.LogInformation($"Received Courses {courses.Count()}");
             return courses;
         }
@@ -30,7 +41,7 @@ namespace bcdevexchange.Service
         public async Task<IEnumerable<Event>> GetAllEventsAsync()
         {
             var eveAll = await GetAllAsync();
-            var events = eveAll.Where(e => e.FormatId != "9");
+            var events = eveAll.Where(e => e.FormatId != Constants.CourseFormatId);
             logger.LogInformation($"Received Events {events.Count()}");
             return events;
         }
@@ -51,7 +62,7 @@ namespace bcdevexchange.Service
                 }
 
                 var req = new HttpRequestMessage(HttpMethod.Get, baseUrl);
-                req.Headers.Add("Authorization", $"Bearer {bearertoken}");
+                req.Headers.Add("Authorization", $"Bearer {bearerToken}");
                 var httpResponse = await client.SendAsync(req);
 
                 if (!httpResponse.IsSuccessStatusCode)
@@ -71,7 +82,7 @@ namespace bcdevexchange.Service
             while (hasMoreItems);
 
             var filteredEvents = events.Where(e => e.Start.Utc >= DateTime.UtcNow.Date);
-            var liveEvents = filteredEvents.Where(e => e.Status == "live");
+            var liveEvents = filteredEvents.Where(e => e.Status == Constants.LiveEventStatus);
             var nonSeriesEvents = liveEvents.Where(e => e.IsSeries == false).ToList();
             var seriesEvents = filteredEvents.Where(e => e.IsSeries == true).GroupBy(x => x.SeriesId).Select(y => y.OrderBy(x => x.Start.Utc).First()).ToList();
             seriesEvents.AddRange(nonSeriesEvents);
