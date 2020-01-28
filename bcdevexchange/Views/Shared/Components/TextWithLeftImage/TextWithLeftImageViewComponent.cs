@@ -13,7 +13,12 @@ namespace bcdevexchange.Components.TextWithLeftImage
 
     }
 
-    public IViewComponentResult Invoke(string textWithLeftImageControlType) 
+    // public IViewComponentResult Invoke(string textWithLeftImageControlType) 
+    // {
+    //   return View("Default", textWithLeftImageControlType);
+    // }
+
+    public IViewComponentResult Invoke(string title, string text) 
     {
       return View("Default", textWithLeftImageControlType);
     }
