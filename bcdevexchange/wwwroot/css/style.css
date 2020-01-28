@@ -172,7 +172,7 @@ h3 {
   padding: 8px 10px;
 }
 
-/*---- MW: I added styles here for 'hero's to be used across pages / To replace 'banner' styles -----*/
+/*---- Begin Hero styling (replacing banner styles) -----*/
 .hero {
   height: 80vh;
   display: flex;
@@ -204,6 +204,7 @@ h3 {
     font-size: 2.2em;
   }
 } 
+/*-- End Hero styling --*/
 
 .banner_area {
   background: url(../img/home_img/banner-min.jpg);
@@ -997,7 +998,7 @@ p.card-subtitle {
     margin-top: 4em;
   }
 }
-/*-- MW: I created these patterns for 'teasers' / These are used on homepage / We should create two view components: 'teaser-img-left' and 'teaser-img-right'; --*/
+/*-- Begin Teaser styling --*/
 .teaser-img-left, .teaser-img-right {
   padding: 80px 0;
   min-height: 80vh;
@@ -1044,3 +1045,4 @@ p.card-subtitle {
 .teaser > a {
   margin-top: 2em;
 }
+/*-- End Teaser styling --*/
