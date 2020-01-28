@@ -1,4 +1,5 @@
 ﻿using bcdevexchange.Models;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,13 @@ namespace bcdevexchange.Service
     {
         private HttpClient client;
         private string bearerToken;
-        public EventBriteService() 
+        private readonly ILogger logger;
+        public EventBriteService(ILogger<EventBriteService> logger) 
         {
+            this.logger = logger;
             var executablePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             var envfile = Path.Combine(executablePath, Constants.EnvPath);
+            
             if (File.Exists(envfile))
             {
                 DotNetEnv.Env.Load(envfile);
@@ -30,6 +34,7 @@ namespace bcdevexchange.Service
         {
             var eveAll = await GetAllAsync();
             var courses = eveAll.Where(e => e.FormatId == Constants.CourseFormatId);
+            logger.LogInformation($"Received Courses: {courses.Count()}");
             return courses;
         }
 
@@ -37,6 +42,7 @@ namespace bcdevexchange.Service
         {
             var eveAll = await GetAllAsync();
             var events = eveAll.Where(e => e.FormatId != Constants.CourseFormatId);
+            logger.LogInformation($"Received Events: {events.Count()}");
             return events;
         }
 
@@ -61,6 +67,7 @@ namespace bcdevexchange.Service
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
+                    logger.LogError($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}");
                     throw new Exception($"Cannot retrieve events: ${httpResponse.StatusCode}, ${httpResponse.ReasonPhrase}");
                 }
 
