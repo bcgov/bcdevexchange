@@ -622,10 +622,13 @@ p.card-subtitle {
   }
 }
 
+.logo img {
+  width: 210px;
+}
+
 @media only screen and (max-width: 1024px) {
   .logo img {
     width: 180px;
-    padding: 10px;
   }
   .inner {
     width: 350px;
