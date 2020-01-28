@@ -302,6 +302,236 @@ h3 {
   z-index: 999;
   position: relative;
 }
+/*------------------- Exchange Lab Page -------------------*/
+
+.exchange_lab_col {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-right: 25%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.exchange_lab_banner_text {
+  background: rgba(13,13,13,0.7);
+  color: white;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 10rem;
+  /* margin-left: 0; */
+}
+
+.exchange-lab-content-container {
+  background-color: #181818;
+  padding-left: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.exchange-lab-content-container h3 {
+  font-size: 18px;
+}
+
+
+.exchange-lab-content-container-bg h3 {
+  font-size: 18px;
+}
+
+
+
+.exchange-lab-content-container-bg {
+  background-color: #2d2d2d;
+  padding-left: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.exchange-lab-content-container h1{
+  color: white;
+}
+
+.exchange-lab-content-container-bg a {
+  color: #0065f2;
+}
+
+.exchange-lab-content-container a {
+  color: #0065f2;
+}
+
+.exchange-lab {
+  color: white;
+}
+.exchange_lab_banner_text h1 {
+  color: white;
+}
+
+.exchange_lab_banner_text p {
+  color: white;
+}
+
+.right-picture-container {
+  margin-top: 5rem;
+  margin-left: 0;
+}
+
+.left-picture-container {
+  margin-top: 5rem;
+  margin-left: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+  .exchange-lab-content-container-bg{
+    padding-left: 2rem;
+  }
+  .exchange-lab-content-container{
+    padding-left: 2rem;
+  }
+  .exchange_lab_banner_text{
+    padding-left: 2rem;
+  } 
+
+}
+
+/*------------------- Start Timeline style -------------------*/
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 20px;
+  bottom: -20px;
+  left: 50%;
+  margin-left: 3px;
+}
+
+/* Container around content */
+.timeline-container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid white;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -6px;
+}
+
+/* The timeline content */
+div.timeline-content p, 
+div.timeline-content h2, 
+div.timeline-content li{
+  padding: 20px 30px;
+  color:white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+/* Place the timelime to the left */
+  .timeline::after {
+    left: 22px;
+  }
+
+/* Full-width containers */
+  .timeline-container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+/* Make sure that all arrows are pointing leftwards */
+  .timeline-container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+/* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+    left: 15px;
+  }
+
+/* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+}
+
+
+
+/*------------------- End Timeline Styling -------------------*/
+
+
+
+
+
 /*------------------- About Us -------------------*/
 
 .about-us {
