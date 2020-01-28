@@ -3,6 +3,7 @@ ViewData["Title"] = "ExchangeLab";
 Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Microsoft.AspNetCore.Html
+@addTagHelper *, bcdevexchange
 @functions{
 public IHtmlContent CreateImageWithLeftSideText( string title, string text, string fileName){
 string titleHTML = title!=""?"<h2 class='exchange-lab'>"+title+"</h2>": "" ;
@@ -84,9 +85,10 @@ return Html.Raw($@"
 
         <h1>What happens at the Lab?</h1>
         <h1>Test View Component</h1>
-        @await Component.InvokeAsync("TextWithLeftImage",
+        <vc:text-with-left-image text-with-left-image-control-type="test of view controller"> </vc:text-with-left-image>
+        @* @await Component.InvokeAsync("TextWithLeftImage",
             new {
-                textWithLeftImageControlType = "test of view controller"
+                textWithLeftImageControlType = "test of view controller" *@
         })
         @CreateImageWithRightSideText(
         "",

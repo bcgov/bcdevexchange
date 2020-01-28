@@ -1,2 +1,19 @@
 @model string
-<h2>@Model</h2>
+@* string titleHTML = title!=""?"<h2 class='exchange-lab'>"+title+"</h2>": "" ; *@
+@* return Html.Raw($@" *@
+<div class='left-picture'>
+    <div class='section_inner'>
+        <div class='left-picture-container'>
+            <div class='row'>
+                <div class='col-xl-6 col-md-6'>
+                    <div class='outer'>
+                        <div class='middle'>@Model<h3 class='exchange-lab'>@Model</h3></div>
+                    </div>
+                </div>
+                <div class='col-xl-6 col-md-6'>
+                    <img class='sec_image' src='/img/exchange_lab_photos/001.jpg' alt='image'>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
