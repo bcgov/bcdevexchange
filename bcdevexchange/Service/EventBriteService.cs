@@ -34,7 +34,7 @@ namespace bcdevexchange.Service
         {
             var eveAll = await GetAllAsync();
             var courses = eveAll.Where(e => e.FormatId == Constants.CourseFormatId);
-            logger.LogInformation($"Received Courses {courses.Count()}");
+            logger.LogInformation($"Received Courses: {courses.Count()}");
             return courses;
         }
 
@@ -42,7 +42,7 @@ namespace bcdevexchange.Service
         {
             var eveAll = await GetAllAsync();
             var events = eveAll.Where(e => e.FormatId != Constants.CourseFormatId);
-            logger.LogInformation($"Received Events {events.Count()}");
+            logger.LogInformation($"Received Events: {events.Count()}");
             return events;
         }
 
