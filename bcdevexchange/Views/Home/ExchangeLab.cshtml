@@ -85,31 +85,60 @@ return Html.Raw($@"
 
         <h1>What happens at the Lab?</h1>
         <h1>Test View Component</h1>
-        <vc:text-with-left-image text-with-left-image-control-type="test of view controller"> </vc:text-with-left-image>
+        @* <vc:text-with-left-image 
+            text-on-left=true
+            title="Test Title" 
+            sub-title="Test Sub Title" 
+            image-file-path="exchange_lab_photos/001.jpg"
+            button-url=""> </vc:text-with-left-image> *@
         @* @await Component.InvokeAsync("TextWithLeftImage",
             new {
-                textWithLeftImageControlType = "test of view controller" *@
-        })
-        @CreateImageWithRightSideText(
+                textWithLeftImageControlType = "test of view controller" 
+        })*@
+        @* @CreateImageWithRightSideText(
         "",
         "Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.",
         "001.jpg"
-        )
-        @CreateImageWithLeftSideText(
+        ) *@
+        <vc:text-with-left-image 
+            text-on-left=false
+            title="" 
+            sub-title="Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology."
+            image-file-path="exchange_lab_photos/001.jpg"
+            button-url=""> </vc:text-with-left-image>
+        @* @CreateImageWithLeftSideText(
         "",
         "Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems.",
         "004.jpg"
-        )
-        @CreateImageWithRightSideText(
+        ) *@
+        <vc:text-with-left-image 
+            text-on-left=true
+            title="" 
+            sub-title="Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems."
+            image-file-path="exchange_lab_photos/004.jpg"
+            button-url=""> </vc:text-with-left-image>
+        @* @CreateImageWithRightSideText(
         "",
         "Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year.",
         "002.jpg"
-        )
-        @CreateImageWithLeftSideText(
+        ) *@
+        <vc:text-with-left-image 
+            text-on-left=false
+            title="" 
+            sub-title="Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year."
+            image-file-path="exchange_lab_photos/002.jpg"
+            button-url=""> </vc:text-with-left-image>
+        @* @CreateImageWithLeftSideText(
         "",
         "Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.",
         "003.jpg"
-        )
+        ) *@
+        <vc:text-with-left-image 
+            text-on-left=true
+            title="" 
+            sub-title="Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship."
+            image-file-path="exchange_lab_photos/003.jpg"
+            button-url=""> </vc:text-with-left-image>
     </div>
 
 
