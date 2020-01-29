@@ -8,7 +8,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 public IHtmlContent CreateCard(string name, string title, string fileName){
 return Html.Raw($@"
 <div class='card my-3'>
-    <img src='img/exchange_people/{fileName}' class='card-img-top' alt='Test Person'>
+    <img src='img/about/team_headshots/{fileName}' class='card-img-top' alt='Test Person'>
     <div class='card-body'>
         <h5 class='card-title'>{name}</h5>
         <p class='card-subtitle'>{title}</p>
@@ -18,37 +18,54 @@ return Html.Raw($@"
 }
 }
 
-<div class="about-us">
 
-    <div class="about-us__title">
-        <h4 class="about-us">Vision</h4>
-        <h1 class="about-us">We help remove barriers and create capabilities to accelerate better service
-            delivery.</h1>
-    </div>
-
-    <div class="about-us__people">
-        <h2 class="about-us">Our Team</h2>
-        <div class="card-deck-wrapper">
-            <div class="card-deck">
-                @CreateCard("Ari Hershberg", "Senior Program Analyst", "ari.jpg")
-                @CreateCard("Rumon Carter", "Executive Director, Digital Delivery & CSI Lab", "rumon.jpg")
-                @CreateCard("Cailey Jones", "Dev Ops", "cailey.jpg")
-                @CreateCard("Diana Decotiis", "Education and Training Coordinator", "diana.png")
-                @CreateCard("Pop Kanjanakantorn", "Project Coordinator", "pop.jpg")
-                @CreateCard("Jonathan Sharman", "Developer", "jonSharman.png")
-            </div>
-            <div class="about-us__contact">
-                <h2 class="about-us">Want to join our lovely team?</h2>
-                <h3 class="about-us">We'd love to hear from you.</h3>
-                <h4 class="about-us">
-                    Send us your resume at: <br>
-                    <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a>
-                </h4>
+<div class="hero about-us-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                <div class="hero-text bg-overlay pb-5">We help remove barriers and create capabilities to accelerate better service delivery.</div>
             </div>
         </div>
-
     </div>
+</div>
 
+<div class="section_main dark_bg">
+    <h2 class="text-center">Our Team</h2>
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            @CreateCard("Rumon Carter", "Executive Director", "rumon.jpg")
+            @CreateCard("Todd Wilson", "Director, DevOps Platform Services", "todd.jpg")
+            @CreateCard("Heather Remacle", "Director, Lab Operations", "heather.jpg")
+            @CreateCard("Olena Mitovska", "Product Owner", "olena.jpg")
+            @CreateCard("Nick Corcoran", "Security Architect", "nick.jpg")
+            @CreateCard("Ari Hershberg", "Senior Program Analyst", "ari.jpg")
+            @CreateCard("Cailey Jones", "DevOps Platform Administrator", "cailey.jpg")
+            @CreateCard("Luke Gonis", "Scrum Master", "luke.jpg")
+            @CreateCard("Diana De Cotiis", "Education and Training Coordinator", "diana.jpg")
+            @CreateCard("Pop Kanjanakantorn", "Project Coordinator", "pop.jpg")
+            @CreateCard("Jonathan Sharman", "Developer", "jon.jpg")
+            @CreateCard("Parul Mishra Dubedy", "Full Stack Developer", "parul.jpg")
+            @CreateCard("Shea Stewart", "OpenShift Platform & Security Consultant", "jon.jpg")
+            @CreateCard("Jason Leach", "Developer & Mobile Strategist", "jason.jpg")
+            @CreateCard("Mark Wilson", "Research & Design", "mark.jpg")
+            @CreateCard("Dea De Jarisco", "Digital Talent Lead", "dea.jpg")
+            @CreateCard("Tolu Aniemena-Osazuwa", "Scrum Master", "tolu.jpg")
+            @CreateCard("Zachary Woodward", "Senior Director, IMIT Procurement", "zach.jpg")
+            @CreateCard("Inderdeep Singh", "UX Designer", "inder.jpg")
+        </div>
+    </div>
+</div>
 
-
+<div class="section_main light_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center m-auto">
+                <div class="teaser">
+                    <title>Want to get in touch?</title>
+                    <subtitle>We'd love to hear from you!</subtitle> 
+                    <subtitle><a href="mailto:BCDevExchange@gov.bc.ca">BCDevExchange@gov.bc.ca</a></subtitle>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
