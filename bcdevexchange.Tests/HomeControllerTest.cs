@@ -13,26 +13,28 @@ using System.Collections.Generic;
 namespace bcdevexchange.Tests
 {
     [TestClass]
-    class HomeControllerTest
+    public class HomeControllerTest
     {
         //Arrange
         Mock<IEventBriteService> eventbriteMock = new Mock<IEventBriteService>();
-        Mock<IMemoryCache> memMock = new Mock<IMemoryCache>();
+        IMemoryCache memCache = new MemoryCache(new MemoryCacheOptions());
         List<Event> events = new List<Event>
         {
          new Event(){Name = new EventBriteString(){Text = "dummy1" } },
          new Event(){Name = new EventBriteString(){Text = "dummy2" } },
          new Event(){Name = new EventBriteString(){Text = "dummy3" } },
         };
-
+        List<Event> courses = new List<Event>
+        {
+         new Event(){Name = new EventBriteString(){Text = "dummy1" } },
+         new Event(){Name = new EventBriteString(){Text = "dummy2" } },
+         new Event(){Name = new EventBriteString(){Text = "dummy3" } },
+         new Event(){Name = new EventBriteString(){Text = "dummy4" } }
+        };
         private void APISetup()
         {
             eventbriteMock.Setup(m => m.GetAllEventsAsync()).Returns(Task.FromResult( events.AsEnumerable()));
-
-            List<Event> result = new List<Event>();
-            memMock.Setup(m => m.TryGetValue(It.IsAny<string>(), out result)).Returns(true);
-
-            memMock.Setup(m => m.Set(It.IsAny<string>(), It.IsAny<List<Event>>(),It.IsAny<MemoryCacheEntryOptions>()));
+            eventbriteMock.Setup(m => m.GetAllCoursesAsync()).Returns(Task.FromResult(courses.AsEnumerable()));
         }
 
         [TestMethod]
@@ -41,12 +43,34 @@ namespace bcdevexchange.Tests
             //Arrange
             APISetup();
 
-            HomeController controller = new HomeController(memmock.Object,mock.Object,new NullLogger<HomeController>());
+            HomeController controller = new HomeController(memCache, eventbriteMock.Object, new NullLogger<HomeController>());
+
             //Act
             var result = controller.Index();
+
             //Assert
             Assert.IsInstanceOfType(result, typeof(ActionResult));
         }
 
+        [TestMethod]
+        public async Task Mock_GetViewResultLearning_Test() //Confirms route returns view
+        {
+            //Arrange
+            APISetup();
+            HomeController controller = new HomeController(memCache, eventbriteMock.Object, new NullLogger<HomeController>());
+
+            //Act
+            var result = await controller.GetEvents() as ViewResult;
+            var model = result.ViewData.Model as Dictionary<string, IList<Event>>;
+            //Assert
+            Assert.IsNotNull(model);
+            var events = model["events"];
+            var courses = model["courses"];
+            Assert.IsNotNull(events);
+            Assert.IsNotNull(courses);
+            Assert.AreEqual(3, events.Count);
+            Assert.AreEqual(4, courses.Count);
+            Assert.IsInstanceOfType(result, typeof(IActionResult));
+        }
     }
 }
