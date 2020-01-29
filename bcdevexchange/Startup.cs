@@ -8,14 +8,17 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Logging;
 
 namespace bcdevexchange
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger logger;
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            this.logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,10 +33,9 @@ namespace bcdevexchange
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddSingleton<IEventBriteService>(new EventBriteService());
+            services.AddSingleton(typeof(IEventBriteService), typeof(EventBriteService));
             services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddHealthChecks().AddCheck("Webserver is running", () => HealthCheckResult.Healthy("Ok"));
         }
 
@@ -43,6 +45,7 @@ namespace bcdevexchange
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                logger.LogInformation("In Development environment");
             }
             else
             {
