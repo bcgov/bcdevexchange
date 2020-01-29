@@ -7,9 +7,9 @@ using bcdevexchange.Models;
 
 
 
-namespace bcdevexchange.Components.TextWithLeftImage 
+namespace bcdevexchange.Components.TextWithSideImage 
 {
-  public class TextWithLeftImageModel 
+  public class TextWithSideImageModel 
   {
     public bool TextOnLeft {get; set;}
     public string Title {get; set;}
@@ -19,23 +19,18 @@ namespace bcdevexchange.Components.TextWithLeftImage
 
   }
 
-  public class TextWithLeftImageViewComponent : ViewComponent
+  public class TextWithSideImageViewComponent : ViewComponent
   {
-    public TextWithLeftImageViewComponent()
+    public TextWithSideImageViewComponent()
     {
 
     }
-
-    // public IViewComponentResult Invoke(string textWithLeftImageControlType) 
-    // {
-    //   return View("Default", textWithLeftImageControlType);
-    // }
 
     public IViewComponentResult Invoke(bool textOnLeft, string title, string subTitle, string buttonUrl, string imageFilePath) 
     {
 
       
-      TextWithLeftImageModel textWithLeftImageModel = new TextWithLeftImageModel
+      TextWithSideImageModel textWithSideImageModel = new TextWithSideImageModel
       {
         TextOnLeft = textOnLeft,
         Title = title, 
@@ -44,7 +39,7 @@ namespace bcdevexchange.Components.TextWithLeftImage
         ImageFilePath = imageFilePath
       };
 
-      return View("Default", textWithLeftImageModel);
+      return View("Default", textWithSideImageModel);
     }
   }
 
