@@ -18,12 +18,14 @@ namespace bcdevexchange.Tests
         //Arrange
         Mock<IEventBriteService> eventbriteMock = new Mock<IEventBriteService>();
         IMemoryCache memCache = new MemoryCache(new MemoryCacheOptions());
+
         List<Event> events = new List<Event>
         {
          new Event(){Name = new EventBriteString(){Text = "dummy1" } },
          new Event(){Name = new EventBriteString(){Text = "dummy2" } },
          new Event(){Name = new EventBriteString(){Text = "dummy3" } },
         };
+
         List<Event> courses = new List<Event>
         {
          new Event(){Name = new EventBriteString(){Text = "dummy1" } },
@@ -31,6 +33,7 @@ namespace bcdevexchange.Tests
          new Event(){Name = new EventBriteString(){Text = "dummy3" } },
          new Event(){Name = new EventBriteString(){Text = "dummy4" } }
         };
+
         private void APISetup()
         {
             eventbriteMock.Setup(m => m.GetAllEventsAsync()).Returns(Task.FromResult( events.AsEnumerable()));
@@ -62,6 +65,7 @@ namespace bcdevexchange.Tests
             //Act
             var result = await controller.GetEvents() as ViewResult;
             var model = result.ViewData.Model as Dictionary<string, IList<Event>>;
+
             //Assert
             Assert.IsNotNull(model);
             var events = model["events"];

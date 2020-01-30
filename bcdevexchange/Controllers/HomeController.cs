@@ -43,7 +43,6 @@ namespace bcdevexchange.Controllers
                 }
 
                 events = result.ToList();
-
                 logger.LogInformation($"The number of {key} received: {events.Count}");
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(Constants.ExpirationTimeInMinutes));
@@ -51,7 +50,6 @@ namespace bcdevexchange.Controllers
                 // Save data in cache.
                 memoryCache.Set(key, events, cacheEntryOptions);
             }
-
             return events;
         }
     
