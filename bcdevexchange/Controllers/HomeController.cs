@@ -22,7 +22,7 @@ namespace bcdevexchange.Controllers
             this.logger = logger;
         }
 
-        public async Task<IList<Event>> GetFromCache(string key)
+        private async Task<IList<Event>> GetFromCache(string key)
         {
             if (!memoryCache.TryGetValue(key, out List<Event> events))
             {
@@ -43,7 +43,6 @@ namespace bcdevexchange.Controllers
                 }
 
                 events = result.ToList();
-
                 logger.LogInformation($"The number of {key} received: {events.Count}");
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(Constants.ExpirationTimeInMinutes));
@@ -51,7 +50,6 @@ namespace bcdevexchange.Controllers
                 // Save data in cache.
                 memoryCache.Set(key, events, cacheEntryOptions);
             }
-
             return events;
         }
     
@@ -81,13 +79,12 @@ namespace bcdevexchange.Controllers
         [HttpGet("learning")]
         public async Task<IActionResult> GetEvents()
         {
-            Dictionary<string, object> model = new Dictionary<string, object> { };
+            Dictionary<string, IList<Event>> model = new Dictionary<string, IList<Event>> { };
             var events = await this.GetFromCache(Constants.EventsKey);
             var courses = await this.GetFromCache(Constants.CoursesKey);
             model.Add("events", events);
             model.Add("courses", courses);
             return View("Learning", model);
         }
-
     }
 }
