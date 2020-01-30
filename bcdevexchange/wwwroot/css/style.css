@@ -27,8 +27,8 @@ body {
   font-weight: normal;
   font-style: normal;
   overflow-x: hidden;
+  color: #fff;
 }
-
 
 img {
   max-width: 100%;
@@ -36,12 +36,15 @@ img {
   height: auto;
 }
 
-a,
-.button {
+a, .button {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+}
+
+a {
+  color: #fff;
 }
 
 a:focus,
@@ -51,7 +54,7 @@ a:focus,
 }
 
 a:focus {
-  color: #0065f2;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -59,18 +62,12 @@ a:focus {
 a:focus,
 a:hover {
   text-decoration: none;
-  color: #0065f2;
+  color: #fff;  
 }
 
-a,
-button {
-  color: #1F1F1F;
-  outline: medium none;
-}
 
 h1, h2, h3, h4, h5 {
   font-family: "Helvetica Neue", sans-serif;
-  color: #1F1F1F;
 }
 
 h1 a,
@@ -95,7 +92,7 @@ p {
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
-  color: #4D4D4D;
+  color: inherit;
   margin-bottom: 13px;
   font-family: "Helvetica Neue", sans-serif;
 }
@@ -174,6 +171,41 @@ h3 {
   font-weight: 500;
   padding: 8px 10px;
 }
+
+/*---- Begin Hero styling (replacing banner styles) -----*/
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: flex-end;
+}
+.home-hero {
+  background: url(../img/home_img/home-hero.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.hero-text {  
+  padding: 0.5em;
+  line-height: 1.2em;
+  font-weight: 500;
+  letter-spacing: -0.75px;
+}
+@media (max-width: 575px) {
+  .hero-text {
+    font-size: 1.8em;
+  }
+}
+@media (min-width: 576px) {
+  .hero-text {
+    font-size: 1.8em;
+  }
+}
+@media (min-width: 992px) {
+  .hero-text {
+    font-size: 2.2em;
+  }
+} 
+/*-- End Hero styling --*/
+
 .banner_area {
   background: url(../img/home_img/banner-min.jpg);
   min-height: 85vh;
@@ -190,6 +222,7 @@ h3 {
   transform: translate(-50%, -50%);
   width: 100%;
 }
+
 .banner_text h1 {
   font-size: 3em;
   color: #fff;
@@ -209,6 +242,9 @@ h3 {
 .dark_bg {
   background: #181818;
 }
+.bg-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
 .heading2 {
   color: #fff;
   font-size: 2.4em;
@@ -217,16 +253,15 @@ h3 {
   color: #fff;
 }
 .number {
-  color: #fff;
   font-size: 4em;
   font-weight: 600;
 }
 .blue_btn {
   background: #0065f2;
   color: #fff;
+  font-size: 1.25rem;
   border: none;
   padding: 10px 25px;
-  margin-top: 0.5em;
   display: inline-block;
 }
 .blue_btn:hover {
@@ -238,9 +273,8 @@ h3 {
 }
 .small_text {
   display: block;
-  color: #fff;
-  margin-top: 1em;
-  font-size: 12px;
+  margin: 1em 0;
+  font-size: 0.85em;
 }
 .medium_text {
   color: #fff;
@@ -1011,3 +1045,51 @@ p.card-subtitle {
     margin-top: 4em;
   }
 }
+/*-- Begin Teaser styling --*/
+.teaser-img-left, .teaser-img-right {
+  padding: 80px 0;
+  min-height: 80vh;
+}
+.teaser-name {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin: 0 0 5rem;
+  text-align: center;
+  opacity: 0.6;
+}
+.teaser > title {
+  display: block;
+  font-size: 2.2rem;
+  line-height: 1.2em;
+  font-weight: 500;
+  letter-spacing: -0.75px;
+  margin-bottom: 1em;
+}
+.teaser > subtitle {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.5em;
+  font-weight: 300;
+  letter-spacing: -0.25px;
+  margin: 1em 0;
+  opacity: 0.8;
+}
+.teaser > stat {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0.7em 0 0;
+  opacity: 0.8;
+}
+.teaser > stat-description {
+  display: block;
+  font-weight: 600;
+  margin: 0 0 1em;
+  opacity: 0.8;
+}
+.teaser > a {
+  margin-top: 2em;
+}
+/*-- End Teaser styling --*/
