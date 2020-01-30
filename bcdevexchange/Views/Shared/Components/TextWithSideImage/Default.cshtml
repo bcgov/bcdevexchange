@@ -1,16 +1,17 @@
 @model bcdevexchange.Components.TextWithSideImage.TextWithSideImageModel
 
 @{string titleHTML = Model.Title!=""?"<title>"+Model.Title+"</title>": "" ;}
-@{string buttonHtml = Model.ButtonUrl!=""?"<h2 class='exchange-lab'>"+Model.ButtonUrl+"</h2>": "" ;}
+@{string buttonHtml = Model.ButtonUrl!=""?"<a href='"+Model.ButtonUrl+"' class='blue_btn'>Learn More</a>": "" ;}
+@{string subtitleHtml = Model.SubTitle!=""?  "<subtitle>"+@Model.SubTitle.Replace("NEWLINE", "</subtitle><subtitle>")+"</subtitle>" :"";}
 @{if (Model.TextOnLeft)
 {
-    <div class="left-picture">
+    <div class="teaser-view-component dark_bg">
         <div class="container">
             <div class="row">
                 <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
                     <div class="teaser">
                         @Html.Raw(titleHTML)
-                        <subtitle>@Model.SubTitle</subtitle>
+                        @Html.Raw(subtitleHtml)
                         @Html.Raw(buttonHtml)
                     </div>
                 </div>
@@ -20,34 +21,8 @@
             </div>
         </div>
     </div>
-
-
-
-
-    @* <div class='left-picture'>
-        <div class='section_inner'>
-            <div class='left-picture-container'>
-                <div class='row'>
-                    <div class='col-xl-6 col-md-6'>
-                        <div class='outer'>
-                            <div class='middle'>
-                                @Html.Raw(titleHTML)
-                                <h3 class='exchange-lab'>@Model.SubTitle</h3>
-                            </div>
-                            @Html.Raw(buttonHtml)
-                        </div>
-                    </div>
-                    <div class='col-xl-6 col-md-6'>
-                        <img class='sec_image' src=@("/img/"+Model.ImageFilePath) alt='image'>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> *@
 } else {
-
-
-    <div class="right-picture'">
+    <div class="teaser-view-component dark_bg">
         <div class="container">
             <div class="row">
                 <div class="col-md mr-md-5 mb-5 mb-md-0">
@@ -56,39 +31,12 @@
                 <div class="col-md align-self-center">
                     <div class="teaser">
                         @Html.Raw(titleHTML)
-                        <subtitle>@Model.SubTitle</subtitle>
+                        @Html.Raw(subtitleHtml)
                         @Html.Raw(buttonHtml)
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-    @* <div class='right-picture'>
-    <div class='section_inner'>
-        <div class='right-picture-container'>
-            <div class='row'>
-                <div class='col-xl-6 col-md-6'>
-                    <img class='sec_image' src=@("/img/"+Model.ImageFilePath) alt='image'>
-                </div>
-                <div class='col-xl-6 col-md-6 '>
-                    <div class='outer'>
-                        <div class='middle'>
-                            <div class='inner inner3'>
-                                @Html.Raw(titleHTML)
-                                <h3 class='exchange-lab'>@Model.SubTitle</h3>
-                            </div>
-                            @Html.Raw(buttonHtml)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
 }
 }

@@ -2,6 +2,9 @@
   ViewData["Title"] = "DevOpsPlatform";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Microsoft.AspNetCore.Html
+@addTagHelper *, bcdevexchange
+
 <div class="landing">
   <!-- header-banner start -->
   <div class="banner_area_dev-ops">
@@ -23,38 +26,31 @@
   <!-- header-banner end -->
   <!-- section2 start -->
 <!-- DevOps Platform teaser start / "teaser-img-right" -->
-    <div class="teaser-img-right dark_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
-                    <div class="teaser middle">
-                      <h2 class="heading2">OpenShift Container Platform?</h2>
-                      <p class="para1">On premise, within the Kamloops Data Center, the BC Government has a deployment of OpenShift, a hybrid cloud enterprise Kubernetes platform that equips development teams with full control to develop and deliver applications quickly, securely, and at scale.</p>
-                      <p class="para1">We provide access and support for using the platform.</p>
-                      <a href="#" class="blue_btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-md">
-                  <img class="sec_image" src="img/dev_ops_platform_photos/openshift.png" alt="image">
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+  <vc:text-with-side-image 
+    text-on-left=true
+    title="OpenShift Container Platform?" 
+    sub-title="On premise, within the Kamloops Data Center, 
+      the BC Government has a deployment of OpenShift, a hybrid 
+      cloud enterprise Kubernetes platform that equips 
+      development teams with full control to develop and 
+      deliver applications quickly, securely, and at scale.
+      NEWLINE We provide access and support for using the platform."
+    image-file-path="dev_ops_platform_photos/openshift.png"
+    button-url="https://developer.gov.bc.ca/What-Is-OpenShift"> </vc:text-with-side-image>
   <!-- section2 end -->
 
 
 
 
   <!-- section3 start Who can join-->
-  <div class="teaser-img-right light_bg">
+  <div class="teaser-view-component light_bg">
         <div class="container">
             <div class="row">
                 <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
                     <div class="teaser">
-                      <h2 class="heading2">Who can join?</h2>
-                      <p class="para1">We host BC Government projects on the 
-                      platform that meet the following criteria:</p>
+                      <title>Who can join?</title>
+                      <subtitle>We host BC Government projects on the 
+                      platform that meet the following criteria:</subtitle>
                     </div>
                 </div>
                 <div class="col-md">
@@ -88,24 +84,13 @@
   
   
   <!-- section4 Start 'How to join' -->
-    <div class="teaser-img-right dark_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
-                    <div class="teaser">
-                      <h2 class="heading2">How to join the Platform?</h2>
-                      <p class="para1">If you meet the above criteria,
-                        we’d love to hear from you! It all starts with a project 
-                        provisioning request.</p>
-                      <a href="#" class="blue_btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-md">
-                  <img class="sec_image" src="img/dev_ops_platform_photos/join_the_platform.jpeg" alt="image">
-                </div>
-            </div>
-        </div>
-    </div>
+    <vc:text-with-side-image 
+      text-on-left=true
+      title="How to join the Platform?" 
+      sub-title="If you meet the above criteria, we’d love to hear 
+        from you! It all starts with a project provisioning request."
+      image-file-path="dev_ops_platform_photos/join_the_platform.jpeg"
+      button-url="https://github.com/BCDevOps/devops-requests"> </vc:text-with-side-image>
   <!-- section4 end -->
   
   

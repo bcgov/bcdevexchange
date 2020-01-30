@@ -1050,6 +1050,12 @@ p.card-subtitle {
   padding: 80px 0;
   min-height: 80vh;
 }
+
+.teaser-view-component {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .teaser-name {
   letter-spacing: 5px;
   text-transform: uppercase;
