@@ -6,6 +6,8 @@ using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace bcdevexchange.Controllers
 {
@@ -79,6 +81,14 @@ namespace bcdevexchange.Controllers
             model.Add("events", events);
             model.Add("courses", courses);
             return View("Learning", model);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Error()
+        {
+            var path = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            var exception = path.Error;
+            return View();
         }
     }
 }

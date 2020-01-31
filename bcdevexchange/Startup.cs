@@ -32,7 +32,6 @@ namespace bcdevexchange
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
             services.AddSingleton(typeof(IEventBriteService), typeof(EventBriteService));
             services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -44,7 +43,8 @@ namespace bcdevexchange
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
                 logger.LogInformation("In Development environment");
             }
             else
@@ -55,10 +55,8 @@ namespace bcdevexchange
             }
 
             app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
-
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
