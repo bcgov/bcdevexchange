@@ -97,6 +97,11 @@ p {
   font-family: "Helvetica Neue", sans-serif;
 }
 
+.address {
+  font-weight: 300;
+  letter-spacing: 0.1px;
+}
+
 *::-moz-selection {
   background: #444;
   color: #fff;
