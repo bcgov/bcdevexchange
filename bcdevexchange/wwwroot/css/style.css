@@ -183,6 +183,11 @@ h3 {
   background-size: cover;
   background-position: center;
 }
+.about-us-hero {
+  background: url(../img/about/about-us-hero.jpg);
+  background-size: cover;
+  background-position: center;
+}
 .hero-text {  
   padding: 0.5em;
   line-height: 1.2em;
@@ -613,44 +618,9 @@ div.timeline-content li{
 
 
 
-/*------------------- About Us -------------------*/
-
-.about-us {
-    background: #181818;
-    color: #FFFFFF;
-    margin: 0;
-    padding-top: 5rem;
-}
-
-.about-us h1 h2 h3 h4 h5{
-    color: #FFFFFF;
-}
-
-.about-us a {
-    color: #0065f2;
-}
-
-.about-us__title {
-    text-align: center;
-    max-width: 45em;
-    margin:0 auto;
-    font-size: 1.2rem;
-}
-
-
-
-.about-us__people {
-    text-align: center;
-    padding-top: 5rem;
-    padding-bottom: 8rem
-}
-
-.about-us__contact {
-  text-align: left;
-}
-
+/*------------------- Start Card styles -------------------*/
 .card {
-  background-color: #181818;
+  background-color: transparent;
 }
 
 .card-deck-wrapper {
@@ -664,17 +634,22 @@ div.timeline-content li{
 }
 
 .card-body {
-    background: #181818;
     padding-left: 0;
 }
 
 h5.card-title {
     text-align: left;
-    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
 }
 p.card-subtitle {
     text-align: left;
-    color: #FFFFFF; 
+    opacity: 0.7;    
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.1px; 
 } 
 /* Responsive styling for the deck */
 @media (min-width: 0) {
@@ -702,6 +677,8 @@ p.card-subtitle {
     flex: 0 0 calc(25% - 30px);
   }
 }
+/*------------------- End Card styles -------------------*/
+
 
 /*------------------- Learning Page CSS -------------------*/
 .banner_training {
