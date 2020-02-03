@@ -43,17 +43,15 @@ namespace bcdevexchange
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
-                app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
                 logger.LogInformation("In Development environment");
             }
             else
             {
-                app.UseExceptionHandler("/Home/Index");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?code={0}");
                 app.UseHsts();
             }
-
             app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
             app.UseStaticFiles();
             app.UseCookiePolicy();

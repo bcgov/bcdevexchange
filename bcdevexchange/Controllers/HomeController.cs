@@ -84,11 +84,20 @@ namespace bcdevexchange.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Error()
+        public IActionResult Error(int? code)
         {
             var path = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            var exception = path.Error;
-            return View();
+            
+            if (code == null && path != null)
+            {
+                logger.LogError($"Exception thrown {path.Error} at {path.Path}");
+                code = 500;
+            }
+            else
+            {
+                logger.LogError($"General error with code {code}");
+            }
+            return View(code);
         }
     }
 }

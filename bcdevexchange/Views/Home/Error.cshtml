@@ -1,19 +1,31 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>Error</title>
-</head>
-<body>
-    <div id="notfound">
-        <div class="notfound" style="position: relative;height: 100vh;background: #030005;">
-            <div class="notfound-404" style="position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
-                <h1 style="color:white; text-align:center;">OOPS</h1>
-                <h2 style="color:white">Something Went Wrong!!!</h2>
-                <a style="display: inline-block;text-transform: uppercase;color: #ff005a;text-decoration: none;border: 2px solid;
-                background: transparent;padding: 10px 80px;font-size: 14px;font-weight: 700;-webkit-transition: 0.2s all;"href="/">Homepage</a>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/style.css"> 
+    </head>
+    <body>
+        <div class="error-container">
+            <div class="notfound">
+                <h1>OOPS!!!</h1>
+                @if (@Model >= 400 && @Model < 500)
+                {
+                    <h2>There is Something Wrong With the Request!!</h2>
+                }
+                else if (@Model >= 500 && @Model < 600)
+                {
+                    <h2>There is Something Wrong With Us</h2>
+                    <h2>Please try again Later!!</h2>
+                }
+                else
+                {
+                    <h2>Something Went Wrong!!</h2>
+                    <h2>Please try again Later!!</h2>
+                }
+                <a href="/">Homepage</a>
             </div>
         </div>
-    </div>
-</body> 
+    </body>
 </html>
