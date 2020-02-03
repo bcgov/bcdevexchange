@@ -218,7 +218,8 @@ h3 {
   background-position: top center;
   position: relative;
 }
-.banner_area .col-xl-12 {
+
+.banner_area .col-xl-12, .banner_area_dev-ops .col-xl-12{
   text-align: center;
   position: absolute;
   top: 50%;
@@ -341,6 +342,52 @@ h3 {
   z-index: 999;
   position: relative;
 }
+
+/*------------------- Dev Ops Platform Page -------------------*/
+
+
+
+.banner_area_dev-ops {
+  background: url(../img/dev_ops_platform_photos/devops_hero.jpeg);
+  min-height: 85vh;
+  background-size: cover;
+  background-position: top center;
+  position: relative;
+}
+
+.icon {
+  height: 32px;
+  width:32px;
+}
+
+.join_lab_title {
+  padding-left: 2rem;
+  color: white;
+  vertical-align: middle;
+  size: 18px;
+  font-weight:bold;
+}
+
+.join_the_lab_text {
+  color: white;
+  size: 16px
+}
+
+div.dev_hub_block h2,
+div.dev_hub_block p,
+div.dev_hub_block {
+  text-align: center;
+  /* margin:auto; */
+}
+
+div.dev_hub_block a {
+  display: inline-block;
+}
+
+
+/*----------------- End Dev Ops Platform Page -----------------*/
+
+
 /*------------------- Exchange Lab Page -------------------*/
 
 .exchange_lab_col {
@@ -780,7 +827,7 @@ p.card-subtitle {
 }
 
 @media only screen and (max-width: 1200px) {
-  .banner_training, .banner_area {
+  .banner_training, .banner_area_dev-ops, .banner_area {
     min-height: 50vh;
     height: 50vh;
   }
@@ -963,7 +1010,7 @@ p.card-subtitle {
     margin-left: 0 !important;
     margin-top: 4em;
   }
-  .banner_training, .banner_area {
+  .banner_training, .banner_area_dev-ops, .banner_area {
     min-height: 80vh;
     height: 80vh;
   }
@@ -980,6 +1027,12 @@ p.card-subtitle {
   padding: 80px 0;
   min-height: 80vh;
 }
+
+.teaser-view-component {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .teaser-name {
   letter-spacing: 5px;
   text-transform: uppercase;

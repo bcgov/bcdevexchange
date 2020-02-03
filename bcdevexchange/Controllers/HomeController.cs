@@ -58,6 +58,12 @@ namespace bcdevexchange.Controllers
             return View();
         }
 
+        [HttpGet("DevOpsPlatform")]
+        public IActionResult DevOpsPlatform()
+        {
+            return View("DevOpsPlatform");
+        }
+
         [HttpGet("ExchangeLab")]
         public IActionResult ExchangeLab()
         {
