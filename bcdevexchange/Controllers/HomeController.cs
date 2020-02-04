@@ -14,8 +14,8 @@ namespace bcdevexchange.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger logger;
-        private IMemoryCache memoryCache;
-        private IEventBriteService eventBriteService;
+        private readonly IMemoryCache memoryCache;
+        private readonly IEventBriteService eventBriteService;
 
         public HomeController(IMemoryCache cache, IEventBriteService service, ILogger<HomeController> logger)
         {
