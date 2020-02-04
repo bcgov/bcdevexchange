@@ -1053,33 +1053,13 @@ p.card-subtitle {
     height: 100vh;
     background-color: black;
 }
-
 .notfound {
     position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    align-content: center;
 }
-
-.notfound a {
-    align-content: center;
-    display: inline-block;
-    text-transform: uppercase;
-    color: white;
-    text-decoration: none;
-    border: 2px solid;
-    background: transparent;
-    padding: 10px 80px;
-    font-size: 14px;
-    font-weight: 700;
-    -webkit-transition: 0.2s all;
-}
-
 .notfound h2, h1 {
     color: white;
-    align-self: center;
 }
 /*------End Error Page------*/
