@@ -94,6 +94,11 @@ p {
   opacity: 0.7;
 }
 
+.address {
+  font-weight: 300;
+  letter-spacing: 0.1px;
+}
+
 *::-moz-selection {
   background: #444;
   color: #fff;
