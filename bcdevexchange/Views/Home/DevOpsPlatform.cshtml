@@ -5,109 +5,122 @@
 @using Microsoft.AspNetCore.Html
 @addTagHelper *, bcdevexchange
 
-<div class="landing">
-  <!-- header-banner start -->
-  <div class="banner_area_dev-ops">
-    <div class="banner_inner">
-      <div class="single_banner">
-        <div class="container">
+  <!-- hero start -->
+  <div class="hero devops-hero">
+      <div class="container">
           <div class="row">
-            <div class="col-xl-12">
-              <div class="banner_text ">
-                <h1> Enabling BC Government digital delivery teams to fully control 
-                  the development and deployment of their applications. </h1>
+              <div class="col-md-10 col-lg-8">
+                  <div class="hero-text bg-overlay pb-5">We enable B.C. government digital delivery teams to fully control the deployment of their applications.</div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
   </div>
-  <!-- header-banner end -->
-  <!-- section2 start -->
-<!-- DevOps Platform teaser start / "teaser-img-right" -->
+  <!-- hero end -->
+  
+  <!-- OpenShift teaser start -->
   <vc:text-with-side-image 
     text-on-left=true
-    title="OpenShift Container Platform?" 
-    sub-title="On premise, within the Kamloops Data Center, 
-      the BC Government has a deployment of OpenShift, a hybrid 
-      cloud enterprise Kubernetes platform that equips 
-      development teams with full control to develop and 
-      deliver applications quickly, securely, and at scale.
+    title="OpenShift Container Platform" 
+    sub-title="On premise within the Kamloops Data Center, 
+      the B.C. government has a deployment of OpenShift, a hybrid 
+      cloud enterprise Kubernetes platform. NEWLINE The platform enables  
+      developers to develop and deploy applications quickly, securely, and at scale.
       NEWLINE We provide access and support for using the platform."
-    image-file-path="dev_ops_platform_photos/openshift.png"
+    image-file-path="home_img/devops-platform-teaser.jpg"
     button-url="https://developer.gov.bc.ca/What-Is-OpenShift"> </vc:text-with-side-image>
-  <!-- section2 end -->
+  <!-- OpenShift teaser end -->
 
-
-
-
-  <!-- section3 start Who can join-->
-  <div class="teaser-view-component light_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
-                    <div class="teaser">
-                      <title>Who can join?</title>
-                      <subtitle>We host BC Government projects on the 
-                      platform that meet the following criteria:</subtitle>
-                    </div>
-                </div>
-                <div class="col-md">
-                  <div class="row">
-                <div class="col-6">
-                  <img class="icon" src="img/Icons/Executive.svg"> <span class="join_lab_title">Ececutive Sponsorship</span>
-                  <p class="join_the_lab_text">There is strong executive support for the project and the continuous service improvement delivery model.</p>
-                </div>
-                <div class="col-6">
-                  <img class="icon" src="img/Icons/OpenSource.svg"><span class="join_lab_title">Open Source</span>
-                  <p class="join_the_lab_text">The project is based on open source code, with custom code hosted in the BCGov GitHub organization repositories.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <img class="icon" src="img/Icons/Team.svg"><span class="join_lab_title">Dedicated Agile Teams</span>
-                  <p class="join_the_lab_text">The project will be supported by a team that follows an agile methodology, with explicit roles such as DevOps specialist, Scrum Master and Product Owner — ideally with one or more of these roles filled by dedicated staff.</p>
-                </div>
-                <div class="col-6">
-                  <img class="icon" src="img/Icons/Collaboration.svg"><span class="join_lab_title">Collaboration</span>
-                  <p class="join_the_lab_text">The team has a commitment to participate in and contribute to the BC Government open development community.</p>
-                </div>
-              </div>
-                </div>
-            </div>
+  <!-- Who can join? section start-->
+  <div class="section_main dark_bg">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col text-center">
+            <div class="teaser">
+              <title>Who can use the platform?</title>
+              <subtitle>We host B.C. government projects that meet the following criteria:</subtitle>
             </div>
         </div>
-    </div>
-  <!-- section3 end -->
-  
-  
-  
-  <!-- section4 Start 'How to join' -->
-    <vc:text-with-side-image 
-      text-on-left=true
-      title="How to join the Platform?" 
-      sub-title="If you meet the above criteria, we’d love to hear 
-        from you! It all starts with a project provisioning request."
-      image-file-path="dev_ops_platform_photos/join_the_platform.jpeg"
-      button-url="https://github.com/BCDevOps/devops-requests"> </vc:text-with-side-image>
-  <!-- section4 end -->
-  
-  
-  
-  <!-- section5 start DevHub-->
-  <div class="section_main light_bg set-height">
-    <div class=dev_hub_block>
-      <h2 class="heading2">DevHub</h2>
-      <p class="para1">
-        We also maintain an application meant to organize and unify many of 
-        the resources needed by developers to build government applications.
-      </p>
-      <a href="https://developer.gov.bc.ca/?intention=LOGIN#error=login_required" class="blue_btn">Visit DevHub</a>
+      </div>
+        
+      <div class="row py-5">
+          
+        <div class="col-md-6 p-5 d-flex">
+          <div>
+            <img class="icon" src="img/Icons/Executive.svg">
+          </div>
+          <div class="pl-4">
+            <h3>Executive Sponsorship</h3>
+            <p>Your executive understands what is required to support continuous service improvement and is committed to resourcing your project so that it can be continuously maintained and improved even after it's been built.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 p-5 d-flex">
+          <div>
+            <img class="icon" src="img/Icons/OpenSource.svg">
+          </div>
+          <div class="pl-4">
+            <h3>Open Source</h3>
+            <p>Your project is based on open source code, with custom code hosted in BCGov GitHub organization repositories.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6 p-5 d-flex">
+          <div>
+            <img class="icon" src="img/Icons/Team.svg">
+          </div>
+          <div class="pl-4">
+            <h3>Dedicated Agile Teams</h3>
+            <p>Your project will be supported by a team that follows an agile methodology, with explicit roles such as DevOps specialist, Scrum Master and Product Owner — ideally with one or more of these roles filled by dedicated staff.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 p-5 d-flex">
+          <div>
+            <img class="icon" src="img/Icons/Collaboration.svg">
+          </div>
+          <div class="pl-4">
+            <h3>Collaboration</h3>
+            <p>Your team is committed to participate in and contribute to the B.C. government's open development community.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col col-md-6 m-auto text-center">
+            <div class="teaser">
+              <title>How to get access to the platform</title>
+              <subtitle>If you meet the criteria above, we’d love to hear from you! It all starts with a project provisioning request.</subtitle>
+              <a href="https://github.com/BCDevOps/devops-requests" class="blue_btn" target="_blank">Request Access <i class="fa fa-external-link"></i></a>
+            </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <!-- section5 end -->
+  <!-- Who can join? section end -->
+  
+  <!-- DevHub teaser start-->
+  <div class="section_main light_bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
+          <div class="teaser">
+            <title>Tools for Developers</title>
+            <subtitle>We created the DevHub to bring together common resources needed by developers to build B.C. government applications.</subtitle>
+            <a href="https://developer.gov.bc.ca/?intention=LOGIN#error=login_required" class="blue_btn" target="_blank">Visit the DevHub <i class="fa fa-external-link"></i></a>
+          </div>
+        </div>
+        <div class="col-md">
+          <a href="https://developer.gov.bc.ca/?intention=LOGIN#error=login_required" target="_blank">
+            <img src="img/dev_ops_platform_photos/join_the_platform.jpeg" alt="Visit the Dev Hub">
+          </a>
+        </div>
+      </i>
+    </div>
+  </div>
+  <!-- DevHub teaser end -->
 
 
 
-</div>

@@ -89,12 +89,9 @@ li {
 }
 
 p {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 28px;
+  font-weight: 300;
   color: inherit;
-  margin-bottom: 13px;
-  font-family: "Helvetica Neue", sans-serif;
+  opacity: 0.7;
 }
 
 *::-moz-selection {
@@ -188,6 +185,12 @@ h3 {
   background-size: cover;
   background-position: center;
 }
+.devops-hero {
+  background: url(../img/dev_ops_platform_photos/devops_hero.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
 .hero-text {  
   padding: 0.5em;
   line-height: 1.2em;
@@ -343,49 +346,11 @@ h3 {
   position: relative;
 }
 
-/*------------------- Dev Ops Platform Page -------------------*/
-
-
-
-.banner_area_dev-ops {
-  background: url(../img/dev_ops_platform_photos/devops_hero.jpeg);
-  min-height: 85vh;
-  background-size: cover;
-  background-position: top center;
-  position: relative;
-}
+/*------------------- Icons -------------------*/
 
 .icon {
-  height: 32px;
-  width:32px;
+  height: 65px;
 }
-
-.join_lab_title {
-  padding-left: 2rem;
-  color: white;
-  vertical-align: middle;
-  size: 18px;
-  font-weight:bold;
-}
-
-.join_the_lab_text {
-  color: white;
-  size: 16px
-}
-
-div.dev_hub_block h2,
-div.dev_hub_block p,
-div.dev_hub_block {
-  text-align: center;
-  /* margin:auto; */
-}
-
-div.dev_hub_block a {
-  display: inline-block;
-}
-
-
-/*----------------- End Dev Ops Platform Page -----------------*/
 
 
 /*------------------- Exchange Lab Page -------------------*/
@@ -1030,8 +995,7 @@ p.card-subtitle {
 }
 
 .teaser-view-component {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 80px 0;
 }
 
 .teaser-name {
