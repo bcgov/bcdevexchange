@@ -795,6 +795,10 @@ p.card-subtitle {
 .navbar-nav a:hover {
     border-bottom: 3px solid #fff;
 }
+
+/* li.active {
+  background-color: #444;
+} */
 /*------------ Media Queries -------------*/
 @media only screen and (min-width: 1560px) {
     .home-container {
