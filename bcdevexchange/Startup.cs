@@ -32,7 +32,6 @@ namespace bcdevexchange
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
             services.AddSingleton(typeof(IEventBriteService), typeof(EventBriteService));
             services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -49,16 +48,13 @@ namespace bcdevexchange
             }
             else
             {
-                app.UseExceptionHandler("/Home/Index");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?code={0}");
                 app.UseHsts();
             }
-
             app.UseHealthChecks("/hc", new HealthCheckOptions { AllowCachingResponses = false });
-
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

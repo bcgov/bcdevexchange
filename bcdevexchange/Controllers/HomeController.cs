@@ -6,14 +6,16 @@ using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace bcdevexchange.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger logger;
-        private IMemoryCache memoryCache;
-        private IEventBriteService eventBriteService;
+        private readonly IMemoryCache memoryCache;
+        private readonly IEventBriteService eventBriteService;
 
         public HomeController(IMemoryCache cache, IEventBriteService service, ILogger<HomeController> logger)
         {
@@ -85,6 +87,23 @@ namespace bcdevexchange.Controllers
             model.Add("events", events);
             model.Add("courses", courses);
             return View("Learning", model);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Error(int? code)
+        {
+            var path = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            
+            if (code == null && path != null)
+            {
+                logger.LogError($"Exception thrown {path.Error} at {path.Path}");
+                code = 500;
+            }
+            else
+            {
+                logger.LogError($"General error with code {code}");
+            }
+            return View(code);
         }
     }
 }
