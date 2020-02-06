@@ -13,8 +13,8 @@ namespace bcdevexchange.Service
 {
     public class EventBriteService : IEventBriteService
     {
-        private HttpClient client;
-        private string bearerToken;
+        private readonly HttpClient client;
+        private readonly string bearerToken;
         private readonly ILogger logger;
         public EventBriteService(ILogger<EventBriteService> logger) 
         {
