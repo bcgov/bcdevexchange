@@ -34,15 +34,6 @@ Layout = "~/Views/Shared/_Layout.cshtml";
     <div class="card-deck-wrapper">
         <div class="card-deck">
             @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Test Name",
-                Role = "Test Role",
-                ImageFileName = "rumon.jpg",
-                TwitterLink= "testtwitter.com",
-                LinkedIn= "testLink.com",
-                Email="testemail@jon.ca"
-                })
-
-            @await Component.InvokeAsync("PersonnelCard", new { 
                 Name = "Rumon Carter",
                 Role = "Executive Director",
                 ImageFileName = "rumon.jpg",
