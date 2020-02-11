@@ -1,8 +1,8 @@
 @model bcdevexchange.Components.TextWithSideImage.TextWithSideImageModel
 
-@{string titleHTML = Model.Title!=""?"<title>"+Model.Title+"</title>": "" ;}
-@{string buttonHtml = Model.ButtonUrl!=""?"<a href='"+Model.ButtonUrl+"' class='blue_btn'>Learn More</a>": "" ;}
-@{string subtitleHtml = Model.SubTitle!=""?  "<subtitle>"+@Model.SubTitle.Replace("NEWLINE", "</subtitle><subtitle>")+"</subtitle>" :"";}
+@{string titleHTML = !String.IsNullOrEmpty(Model.Title)?"<title>"+Model.Title+"</title>": "" ;}
+@{string buttonHtml = !String.IsNullOrEmpty(Model.ButtonUrl)?"<a href='"+Model.ButtonUrl+"' class='blue_btn'>Learn More</a>": "" ;}
+@{string subtitleHtml = !String.IsNullOrEmpty(Model.SubTitle)?  "<subtitle>"+@Model.SubTitle.Replace("NEWLINE", "</subtitle><subtitle>")+"</subtitle>" :"";}
 @{if (Model.TextOnLeft)
 {
     <div class="teaser-view-component dark_bg">

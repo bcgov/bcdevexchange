@@ -30,37 +30,54 @@ Layout = "~/Views/Shared/_Layout.cshtml";
     <div class="exchange-lab-content-container">
 
         <h1>What happens at the Lab?</h1>
-
-        <vc:text-with-side-image 
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            SubTitle="Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.",
+            ImageFilePath="exchange_lab_photos/001.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=false
             title="" 
             sub-title="Teams in residence are trained in Agile mindset and methods, 
                 and supported to use modern DevOps processes and technology."
             image-file-path="exchange_lab_photos/001.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
+            SubTitle="Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems.",
+            ImageFilePath="exchange_lab_photos/004.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=true
             title="" 
             sub-title="Openly sharing their progress and struggles on a regular
              basis, teams help each other improve their practices and solve problems."
             image-file-path="exchange_lab_photos/004.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            SubTitle="Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year.",
+            ImageFilePath="exchange_lab_photos/002.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=false
             title="" 
             sub-title="Incrementally delivering a digital product and testing it with 
               end users every few weeks, teams release a minimum viable product within
               a year."
             image-file-path="exchange_lab_photos/002.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
+            SubTitle="Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.",
+            ImageFilePath="exchange_lab_photos/003.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=true
             title="" 
             sub-title="Upon graduation from the Lab, teams return to their home 
               organization where they continue improving their product and spawn 
               new digital delivery teams through modeling and mentorship."
             image-file-path="exchange_lab_photos/003.jpg"
-            button-url=""> </vc:text-with-side-image>
+            button-url=""> </vc:text-with-side-image> *@
     </div>
 
 
@@ -135,47 +152,75 @@ Layout = "~/Views/Shared/_Layout.cshtml";
     <div class="exchange-lab-content-container">
         <h1>While in residence at the Exchange Lab, your team will benefit from:</h1>
 
-
-        <vc:text-with-side-image 
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            Title="A Place to Call Home",
+            SubTitle="Insulated from the status quo operations of your home organization, your team will have a dedicated room where they can focus and sprint towards their goal.",
+            ImageFilePath="exchange_lab_photos/001.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=false
             title="A Place to Call Home" 
             sub-title="Insulated from the status quo operations of your home 
               organization, your team will have a dedicated room where they 
               can focus and sprint towards their goal."
             image-file-path="exchange_lab_photos/001.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
+            Title="Training & Coaching",
+            SubTitle="We will facilitate formal training for your team, help them make connections with other community members, and help bring your organization along for the journey.",
+            ImageFilePath="exchange_lab_photos/004.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=true
             title="Training & Coaching" 
             sub-title="We will facilitate formal training for your team, help
               them make connections with other community members, and help 
               bring your organization along for the journey."
             image-file-path="exchange_lab_photos/004.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+ 
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            Title="Experts on Tap",
+            SubTitle="Your team will have access to experts who can offer guidance in Service Design, Privacy and Security, Behavioural Insights, Integrated Data, and Social Media.",
+            ImageFilePath="exchange_lab_photos/002.jpg"
+        })
+        @* <vc:text-with-side-image 
             text-on-left=false
             title="Experts on Tap" 
             sub-title="Your team will have access to experts who can offer guidance
               in Service Design, Privacy and Security, Behavioural Insights, 
               Integrated Data, and Social Media."
             image-file-path="exchange_lab_photos/002.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
+            Title="Platform Services",
+            SubTitle="Your team will get access to and support to use a suite of DevOps tools, including a hybrid-cloud container platform, so they can fully control the development and deployment of their product.",
+            ImageFilePath="exchange_lab_photos/003.jpg"
+        })        
+        @* <vc:text-with-side-image 
             text-on-left=true
             title="Platform Services" 
             sub-title="Your team will get access to and support to use a suite of DevOps 
               tools, including a hybrid-cloud container platform, so they can fully 
               control the development and deployment of their product."
             image-file-path="exchange_lab_photos/003.jpg"
-            button-url=""> </vc:text-with-side-image>
-        <vc:text-with-side-image 
+            button-url=""> </vc:text-with-side-image> *@
+        @await Component.InvokeAsync("TextWithSideImage", new { 
+            Title="Platform Services",
+            SubTitle="Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.",
+            ImageFilePath="exchange_lab_photos/002.jpg"
+        })        
+        @* <vc:text-with-side-image 
             text-on-left=false
             title="Platform Services"  
             sub-title="Surrounded by other teams who are striving to improve their 
               practices and products, your team will be encouraged and supported 
               as they learn."
             image-file-path="exchange_lab_photos/002.jpg"
-            button-url=""> </vc:text-with-side-image>
+            button-url=""> </vc:text-with-side-image> *@
     </div>
 
     <div class="exchange-lab-content-container-bg">

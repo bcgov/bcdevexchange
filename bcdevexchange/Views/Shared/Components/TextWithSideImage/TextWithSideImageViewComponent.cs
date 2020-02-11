@@ -26,7 +26,11 @@ namespace bcdevexchange.Components.TextWithSideImage
 
     }
 
-    public IViewComponentResult Invoke(bool textOnLeft, string title, string subTitle, string buttonUrl, string imageFilePath) 
+    public IViewComponentResult Invoke(string subTitle, 
+                                       string buttonUrl, 
+                                       string imageFilePath="",
+                                       bool textOnLeft=false, 
+                                       string title="") 
     {
 
       
