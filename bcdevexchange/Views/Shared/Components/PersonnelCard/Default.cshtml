@@ -1,0 +1,28 @@
+@model bcdevexchange.Components.PersonnelCard.PersonnelCardModel
+@* Required parameters: 'name', 'title', 'filename' *@
+@{string filePath = "img/about/team_headshots/"+Model.ImageFileName;}
+@* Optional fields: 'twitter', 'linkedin', 'email' *@
+@{string emailHTML =  String.IsNullOrEmpty(Model.Email)? "" : 
+    "<a class='icon' href='mailto:"+Model.Email+"'><i class='fa fa-envelope' alt='Send an email to"+Model.Name+"'></i></a>"
+;}
+@{string twitterHTML =  String.IsNullOrEmpty(Model.TwitterLink)? "" : 
+    "<a class='icon' href="+Model.TwitterLink+"'><i class='fa fa-twitter' alt='twitter'></i></a>"
+;}
+@{string linkedinHTML =  String.IsNullOrEmpty(Model.LinkedIn)? "" : 
+    "<a class='icon' href="+Model.LinkedIn+"'><i class='fa fa-linkedin' alt='linkedin'></i></a>"
+;}
+
+<div class='card card-staff my-3'>
+    <img src=@filePath class='card-img-top' alt='Test Person'>
+    <div class='card-body'>
+        <h5 class='card-title'>@Model.Name</h5>
+        <div class='d-flex align-items-baseline justify-content-between'>
+            <p class='card-subtitle mr-2'>@Model.Role</p>
+            <div class='icon-wrapper'>
+               @Html.Raw(emailHTML)
+               @Html.Raw(twitterHTML)
+               @Html.Raw(linkedinHTML)
+            </div>
+        </div>
+    </div>
+</div>

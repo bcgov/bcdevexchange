@@ -2,22 +2,6 @@
 ViewData["Title"] = "About Us";
 Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using Microsoft.AspNetCore.Html
-
-@functions{
-public IHtmlContent CreateCard(string name, string title, string fileName){
-return Html.Raw($@"
-<div class='card my-3'>
-    <img src='img/about/team_headshots/{fileName}' class='card-img-top' alt='Test Person'>
-    <div class='card-body'>
-        <h5 class='card-title'>{name}</h5>
-        <p class='card-subtitle'>{title}</p>
-    </div>
-</div>
-");
-}
-}
-
 
 <div class="hero about-us-hero">
     <div class="container">
@@ -49,25 +33,110 @@ return Html.Raw($@"
     <h2 class="text-center">Our Team</h2>
     <div class="card-deck-wrapper">
         <div class="card-deck">
-            @CreateCard("Rumon Carter", "Executive Director", "rumon.jpg")
-            @CreateCard("Todd Wilson", "Director, DevOps Platform Services", "todd.jpg")
-            @CreateCard("Heather Remacle", "Director, Lab Operations", "heather.jpg")
-            @CreateCard("Olena Mitovska", "Product Owner", "olena.jpg")
-            @CreateCard("Nick Corcoran", "Security Architect", "nick.jpg")
-            @CreateCard("Ari Hershberg", "Senior Program Analyst", "ari.jpg")
-            @CreateCard("Cailey Jones", "DevOps Platform Administrator", "cailey.jpg")
-            @CreateCard("Luke Gonis", "Scrum Master", "luke.jpg")
-            @CreateCard("Diana De Cotiis", "Education & Training Coordinator", "diana.jpg")
-            @CreateCard("Pop Kanjanakantorn", "Project Coordinator", "pop.jpg")
-            @CreateCard("Jonathan Sharman", "Developer", "jon.jpg")
-            @CreateCard("Parul Mishra Dubedy", "Full Stack Developer", "parul.jpg")
-            @CreateCard("Shea Stewart", "OpenShift Platform & Security Consultant", "shea.jpg")
-            @CreateCard("Jason Leach", "Developer & Mobile Strategist", "jason.jpg")
-            @CreateCard("Mark Wilson", "Research & Design", "mark.jpg")
-            @CreateCard("Dea De Jarisco", "Digital Talent Lead", "dea.jpg")
-            @CreateCard("Tolu Aniemena-Osazuwa", "Scrum Master", "tolu.jpg")
-            @CreateCard("Zachary Woodward", "Senior Director, IMIT Procurement", "zach.jpg")
-            @CreateCard("Inderdeep Singh", "UX Designer", "inder.jpg")
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Test Name",
+                Role = "Test Role",
+                ImageFileName = "rumon.jpg",
+                TwitterLink= "testtwitter.com",
+                LinkedIn= "testLink.com",
+                Email="testemail@jon.ca"
+                })
+
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Rumon Carter",
+                Role = "Executive Director",
+                ImageFileName = "rumon.jpg",
+            })    
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Todd Wilson",
+                Role = "Director, DevOps Platform Services",
+                ImageFileName = "todd.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Heather Remacle",
+                Role = "Director, Lab Operations",
+                ImageFileName = "heather.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Olena Mitovska",
+                Role = "Product Owner",
+                ImageFileName = "olena.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Nick Corcoran",
+                Role = "Security Architect",
+                ImageFileName = "nick.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Ari Hershberg",
+                Role = "Senior Program Analyst",
+                ImageFileName = "ari.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Cailey Jones",
+                Role = "DevOps Platform Administrator",
+                ImageFileName = "cailey.jpg",
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Luke Gonis",
+                Role = "Scrum Master",
+                ImageFileName = "luke.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Diana De Cotiis",
+                Role = "Education & Training Coordinator",
+                ImageFileName = "diana.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Pop Kanjanakantorn",
+                Role = "Project Coordinator",
+                ImageFileName = "pop.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Jonathan Sharman",
+                Role = "Developer",
+                ImageFileName = "jon.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Parul Mishra Dubedy",
+                Role = "Full Stack Developer",
+                ImageFileName = "parul.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Shea Stewart",
+                Role = "OpenShift Platform & Security Consultant",
+                ImageFileName = "shea.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Jason Leach",
+                Role = "Developer & Mobile Strategist",
+                ImageFileName = "jason.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Mark Wilson",
+                Role = "Research & Design",
+                ImageFileName = "mark.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Dea De Jarisco",
+                Role = "Digital Talent Lead",
+                ImageFileName = "dea.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Tolu Aniemena-Osazuwa",
+                Role = "Scrum Master",
+                ImageFileName = "tolu.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Zachary Woodward",
+                Role = "Senior Director, IMIT Procurement",
+                ImageFileName = "zach.jpg",
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Inderdeep Singh",
+                Role = "UX Designer",
+                ImageFileName = "inder.jpg",
+            })            
         </div>
     </div>
 </div>

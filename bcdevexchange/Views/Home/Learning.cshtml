@@ -116,24 +116,41 @@
                 <div class="col-xl-6 col-md-6 tab-100 team-wrap">
                     <div class="row">
                         <div class="col-md-6 col-lg-6">
-                            <div class="team">
+                            @await Component.InvokeAsync("PersonnelCard", new { 
+                            Name = "Diana De Cotiis",
+                            Role = "Training Co-ordinator",
+                            ImageFileName = "diana.jpg",
+                            @* TwitterLink= "testtwitter.com", *@
+                            @* LinkedIn= "testLink.com", *@
+                            Email="testemail@test.ca"
+                            })
+                            
+                            @* <div class="team">
                                 <img src="img/home_img/06.jpg" alt="Diana">
                                 <div class="team-info">
                                     <h4>Diana De Cotiis</h4>
                                     <p>Training Co-ordinator</p>
                                     <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
                                 </div>
-                            </div>
+                            </div> *@
                         </div>
                         <div class="col-md-6 col-lg-6">
-                            <div class="team">
+                            @await Component.InvokeAsync("PersonnelCard", new { 
+                                Name = "Ari Herschberg",
+                                Role = "Events Co-ordinator",
+                                ImageFileName = "ari.jpg",
+                                @* TwitterLink= "testtwitter.com", *@
+                                @* LinkedIn= "testLink.com", *@
+                                Email="testemail@test.ca"
+                            })
+                            @* <div class="team">
                                 <img src="img/home_img/07.jpg" alt="Ari Herschberg">
                                 <div class="team-info">
                                     <h4>Ari Herschberg</h4>
                                     <p>Events Co-ordinator</p>
                                     <span class="mail"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></span>
                                 </div>
-                            </div>
+                            </div> *@
                         </div>
                     </div>
                 </div>
