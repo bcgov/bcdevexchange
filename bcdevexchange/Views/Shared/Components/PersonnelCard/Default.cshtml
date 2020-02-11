@@ -6,10 +6,10 @@
     "<a class='icon' href='mailto:"+Model.Email+"'><i class='fa fa-envelope' alt='Send an email to"+Model.Name+"'></i></a>"
 ;}
 @{string twitterHTML =  String.IsNullOrEmpty(Model.TwitterLink)? "" : 
-    "<a class='icon' href="+Model.TwitterLink+"'><i class='fa fa-twitter' alt='twitter'></i></a>"
+    "<a class='icon' href="+Model.TwitterLink+"><i class='fa fa-twitter' alt='twitter'></i></a>"
 ;}
 @{string linkedinHTML =  String.IsNullOrEmpty(Model.LinkedIn)? "" : 
-    "<a class='icon' href="+Model.LinkedIn+"'><i class='fa fa-linkedin' alt='linkedin'></i></a>"
+    "<a class='icon' href="+Model.LinkedIn+"><i class='fa fa-linkedin' alt='linkedin'></i></a>"
 ;}
 
 <div class='card card-staff my-3'>
