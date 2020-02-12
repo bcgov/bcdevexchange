@@ -2,26 +2,6 @@
     ViewData["Title"] = "HomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using Microsoft.AspNetCore.Html
-
-@functions{
-public IHtmlContent CreateCard(string name, string title, string email, string fileName){
-return Html.Raw($@"
-<div class='card card-staff my-3 mx-3'>
-    <img src='img/about/team_headshots/{fileName}' class='card-img-top' alt='Test Person'>
-    <div class='card-body'>
-        <h5 class='card-title'>{name}</h5>
-        <div class='d-flex align-items-baseline'>
-            <p class='card-subtitle'>{title}</p>
-            <a class='icon ml-auto' href='mailto:{email}'>
-                <i class='fa fa-envelope' alt='Send an email to {name}'></i>
-            </a>
-        </div>    
-    </div>
-</div>
-");
-}
-}
 
 <!-- hero start -->
 <div class="hero learning-hero">
@@ -132,11 +112,25 @@ return Html.Raw($@"
                     <title>We'd love to hear from you.</title>
                 </div>
             </div>
-            <div class="col-md-6 my-3 align-self-center">
-                    <div class="card-group">
-                        @CreateCard("Diana De Cotiis", "Education and Training Coordinator", "Diana.DeCotiis@gov.bc.ca", "diana.jpg")
-                        @CreateCard("Ari Hershberg", "Events Coordinator", "Ari.Herschberg@gov.bc.ca", "ari.jpg")
+            <div class="col-xl-6 col-md-6 tab-100 team-wrap">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                        Name = "Diana De Cotiis",
+                        Role = "Training Co-ordinator",
+                        ImageFileName = "diana.jpg",
+                        Email="diana.decotiis@gov.bc.ca"
+                        })
                     </div>
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                            Name = "Ari Herschberg",
+                            Role = "Events Co-ordinator",
+                            ImageFileName = "ari.jpg",
+                            Email="ari.hershberg@gov.bc.ca"
+                        })
+                    </div>
+                </div>
             </div>
         </div>
     </div>

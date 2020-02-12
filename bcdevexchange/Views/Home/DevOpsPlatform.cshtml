@@ -2,8 +2,6 @@
   ViewData["Title"] = "DevOpsPlatform";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using Microsoft.AspNetCore.Html
-@addTagHelper *, bcdevexchange
 
   <!-- hero start -->
   <div class="hero devops-hero">
@@ -18,16 +16,13 @@
   <!-- hero end -->
   
   <!-- OpenShift teaser start -->
-  <vc:text-with-side-image 
-    text-on-left=true
-    title="OpenShift Container Platform" 
-    sub-title="On premise within the Kamloops Data Center, 
-      the B.C. government has a deployment of OpenShift, a hybrid 
-      cloud enterprise Kubernetes platform. NEWLINE The platform enables  
-      developers to develop and deploy applications quickly, securely, and at scale.
-      NEWLINE We provide access and support for using the platform."
-    image-file-path="home_img/devops-platform-teaser.jpg"
-    button-url="https://developer.gov.bc.ca/What-Is-OpenShift"> </vc:text-with-side-image>
+  @await Component.InvokeAsync("TextWithSideImage", new { 
+    TextOnLeft=true,
+    Title="OpenShift Container Platform",
+    SubTitle="On premise within the Kamloops Data Center, the B.C. government has a deployment of OpenShift, a hybrid cloud enterprise Kubernetes platform. NEWLINE The platform enables developers to develop and deploy applications quickly, securely, and at scale. NEWLINE We provide access and support for using the platform.",
+    ImageFilePath="home_img/devops-platform-teaser.jpg",
+    ButtonUrl="https://developer.gov.bc.ca/What-Is-OpenShift"
+  })
   <!-- OpenShift teaser end -->
 
   <!-- Who can join? section start-->
