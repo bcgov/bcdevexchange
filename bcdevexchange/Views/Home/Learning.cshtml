@@ -2,116 +2,114 @@
     ViewData["Title"] = "HomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- header-banner start -->
-<div class="banner_training">
-    <div class="banner_inner">
-        <div class="single_banner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="banner_text_training">
-                            <h1> Make learning <br>easier and fun </h1>
-                        </div>
-                    </div>
-                </div>
+
+<!-- hero start -->
+<div class="hero learning-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                <div class="hero-text bg-overlay pb-5">We're helping B.C. public servants understand and adopt new approaches to teamwork and technology.</div>
             </div>
         </div>
     </div>
 </div>
-<!-- header-banner end -->
+<!-- hero end -->
 
 @if (@Model["events"] != null)
 {
     <!-- section2 start -->
     <div class="section_main light_bg">
-        <div class="section_inner">
-            <div class="home-container">
-                <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                        <h2 class="heading2">Courses</h2>
-                        <br>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    @foreach (var cour in @Model["courses"])
-                    {
-                        <div class="col-xl-6 col-md-6">
-                            <div class="course-wrap">
-                                @if (cour.Logo != null && cour.Logo.Url != null)
-                                {
-                                    <img class="sec_image" src="@cour.Logo.Url" alt="image">
-                                }
-                                else
-                                {
-                                    <img class="sec_image" src="" alt="image">
-                                }
-                                <div class="course-content">
-                                    <h4>@cour.Name.Text</h4>
-                                    <p>@cour.Description.Text</p>
-                                    <a href="@cour.Url" class="view-details">Register</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
+        <div class="container">
+            
+            <div class="row">
+                <div class="col">
+                    <h2 class="mb-3">Courses</h2>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="section_main light_bg">
-        <div class="section_inner">
-            <div class="home-container">
-                <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                        <h2 class="heading2">Events</h2>
-                        <br>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    @foreach (var eve in @Model["events"])
-                    {
-                        <div class="col-xl-6 col-md-6">
-                            <div class="course-wrap">
-                                @if (eve.Logo != null && eve.Logo.Url != null)
-                                {
-                                    <img class="sec_image" src="@eve.Logo.Url" alt="image">
-                                }
-                                else
-                                {
-                                    <img class="sec_image" src="" alt="image">
-                                }
-                                <div class="course-content">
-                                    <h4>@eve.Name.Text</h4>
-                                    
-                                        <p>@eve.Description.Text</p>
-                                    
-                                    <a href="@eve.Url" class="view-details">Register</a>
-                                </div>
+            <!-- Courses start -->
+            <div class="row">
+                @foreach (var cour in @Model["courses"])
+                {
+                    <div class="col-md-6 col-xl-4 my-3">
+                        <div class="card card-course">
+                            
+                            @if (cour.Logo != null && cour.Logo.Url != null)
+                            {
+                                <a href="@cour.Url" target="_blank" alt="@cour.Name.Text">
+                                    <img class="card-img-top" src="@cour.Logo.Url" alt="image">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@cour.Url" target="_blank" alt="@cour.Name.Text">
+                                    <img class="card-img-top" src="" alt="image">
+                                </a>
+                            }
+
+                            <div class="card-body">
+                                <h5 class="card-title">@cour.Name.Text</h5>
+                                <p class="card-subtitle">@cour.Description.Text</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="@cour.Url" target="_blank">View Details & Register</a>
                             </div>
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
+            <!-- Courses end -->
+
+            <!-- Events start -->
+            <div class="row">
+                <div class="col">
+                    <h2 class="mt-5 mb-3">Events</h2>
+                </div>
+            </div>            
+            <div class="row">
+                @foreach (var eve in @Model["events"])
+                {
+                    <div class="col-md-6 my-3">
+                        <div class="card card-course">
+                            
+                            @if (eve.Logo != null && eve.Logo.Url != null)
+                            {
+                                <a href="@eve.Url" target="_blank" alt="@eve.Name.Text">
+                                    <img class="card-img-top" src="@eve.Logo.Url" alt="image">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@eve.Url" target="_blank" alt="@eve.Name.Text">
+                                    <img class="card-img-top" src="" alt="image">
+                                </a>
+                            }
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">@eve.Name.Text</h5>
+                                <p class="card-subtitle">@eve.Description.Text</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="@eve.Url" target="_blank">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Events end -->
         </div>
     </div>
     <!-- section2 end -->
 
 }
-<!-- section3 start -->
+<!-- Contact teaser start -->
 <div class="section_main light_bg">
-    <div class="section_inner">
-        <div class="home-container">
-            <div class="row">
-                <div class="col-xl-6 col-md-6 tab-100">
-                    <h4 class="heading4">Is there a course you wish we offered? <br>Got an idea for an event?</h4>
-                    <br>
-                    <h4 class="heading4">We'd love to hear from you.</h4>
-                    <br>
-                    <br>
-                    <span class="small_text">Send us an email at</span>
-                    <a href="#" class="link">BCDevExchange@gov.bc.ca</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-3 align-self-center">
+                <div class="teaser px-3">
+                    <subtitle>Is there a course you wish we offered? Got an idea for an event?</subtitle>
+                    <title>We'd love to hear from you.</title>
                 </div>
                 <div class="col-xl-6 col-md-6 tab-100 team-wrap">
                     <div class="row">
@@ -137,4 +135,4 @@
         </div>
     </div>
 </div>
-<!-- section3 end -->
+<!-- Contact teaser end -->
