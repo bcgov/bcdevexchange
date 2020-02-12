@@ -7,7 +7,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 @functions{
 public IHtmlContent CreateCard(string name, string title, string fileName){
 return Html.Raw($@"
-<div class='card my-3'>
+<div class='card card-staff my-3'>
     <img src='img/about/team_headshots/{fileName}' class='card-img-top' alt='Test Person'>
     <div class='card-body'>
         <h5 class='card-title'>{name}</h5>
@@ -63,7 +63,7 @@ return Html.Raw($@"
             @CreateCard("Parul Mishra Dubedy", "Full Stack Developer", "parul.jpg")
             @CreateCard("Shea Stewart", "OpenShift Platform & Security Consultant", "shea.jpg")
             @CreateCard("Jason Leach", "Developer & Mobile Strategist", "jason.jpg")
-            @CreateCard("Mark Wilson", "Research & Design", "mark.jpg")
+            @CreateCard("Mark Wilson", "Researcher & Designer", "mark.jpg")
             @CreateCard("Dea De Jarisco", "Digital Talent Lead", "dea.jpg")
             @CreateCard("Tolu Aniemena-Osazuwa", "Scrum Master", "tolu.jpg")
             @CreateCard("Zachary Woodward", "Senior Director, IMIT Procurement", "zach.jpg")
