@@ -111,24 +111,24 @@
                     <subtitle>Is there a course you wish we offered? Got an idea for an event?</subtitle>
                     <title>We'd love to hear from you.</title>
                 </div>
-                <div class="col-xl-6 col-md-6 tab-100 team-wrap">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                            @await Component.InvokeAsync("PersonnelCard", new { 
-                            Name = "Diana De Cotiis",
-                            Role = "Training Co-ordinator",
-                            ImageFileName = "diana.jpg",
-                            Email="testemail@test.ca"
-                            })
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-                            @await Component.InvokeAsync("PersonnelCard", new { 
-                                Name = "Ari Herschberg",
-                                Role = "Events Co-ordinator",
-                                ImageFileName = "ari.jpg",
-                                Email="testemail@test.ca"
-                            })
-                        </div>
+            </div>
+            <div class="col-xl-6 col-md-6 tab-100 team-wrap">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                        Name = "Diana De Cotiis",
+                        Role = "Training Co-ordinator",
+                        ImageFileName = "diana.jpg",
+                        Email="diana.decotiis@gov.bc.ca"
+                        })
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                            Name = "Ari Herschberg",
+                            Role = "Events Co-ordinator",
+                            ImageFileName = "ari.jpg",
+                            Email="ari.hershberg@gov.bc.ca"
+                        })
                     </div>
                 </div>
             </div>
