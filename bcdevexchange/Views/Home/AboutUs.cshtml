@@ -1,0 +1,165 @@
+@{
+ViewData["Title"] = "About Us";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero about-us-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                <div class="hero-text bg-overlay pb-5">We help remove barriers and create capabilities to accelerate better service delivery.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section_main light_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto text-center">
+                <div class="teaser">
+                    <title>Contact Us</title>
+                    <subtitle>Drop by or send us an email. We'd be happy to hear from you!</subtitle> 
+                    <div class="address mt-5">BCDevExchange</div>
+                    <div class="address">3rd Floor, 1012 Douglas Street</div>
+                    <div class="address">Victoria, BC &nbsp; V8W 2C3</div>
+                    <div class="address my-5"><a href="mailto:BCDevExchange@gov.bc.ca">BCDevExchange@gov.bc.ca</a></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10590.622561670343!2d-123.3694496!3d48.4247551!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548f749aa7701737%3A0x30a7860ad590ab7a!2s1012%20Douglas%20St%2C%20Victoria%2C%20BC%20V8W%202C3!5e0!3m2!1sen!2sca!4v1580763711928!5m2!1sen!2sca" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section_main dark_bg">
+    <h2 class="text-center">Our Team</h2>
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Rumon Carter",
+                Role = "Executive Director",
+                ImageFileName = "rumon.jpg",
+                TwitterLink= "https://twitter.com/rumon",
+                LinkedIn= "https://www.linkedin.com/in/rumon/",
+                Email="Rumon.Carter@gov.bc.ca"
+            })    
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Todd Wilson",
+                Role = "Director, DevOps Platform Services",
+                ImageFileName = "todd.jpg",
+                LinkedIn= "https://www.linkedin.com/in/todd-wilson-bc/",
+                Email="Todd.Wilson@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Heather Remacle",
+                Role = "Director, Lab Operations",
+                ImageFileName = "heather.jpg",
+                LinkedIn= "https://www.linkedin.com/in/heatherlr/",
+                Email="Heather.Remacle@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Olena Mitovska",
+                Role = "Product Owner",
+                ImageFileName = "olena.jpg",
+                LinkedIn= "https://www.linkedin.com/in/olena-mitovska-16a1901/",
+                Email="olena.mitovska@bc.gov.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Nick Corcoran",
+                Role = "Security Architect",
+                ImageFileName = "nick.jpg",
+                Email="nick.corcoran@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Ari Hershberg",
+                Role = "Senior Program Analyst",
+                ImageFileName = "ari.jpg",
+                TwitterLink= "https://twitter.com/AriHershberg",
+                LinkedIn= "https://www.linkedin.com/in/arihershberg/",
+                Email="ari.hershberg@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Cailey Jones",
+                Role = "DevOps Platform Administrator",
+                ImageFileName = "cailey.jpg",
+                Email="cailey.jones@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Luke Gonis",
+                Role = "Scrum Master",
+                ImageFileName = "luke.jpg",
+                Email="Luke.Gonis@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Diana De Cotiis",
+                Role = "Education & Training Coordinator",
+                ImageFileName = "diana.jpg",
+                TwitterLink= "https://twitter.com/diana_MDC",
+                LinkedIn= "https://www.linkedin.com/in/diana-de-cotiis-0b2a2b113/",
+                Email="diana.decotiis@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Pop Kanjanakantorn",
+                Role = "Project Coordinator",
+                ImageFileName = "pop.jpg",
+                Email="Pop.Kanjanakantorn@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Jonathan Sharman",
+                Role = "Developer",
+                ImageFileName = "jon.jpg",
+                Email="Jonathan.Sharman@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Parul Mishra Dubedy",
+                Role = "Full Stack Developer",
+                ImageFileName = "parul.jpg",
+                Email="parul.dubedy@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Shea Stewart",
+                Role = "OpenShift Platform & Security Consultant",
+                ImageFileName = "shea.jpg",
+                TwitterLink= "https://twitter.com/stewartshea",
+                LinkedIn= "https://www.linkedin.com/in/sheastewart/",
+                Email="shea.stewart@arctiq.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Jason Leach",
+                Role = "Developer & Mobile Strategist",
+                ImageFileName = "jason.jpg",
+                Email="jason.leach@fullboar.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Mark Wilson",
+                Role = "Research & Design",
+                ImageFileName = "mark.jpg",
+                Email="Mark.Wilson@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Dea De Jarisco",
+                Role = "Digital Talent Lead",
+                ImageFileName = "dea.jpg",
+                LinkedIn= "https://www.linkedin.com/in/ddejarisco",
+                Email="Dea.DeJarisco@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Tolu Aniemena-Osazuwa",
+                Role = "Scrum Master",
+                ImageFileName = "tolu.jpg",
+                Email="tolu.osazuwa@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Zachary Woodward",
+                Role = "Senior Director, IMIT Procurement",
+                ImageFileName = "zach.jpg",
+                Email="zachary.woodward@gov.bc.ca"
+            })            
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Inderdeep Singh",
+                Role = "UX Designer",
+                ImageFileName = "inder.jpg",
+                LinkedIn= "https://www.linkedin.com/in/inderdeepsinghgill/",
+                Email="inderdeep.singh@gov.bc.ca"
+            })            
+        </div>
+    </div>
+</div>

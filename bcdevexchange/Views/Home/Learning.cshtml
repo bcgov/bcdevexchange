@@ -1,0 +1,138 @@
+﻿@{
+    ViewData["Title"] = "HomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- hero start -->
+<div class="hero learning-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                <div class="hero-text bg-overlay pb-5">We're helping B.C. public servants understand and adopt new approaches to teamwork and technology.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hero end -->
+
+@if (@Model["events"] != null)
+{
+    <!-- section2 start -->
+    <div class="section_main light_bg">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col">
+                    <h2 class="mb-3">Courses</h2>
+                </div>
+            </div>
+
+            <!-- Courses start -->
+            <div class="row">
+                @foreach (var cour in @Model["courses"])
+                {
+                    <div class="col-md-6 col-xl-4 my-3">
+                        <div class="card card-course">
+                            
+                            @if (cour.Logo != null && cour.Logo.Url != null)
+                            {
+                                <a href="@cour.Url" target="_blank" alt="@cour.Name.Text">
+                                    <img class="card-img-top" src="@cour.Logo.Url" alt="image">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@cour.Url" target="_blank" alt="@cour.Name.Text">
+                                    <img class="card-img-top" src="" alt="image">
+                                </a>
+                            }
+
+                            <div class="card-body">
+                                <h5 class="card-title">@cour.Name.Text</h5>
+                                <p class="card-subtitle">@cour.Description.Text</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="@cour.Url" target="_blank">View Details & Register</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Courses end -->
+
+            <!-- Events start -->
+            <div class="row">
+                <div class="col">
+                    <h2 class="mt-5 mb-3">Events</h2>
+                </div>
+            </div>            
+            <div class="row">
+                @foreach (var eve in @Model["events"])
+                {
+                    <div class="col-md-6 my-3">
+                        <div class="card card-course">
+                            
+                            @if (eve.Logo != null && eve.Logo.Url != null)
+                            {
+                                <a href="@eve.Url" target="_blank" alt="@eve.Name.Text">
+                                    <img class="card-img-top" src="@eve.Logo.Url" alt="image">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@eve.Url" target="_blank" alt="@eve.Name.Text">
+                                    <img class="card-img-top" src="" alt="image">
+                                </a>
+                            }
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">@eve.Name.Text</h5>
+                                <p class="card-subtitle">@eve.Description.Text</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="@eve.Url" target="_blank">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Events end -->
+        </div>
+    </div>
+    <!-- section2 end -->
+
+}
+<!-- Contact teaser start -->
+<div class="section_main light_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-3 align-self-center">
+                <div class="teaser px-3">
+                    <subtitle>Is there a course you wish we offered? Got an idea for an event?</subtitle>
+                    <title>We'd love to hear from you.</title>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 tab-100 team-wrap">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                        Name = "Diana De Cotiis",
+                        Role = "Training Co-ordinator",
+                        ImageFileName = "diana.jpg",
+                        Email="diana.decotiis@gov.bc.ca"
+                        })
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        @await Component.InvokeAsync("PersonnelCard", new { 
+                            Name = "Ari Herschberg",
+                            Role = "Events Co-ordinator",
+                            ImageFileName = "ari.jpg",
+                            Email="ari.hershberg@gov.bc.ca"
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact teaser end -->

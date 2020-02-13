@@ -1,0 +1,42 @@
+@model bcdevexchange.Components.TextWithSideImage.TextWithSideImageModel
+
+@{string titleHTML = !String.IsNullOrEmpty(Model.Title)?"<title>"+Model.Title+"</title>": "" ;}
+@{string buttonHtml = !String.IsNullOrEmpty(Model.ButtonUrl)?"<a href='"+Model.ButtonUrl+"' class='blue_btn'>Learn More</a>": "" ;}
+@{string subtitleHtml = !String.IsNullOrEmpty(Model.SubTitle)?  "<subtitle>"+@Model.SubTitle.Replace("NEWLINE", "</subtitle><subtitle>")+"</subtitle>" :"";}
+@{if (Model.TextOnLeft)
+{
+    <div class="teaser-view-component dark_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
+                    <div class="teaser">
+                        @Html.Raw(titleHTML)
+                        @Html.Raw(subtitleHtml)
+                        @Html.Raw(buttonHtml)
+                    </div>
+                </div>
+                <div class="col-md">
+                  <img class='sec_image' src=@("/img/"+Model.ImageFilePath) alt='image'>
+                </div>
+            </div>
+        </div>
+    </div>
+} else {
+    <div class="teaser-view-component dark_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md mr-md-5 mb-5 mb-md-0">
+                    <img class='sec_image' src=@("/img/"+Model.ImageFilePath) alt='image'>
+                </div>
+                <div class="col-md align-self-center">
+                    <div class="teaser">
+                        @Html.Raw(titleHTML)
+                        @Html.Raw(subtitleHtml)
+                        @Html.Raw(buttonHtml)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+}

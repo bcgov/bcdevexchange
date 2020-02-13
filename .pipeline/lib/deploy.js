@@ -6,6 +6,7 @@ module.exports = (settings)=>{
   const phases = settings.phases
   const options= settings.options
   const phase=options.env
+  const bearerToken = options.bt;
   const changeId = phases[phase].changeId
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases[phase].namespace}, options));
   const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
@@ -18,6 +19,7 @@ module.exports = (settings)=>{
       'VERSION': phases[phase].version,
       'HOST': `${phases[phase].name}${phases[phase].suffix}-${phases[phase].namespace}.pathfinder.gov.bc.ca`,
       'ASPNETCORE_ENVIRONMENT': phases[phase].aspdotnetenvironment,
+      'BEARER_TOKEN': bearerToken,
       'MIN_REPLICAS': phases[phase].minreplicas,
       'MAX_REPLICAS': phases[phase].maxreplicas,
       'MEMORY_REQUEST':phases[phase].memoryrequest,

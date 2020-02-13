@@ -1,113 +1,135 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "HomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- @*<div id="welcome-video">
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="~/video/sample-welcome-video.mp4"></iframe>
-        </div>
-    </div>*@ -->
-
-<!-- @*<div id="videoDiv">
-        <div id="video-block">
-            <video id ="vid" controls>
-                <source src="~/video/sample-welcome-video.mp4" type="video/mp4">
-            </video>
-            <div id="videoMessage">
-                <p>Here is the text!!!</p>
-            </div>
-        </div>
-    </div>*@ -->
-<div class="content">
-    <div class="view">
+<div class="landing">
+    <!-- header-banner start -->
+    <div class="hero home-hero">
         <div class="container">
             <div class="row">
-                <!--Grid column-->
-                <div class="col-md-6">
-                    <h1 id="intro">Enabling exceptional <space> digital public services <space> for British Columbians. </h1>
-                    <a id="knowmore" class="btn btn-outline-white">Know more > </a>
-                </div>
-            </div>
-            <!--Grid row-->
-        </div>
-        <!-- Content -->
-    </div>
-
-    <div class="key-value">
-        <div class="key-value-head container row">
-            <h2> How BC DevExchange <br /> can help you </h2>
-        </div>
-        <div class="row key-col">
-            <div class="col-md-4 ">
-                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Learn New Ways of Working</h4>
-                <p id="para-value">
-                    Through workshops, presentations, and formal trainings we are helping BC Public Servants learn and adopt new approaches to team work and technology.
-                </p>
-            </div>
-            <div class="col-md-4 ">
-                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Kickstart a Delivery Team</h4>
-                <p id="para-value">
-                    We help teams develop the capacity to rapidly deliver and improve digital services.
-                </p>
-            </div>
-            <div class="col-md-4 ">
-                <h4 id="value"><img class="val-icon" src="~/img/value-icon-.jpg" />Deliver Quickly and Securely</h4>
-                <p id="para-value">
-                    We operate governments first DevOps platform. Now teams can get their product up and running in hours and release improvements as frequently as they want.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="figure">
-        <div class="row key-col">
-            <div class="col-md-4 figure-col">
-                <h4>150+</h4>
-                <p id="para-value">
-                    Applications on the DevOps platform
-                </p>
-            </div>
-            <div class="col-md-4 figure-col">
-                <h4 id="figure-value">XXX+</h4>
-                <p id="para-value">
-                    Trainings Delivered
-                </p>
-            </div>
-            <div class="col-md-4 figure-col">
-                <h4 id="figure-value">975+</h4>
-                <p id="para-value">
-                    Strong Community of Digital Experts
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="testimonial">
-        <div class="heading-testimonial">
-            <h2>What people have been saying about Us?</h2>
-        </div>
-        <div class="card-deck test-deck">
-            <div class="card test-card">
-                <div class="card-body text-center">
-                    <p class="card-text">"We really think it’s the right way for governments to work. Creating in the open, taking advantage of open source technologies, is the best way to engage your citizens and employees and work with the technology sector. It’s about getting better software and working with people in a more natural way.”</p>
-                </div>
-            </div>
-            <div class="card test-card">
-                <div class="card-body text-center">
-                    <p class="card-text">"We are designing, developing, and shipping digital platforms using modern software practices and open development to advance the state of the art in public services. It's awesome being able to work with the latest tech such as Hyperledger and Kubernetes to build great services for the people of B.C.”</p>
-                </div>
-            </div>
-            <div class="card test-card">
-                <div class="card-body text-center">
-                    <p class="card-text">"The Exchange Lab is an innovative collaboration space where the B.C. Government and the private sector come together to engineer software solutions for the province. During my co-op term, I had the unique opportunity to learn from and work with some of the most enthusiastic agile teams contributing to open-source projects!”</p>
-                </div>
-            </div>
-            <div class="card test-card">
-                <div class="card-body text-center">
-                    <p class="card-text">"The Exchange Lab is an innovative collaboration space where the B.C. Government and the private sector come together to engineer software solutions for the province. During my co-op term, I had the unique opportunity to learn from and work with some of the most enthusiastic agile teams contributing to open-source projects!”</p>
-                    <img class="card-img" src="img_avatar.png" alt="Avatar">
-                    <p>Todd Wilson</p>
-                    <p>Project Director, Enterprise DevOps</p>
+                <div class="col-md-10 col-lg-8">
+                    <div class="hero-text bg-overlay pb-5">We're a supportive community enabling the government in British Columbia, Canada to deliver better digital services.</div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- header-banner end -->
+    <!-- Exchange Lab teaser start / 'teaser-img-left' -->
+    <div class="teaser-img-left dark_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="teaser-name">Exchange Lab</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md mr-md-5 mb-5 mb-md-0">
+                    <a href="ExchangeLab">
+                        <img class="img-fluid" src="img/home_img/exchange-lab-teaser.jpg" alt="Exchange Lab">
+                    </a>
+                </div>
+                <div class="col-md">
+                    <div class="teaser">
+                        <title>Want to create capability in your organization to deliver digital services?</title>
+                        <subtitle>We help B.C. government organizations assemble digital delivery teams. At the Exchange Lab, we host teams in residence where we support them in a positive, collaborative environment.</subtitle>
+                        <stat>14+</stat>
+                        <stat-description>Digital delivery teams got their start here</stat-description>
+                        <a href="ExchangeLab" class="blue_btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Exchange Lab teaser end -->
+    
+    <!-- DevOps Platform teaser start / "teaser-img-right" -->
+    <div class="teaser-img-right light_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="teaser-name">DevOps Platform</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md mr-md-5 mb-5 mb-md-0">
+                    <div class="teaser">
+                        <title>Still deploying apps the hard way?</title>
+                        <subtitle>Our DevOps platform enables digital delivery teams in the B.C. government to develop and deploy their applications quickly, securely, and at scale.</subtitle>
+                        <stat>100+</stat>
+                        <stat-description>Apps running on the platform</stat-description>
+                        <a href="DevOpsPlatform" class="blue_btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <a href="DevOpsPlatform">
+                        <img class="img-fluid" src="img/home_img/devops-platform-teaser.jpg" alt="DevOps Platform">
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- DevOps Platform teaser end -->
+    
+    <!-- Learning teaser start -->
+    <div class="teaser-img-left dark_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="teaser-name">Learning</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md mr-md-5 mb-5 mb-md-0">
+                    <a href="/learning">
+                        <img class="img-fluid" src="img/home_img/learning-teaser.jpg" alt="image">
+                    </a>
+                </div>
+                <div class="col-md">
+                    <div class="teaser">
+                        <title>Want to 'be more agile,' but not sure how?</title>
+                        <subtitle>We can help you understand and adopt new approaches to teamwork and technology like Agile, Scrum, and DevOps. You might even have some fun while you're at it!</subtitle>
+                        <stat>1400+</stat>
+                        <stat-description>People from across the B.C. government who've taken part in training and learning events we've hosted</stat-description>
+                        <a href="/learning" class="blue_btn">Explore Courses and Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Learning teaser end -->
+    
+    <!-- Community section start -->
+    <div class="section_main light_bg">
+        <div class="section_inner">
+            <div class="home-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="heading2">Be a part of the community</h2>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md mr-md-5 mb-5 mb-md-0">
+                        <h2 class="mb-4">
+                            <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        </h2>
+                        <p class="mb-5">Our newsletter will keep you up-to-date on events and learning opportunities, and what's happening at the Exchange Lab.</p>
+                        <a class="blue_btn" href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" target="_blank">Subscribe <i class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="col-md">
+                        <h2 class="mb-4">
+                            <i class="fa fa-comments" aria-hidden="true"></i> 
+                        </h2>
+                        <p class="mb-5">Join 1,000+ community members on our messaging platform, RocketChat. Connect, get help, and offer your knowledge.</p>
+                        <div class="small_text">Already have an IDIR or a GitHub account associated to the bcgov org?</div>
+                        <a href="https://chat.pathfinder.gov.bc.ca/home" class="blue_btn">Join RocketChat <i class="fa fa-external-link"></i></a>
+                        <div class="small_text mt-5">Don't have an IDIR or BC Gov GitHub account? <span class="text-nowrap"><a href="mailto:BCDevExchange@gov.bc.ca">Request an invitation <i class="fa fa-external-link"></i></a></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Community section end -->
 </div>
