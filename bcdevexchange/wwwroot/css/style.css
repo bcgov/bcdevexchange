@@ -807,6 +807,11 @@ p.card-subtitle {
 .navbar-nav a:hover {
     border-bottom: 3px solid #fff;
 }
+.nav-link, .nav-link:active, .nav-link:hover {
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.5;
+}
 
 /* li.active {
   background-color: #444;
