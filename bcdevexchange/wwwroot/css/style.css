@@ -350,6 +350,10 @@ h3 {
 .footer-logo {
   width: 160px;
 }
+.supported-logo {
+  width: 80%;
+  max-width: 210px;
+}
 .inner2 {
   margin-left: 90px !important;
   width: 100% !important;
@@ -808,7 +812,6 @@ p.card-subtitle {
     border-bottom: 3px solid #fff;
 }
 .nav-link, .nav-link:active, .nav-link:hover {
-  font-size: 0.9rem;
   color: #fff;
   opacity: 0.5;
 }
