@@ -35,6 +35,7 @@ String getSonarQubePwd() {
   return sonarQubePwd
 }
 
+
 @NonCPS
 String getEventBriteBearerToken() {
 
@@ -45,6 +46,7 @@ String getEventBriteBearerToken() {
 
   return eventBriteToken
 }
+
 // Notify stage status and pass to Jenkins-GitHub library
 def notifyStageStatus(String name, String status) {
   def sha1 = GIT_COMMIT
@@ -162,7 +164,6 @@ pipeline {
                     echo "Token: ${BEARER_TOKEN}"
                     sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=dev"   
                 }
-                
             }
             post {
                 success{
