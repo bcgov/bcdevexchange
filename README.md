@@ -1,8 +1,12 @@
 # bcdevexchange
 This Repository is for the BCDevExchange website.
 
+The tech-stack is a static razor website.
+!["Technical Architechture"](bcdevexchange/wwwroot/img/technical_architecture/architecture.png)
+
 # Local development.
 This website is generated using .Net Core 2.2
+
 
 ## Windows
 
