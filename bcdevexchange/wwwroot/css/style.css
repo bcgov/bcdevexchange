@@ -153,7 +153,7 @@ h3 {
 
 .main-header-area {
   background: #181818;
-  line-height: 3em;
+  line-height: 2.3em;
 }
 
 .header-area .main-header-area .main-menu ul li {
@@ -164,7 +164,17 @@ h3 {
 
 .header-area .main-header-area .main-menu ul li a {
   color: #fff;
+  opacity: 0.5;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
+
+.header-area .main-header-area .main-menu ul li.active a {
+  color: #fff;
+  opacity: 1;
+  font-weight: 500;
+}
+
 .top-content {
   color: #ffffff;
   margin-bottom: 0px;
@@ -829,16 +839,12 @@ p.card-subtitle {
   color: #fff;
   font-size: 28px;
 }
-.navbar-nav a:active {
-    border-bottom: 3px solid #fff;
-}
-.navbar-nav a:hover {
-    border-bottom: 3px solid #fff;
+.navbar-nav li.active {
+  color: #fff;
+  opacity: none;
+  border-bottom: 3px solid;
 }
 
-/* li.active {
-  background-color: #444;
-} */
 /*------------ Media Queries -------------*/
 @media only screen and (min-width: 1560px) {
     .home-container {
