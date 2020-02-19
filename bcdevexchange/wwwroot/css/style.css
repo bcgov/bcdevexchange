@@ -68,7 +68,6 @@ a.icon, a.icon:hover, a.icon:focus {
   color: #fff;
 }
 
-
 h1, h2, h3, h4, h5 {
   font-family: "Helvetica Neue", sans-serif;
 }
@@ -95,6 +94,12 @@ p {
   font-weight: 300;
   color: inherit;
   opacity: 0.7;
+}
+
+small {
+  font-size: 85%;
+  font-weight: 300 !important;
+  opacity: 0.4;
 }
 
 .address {
@@ -212,6 +217,17 @@ h3 {
   background: url(../img/learning/learning-hero.jpg);
   background-size: cover;
   background-position: center;
+}
+.exchange-lab-hero {
+  background: url(../img/exchange_lab_photos/exchange-lab-hero.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.lab-tour-teaser {
+  background: url(../img/exchange_lab_photos/tour.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 250px;
 }
 .hero-text {  
   padding: 0.5em;
@@ -353,7 +369,11 @@ h3 {
   padding: 15px;
 }
 .footer-logo {
-  width: 160px;
+  width: 40px;
+}
+.supported-logo {
+  width: 80%;
+  max-width: 265px;
 }
 .inner2 {
   margin-left: 90px !important;
@@ -373,7 +393,9 @@ h3 {
 .icon {
   height: 65px;
 }
-
+.footer-icon {
+  font-size: 1.3rem;
+}
 
 /*------------------- Exchange Lab Page -------------------*/
 
@@ -476,6 +498,28 @@ h3 {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.yellow-gradient {
+  background-image: linear-gradient(to bottom, #fdb917, #feefcd);
+}
+
+.timeline-wrapper {
+  border-top: 4px dotted;
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+
+.timeline-column {
+  padding: 0 50px;     
+  display: inline-block;
+  width: 320px;
+  height: auto;
+  white-space: initial;
+  vertical-align: top;
+}
+
 
 /* The actual timeline (the vertical ruler) */
 .timeline::after {
@@ -797,7 +841,7 @@ p.card-subtitle {
   color: #fff;
 }
 .footer {
-  padding-top: 4em;
+  padding: 2rem 0;
 }
 .navbar-light .navbar-toggler-icon {
   background: none;
@@ -811,6 +855,17 @@ p.card-subtitle {
   opacity: none;
   border-bottom: 3px solid;
 }
+.nav-link, .nav-link:active, .nav-link:hover {
+  color: #fff;
+  opacity: 0.5;
+  font-size: 0.85rem;
+}
+.nav-link > i {
+  font-size: 1.25rem;
+}
+/* li.active {
+  background-color: #444;
+} */
 
 /*------------ Media Queries -------------*/
 @media only screen and (min-width: 1560px) {
@@ -1046,10 +1101,6 @@ p.card-subtitle {
   min-height: 80vh;
 }
 
-.teaser-view-component {
-  padding: 80px 0;
-}
-
 .teaser-name {
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -1060,16 +1111,16 @@ p.card-subtitle {
 }
 .teaser > title {
   display: block;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   line-height: 1.2em;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.75px;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
 }
 .teaser > subtitle {
   display: block;
-  font-size: 1.25rem;
-  line-height: 1.5em;
+  font-size: 1.05rem;
+  line-height: 1.4em;
   font-weight: 300;
   letter-spacing: -0.25px;
   margin: 1em 0;
@@ -1081,13 +1132,16 @@ p.card-subtitle {
   font-weight: 600;
   line-height: 1;
   margin: 0.7em 0 0;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 .teaser > stat-description {
   display: block;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.3em;
   margin: 0 0 1em;
-  opacity: 0.8;
+  padding-left: 12px;
+  opacity: 0.5;
 }
 .teaser > a {
   margin-top: 2em;
