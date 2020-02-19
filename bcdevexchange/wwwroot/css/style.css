@@ -68,7 +68,6 @@ a.icon, a.icon:hover, a.icon:focus {
   color: #fff;
 }
 
-
 h1, h2, h3, h4, h5 {
   font-family: "Helvetica Neue", sans-serif;
 }
@@ -95,6 +94,12 @@ p {
   font-weight: 300;
   color: inherit;
   opacity: 0.7;
+}
+
+small {
+  font-size: 85%;
+  font-weight: 300 !important;
+  opacity: 0.4;
 }
 
 .address {
@@ -353,7 +358,11 @@ h3 {
   padding: 15px;
 }
 .footer-logo {
-  width: 160px;
+  width: 40px;
+}
+.supported-logo {
+  width: 80%;
+  max-width: 265px;
 }
 .inner2 {
   margin-left: 90px !important;
@@ -373,7 +382,9 @@ h3 {
 .icon {
   height: 65px;
 }
-
+.footer-icon {
+  font-size: 1.3rem;
+}
 
 /*------------------- Exchange Lab Page -------------------*/
 
@@ -797,7 +808,7 @@ p.card-subtitle {
   color: #fff;
 }
 .footer {
-  padding-top: 4em;
+  padding: 2rem 0;
 }
 .navbar-light .navbar-toggler-icon {
   background: none;
@@ -811,6 +822,17 @@ p.card-subtitle {
   opacity: none;
   border-bottom: 3px solid;
 }
+.nav-link, .nav-link:active, .nav-link:hover {
+  color: #fff;
+  opacity: 0.5;
+  font-size: 0.85rem;
+}
+.nav-link > i {
+  font-size: 1.25rem;
+}
+/* li.active {
+  background-color: #444;
+} */
 
 /*------------ Media Queries -------------*/
 @media only screen and (min-width: 1560px) {
