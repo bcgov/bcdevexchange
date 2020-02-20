@@ -1,6 +1,7 @@
 # bcdevexchange
 This Repository is for the BCDevExchange website.
 
+
 The tech-stack is a static razor website.
 !["Technical Architechture"](bcdevexchange/wwwroot/img/technical_architecture/architecture.png)
 
@@ -37,3 +38,4 @@ The Learning page should now be accessible locally.  If it does not render prope
 # Contributing to the page.
 
 Feel like helping out?  Spot a problem?  Feel free to fork the repos and make a pull request, or raise an issue for us to review.
+
