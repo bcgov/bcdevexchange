@@ -16,13 +16,19 @@
   <!-- hero end -->
   
   <!-- OpenShift teaser start -->
-  @await Component.InvokeAsync("TextWithSideImage", new { 
-    TextOnLeft=true,
-    Title="OpenShift Container Platform",
-    SubTitle="On premise within the Kamloops Data Center, the B.C. government has a deployment of OpenShift, a hybrid cloud enterprise Kubernetes platform. NEWLINE The platform enables developers to develop and deploy applications quickly, securely, and at scale. NEWLINE We provide access and support for using the platform.",
-    ImageFilePath="home_img/devops-platform-teaser.jpg",
-    ButtonUrl="https://developer.gov.bc.ca/What-Is-OpenShift"
-  })
+
+  <div class="section_main bg-light text-body">
+    <div class="container">
+      @await Component.InvokeAsync("TextWithSideImage", new { 
+        TextOnLeft=true,
+        Title="OpenShift Container Platform",
+        SubTitle="On premise within the Kamloops Data Center, the B.C. government has a deployment of OpenShift, a hybrid cloud enterprise Kubernetes platform. NEWLINE The platform enables developers to develop and deploy applications quickly, securely, and at scale. NEWLINE We provide access and support for using the platform.",
+        ImageFilePath="home_img/devops-platform-teaser.jpg",
+        ButtonUrl="https://developer.gov.bc.ca/What-Is-OpenShift"
+      })
+    </div>
+  </div>
+
   <!-- OpenShift teaser end -->
 
   <!-- Who can join? section start-->
@@ -85,7 +91,9 @@
       <div class="row">
         <div class="col col-md-6 m-auto text-center">
             <div class="teaser">
-              <title>How to get access to the platform</title>
+
+              <title>How do we get access to the platform?</title>
+
               <subtitle>If you meet the criteria above, we’d love to hear from you! It all starts with a project provisioning request.</subtitle>
               <a href="https://github.com/BCDevOps/devops-requests" class="blue_btn" target="_blank">Request Access <i class="fa fa-external-link"></i></a>
             </div>

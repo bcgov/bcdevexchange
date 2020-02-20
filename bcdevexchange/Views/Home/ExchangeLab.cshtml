@@ -3,160 +3,232 @@ ViewData["Title"] = "ExchangeLab";
 Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="landing">
-    <!-- header-banner start -->
-    <div class="banner_area">
-        <div class="banner_inner">
-            <div class="single_banner">
-                <div class="container">
-                    <div class="row">
-                        <div class="exchange_lab_col">
-                            <div class="exchange_lab_banner_text">
-                                <h1> Accelerate your digital delivery team with a residency at the Exchange Lab </h1>
-                                <p>
-                                    The Exchange Lab is a collaborative work space where we host digital delivery teams
-                                    from across the B.C. Public Service.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- hero start -->
+<div class="hero exchange-lab-hero">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-lg-8">
+              <div class="hero-text bg-overlay pb-5">We accelerate B.C. government digital delivery teams at our collaborative work space - the Exchange Lab.</div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- hero end -->
+
+<!-- What happens? section start -->
+<div class="section_main bg-light text-body">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="pb-5">What happens at the Lab?</h2>
             </div>
         </div>
-    </div>
-
-    <div class="exchange-lab-content-container">
-
-        <h1>What happens at the Lab?</h1>
         @await Component.InvokeAsync("TextWithSideImage", new { 
             SubTitle="Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.",
-            ImageFilePath="exchange_lab_photos/001.jpg"
+            ImageFilePath="exchange_lab_photos/agile-mindset.jpg"
         })
         @await Component.InvokeAsync("TextWithSideImage", new { 
             TextOnLeft=true,
             SubTitle="Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems.",
-            ImageFilePath="exchange_lab_photos/004.jpg"
+            ImageFilePath="exchange_lab_photos/openly-sharing.jpg"
         })
         @await Component.InvokeAsync("TextWithSideImage", new { 
             SubTitle="Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year.",
-            ImageFilePath="exchange_lab_photos/002.jpg"
+            ImageFilePath="exchange_lab_photos/testing.jpg"
         })
         @await Component.InvokeAsync("TextWithSideImage", new { 
             TextOnLeft=true,
             SubTitle="Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.",
-            ImageFilePath="exchange_lab_photos/003.jpg"
+            ImageFilePath="exchange_lab_photos/graduation.jpg"
         })
     </div>
+</div>
+<!-- What happens? section end -->
 
-
-    <!-- section3 end -->
-    <!-- section4 start -->
-    <div class="exchange-lab-content-container-bg">
-
-        <div class="section_main light_bg set-height">
-            <h1 class='exchange-lab'>Timeline</h1>
-            <h3 class='exchange-lab'>
-                Not every journey is the same, but given what we have seen
-                to be possible when the right conditions are in place, here
-                is want you can expect from a digital delivery team in the lab.
-            </h3>
-            <div class="row">
-                <div class="section_inner">
-                    <div class="container">
-                        <div class="timeline">
-                            <div class="timeline-container right">
-                                <div class="timeline-content">
-                                    <h2>By Q1</h2>
-                                    <li>Program areas build a team and align their organization to support Agile
-                                        delivery</li>
-                                    <li>Teams clarify the problem they are trying to solve</li>
-                                    <li>Tems build a prototype and engage directly with users to learn what is most
-                                        important to them</li>
-                                </div>
-                            </div>
-                            <div class="timeline-container left">
-                                <div class="timeline-content">
-                                    <h2>By Q2</h2>
-                                    <p>Teams release a real digital product (considered an alpha product)
-                                        to users and build trust in their organization that they are making
-                                        solid progress. They can communicate their “velocity” and have high
-                                        trust and productivity.</p>
-                                    <p>Within six months, teams refine the product by getting feedback directly
-                                        from users. They start coaching other teams and offering solutions back
-                                        to the community.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-container right">
-                                <div class="timeline-content">
-                                    <h2>By Q3</h2>
-                                    <p>Teams are ready to release a beta product to the public. They have solid
-                                        infrastructure
-                                        and technical excellence so that they can quickly respond to changing
-                                        requirements or
-                                        unexpected issues. Vendor team mates coach new public service talent that will
-                                        remain
-                                        in the team.</p>
-                                </div>
-                            </div>
-                        </div>
-                        @* The final element of the timeline is outside the
-                        timeline-container for responsive styling *@
-                        <div class="timeline-container left">
-                            <div class="timeline-content">
-                                <h2>By Q4</h2>
-                                <p>Teams are ready to graduate. The product is ready for a live status and ongoing
-                                    improvements
-                                    in a stable production environment. The home organization is capable of supporting
-                                    the ongoing
-                                    productivity of the team, with new problems to solve.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
+<!-- Timeline start -->
+<div class="section_main bg-warning text-body yellow-gradient">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-9 m-auto">
+                <h2><i class="fa fa-hourglass"></i> Timeline</h2>
+                <p class="lead">Not every partner's journey is the same, but given what we've seen when the right conditions are in place, here's what you can expect when you invest in a Lab residency:</p>
             </div>
         </div>
     </div>
 
-    <div class="exchange-lab-content-container">
-        <h1>While in residence at the Exchange Lab, your team will benefit from:</h1>
+    <div class="container-fluid">
+        <div class="timeline-wrapper">
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4> 
+                <h5>After 1 month</h5>
+                <p>Program areas have formed a team and aligned their organizaton to support Agile delivery.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After 2 months</h5>
+                <p>Teams clarify the problem they are trying to solve.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After 3 months</h5>
+                <p>Teams are prototyping ideas and engaging with users to learn what is most important to them.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After 4 months</h5>
+                <p>Teams have released a real digital product (considered an alpha product) to users and built trust in their organization that they are making solid progress. They can communicate their “velocity” and have high trust and productivity.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After 6 months</h5>
+                <p>Teams have refined the product by getting feedback directly from users. They start coaching other teams and offering solutions back to the community.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After 8 months</h5>
+                <p>Teams are ready to release a beta product to the public. They have solid infrastructure and technical excellence so that they can quickly respond to changing requirements or unexpected issues. Vendor team mates coach new public service talent that will remain on the team.</p>
+            </div>
+            <div class="timeline-column">
+                <h4><i class="fa fa-sort-up"></i></h4>
+                <h5>After a year</h5>
+                <p>Teams are ready to graduate! The product is ready for a live status and ongoing improvements in a stable production environment. The home organization is capable of supporting the ongoing productivity of the team, with new problems to solve.</p>
+            </div>
+            
+        </div>
+                    
+        <!--<div class="row">
+            <div class="section_inner">
+                <div class="container">
+                    <div class="timeline">
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h2>By Q1</h2>
+                                <li>Program areas build a team and align their organization to support Agile
+                                    delivery</li>
+                                <li>Teams clarify the problem they are trying to solve</li>
+                                <li>Tems build a prototype and engage directly with users to learn what is most
+                                    important to them</li>
+                            </div>
+                        </div>
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                                <h2>By Q2</h2>
+                                <p>Teams release a real digital product (considered an alpha product)
+                                    to users and build trust in their organization that they are making
+                                    solid progress. They can communicate their “velocity” and have high
+                                    trust and productivity.</p>
+                                <p>Within six Afters, months teams refine the product by getting feedback directly
+                                    from users. They start coaching other teams and offering solutions back
+                                    to the community.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h2>By Q3</h2>
+                                <p>Teams are ready to release a beta product to the public. They have solid
+                                    infrastructure
+                                    and technical excellence so that they can quickly respond to changing
+                                    requirements or
+                                    unexpected issues. Vendor team mates coach new public service talent that will
+                                    remain
+                                    in the team.</p>
+                            </div>
+                        </div>
+                    </div>
+                    @* The final element of the timeline is outside the
+                    timeline-container for responsive styling *@
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <h2>By Q4</h2>
+                            <p>Teams are ready to graduate. The product is ready for a live status and ongoing
+                                improvements
+                                in a stable production environment. The home organization is capable of supporting
+                                the ongoing
+                                productivity of the team, with new problems to solve.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!-- Timeline end -->
+
+<!-- Benefits section start -->
+<div class="section_main bg-white text-body">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-9 m-auto text-center">
+                <h3>While in residence at the Exchange Lab, your team will benefit from:</h3>
+            </div>
+        </div>
 
         @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
             Title="A Place to Call Home",
             SubTitle="Insulated from the status quo operations of your home organization, your team will have a dedicated room where they can focus and sprint towards their goal.",
-            ImageFilePath="exchange_lab_photos/001.jpg"
+            ImageFilePath="exchange_lab_photos/place.jpg"
         })
         @await Component.InvokeAsync("TextWithSideImage", new { 
             TextOnLeft=true,
             Title="Training & Coaching",
             SubTitle="We will facilitate formal training for your team, help them make connections with other community members, and help bring your organization along for the journey.",
-            ImageFilePath="exchange_lab_photos/004.jpg"
+            ImageFilePath="exchange_lab_photos/coaching.jpg"
         }) 
         @await Component.InvokeAsync("TextWithSideImage", new { 
+            TextOnLeft=true,
             Title="Experts on Tap",
             SubTitle="Your team will have access to experts who can offer guidance in Service Design, Privacy and Security, Behavioural Insights, Integrated Data, and Social Media.",
-            ImageFilePath="exchange_lab_photos/002.jpg"
+            ImageFilePath="exchange_lab_photos/experts.jpg"
+
         })
         @await Component.InvokeAsync("TextWithSideImage", new { 
             TextOnLeft=true,
             Title="Platform Services",
             SubTitle="Your team will get access to and support to use a suite of DevOps tools, including a hybrid-cloud container platform, so they can fully control the development and deployment of their product.",
-            ImageFilePath="exchange_lab_photos/003.jpg"
+            ImageFilePath="exchange_lab_photos/platform-services.jpg"
         })        
         @await Component.InvokeAsync("TextWithSideImage", new { 
-            Title="Platform Services",
+            TextOnLeft=true,
+            Title="Community",
             SubTitle="Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.",
-            ImageFilePath="exchange_lab_photos/002.jpg"
+            ImageFilePath="exchange_lab_photos/community.jpg"
         })        
     </div>
-
-    <div class="exchange-lab-content-container-bg">
-        <h1 class='exchange-lab'>How do we get into the Lab?</h1>
-        <h3 class='exchange-lab'>
-            If you’re interested in sponsoring a team at the Lab, please email us at:
-        </h3>
-        <h3 class='exchange-lab'>
-            <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a>
-        </h3>
-    </div>
-
 </div>
+<!-- Benefits section end -->
+
+<div class="section_main dark_bg">
+    <div class="container">
+        <div class="row d-flex flex-md-row-reverse">
+            <div class="col-md-6">
+                <img src="img/exchange_lab_photos/window.jpg">
+            </div>
+            <div class="col-md-6 p-5 align-self-center">
+                <h2 class="mb-5">How do we get into the Lab?</h2>
+                <p class="lead">If you’re interested in sponsoring a team for a year-long residency at the Lab, please email us at <a href="mailto:ExchangeLab@gov.bc.ca">ExchangeLab@gov.bc.ca</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lab tour teaser start -->
+<div class="bg-light text-body">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col lab-tour-teaser"></div>
+            <div class="m-auto col-md-6 col-lg-4 m-auto p-5 align-self-center">
+                    <div class="py-1">
+                        <i class="fa fa-map-marker"></i> <small>3rd Floor, 1012 Douglas Street, Victoria, BC</small>
+                    </div>
+                    <h2>Tour the Lab</h2>
+                    <p class="lead">We host tours every month. Join us!</a></p>
+                    <a class="blue_btn" href="https://www.eventbrite.ca/e/take-a-walk-on-the-agile-side-tour-of-bc-govs-exchange-lab-tickets-43946375793" target="_blank">Pick a date <i class="fa fa-external-link"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Lab tour teaser end -->
+
