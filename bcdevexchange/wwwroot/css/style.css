@@ -199,7 +199,7 @@ h3 {
   align-items: flex-end;
 }
 .home-hero {
-  background: url(../img/home_img/home-hero.jpg);
+  background: url(../img/home/home-hero.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -209,7 +209,7 @@ h3 {
   background-position: center;
 }
 .devops-hero {
-  background: url(../img/dev_ops_platform_photos/devops_hero.jpeg);
+  background: url(../img/devops-platform/devops_hero.jpeg);
   background-size: cover;
   background-position: center;
 }
@@ -219,12 +219,12 @@ h3 {
   background-position: center;
 }
 .exchange-lab-hero {
-  background: url(../img/exchange_lab_photos/exchange-lab-hero.jpg);
+  background: url(../img/exchange-lab/exchange-lab-hero.jpg);
   background-size: cover;
   background-position: center;
 }
 .lab-tour-teaser {
-  background: url(../img/exchange_lab_photos/tour.jpg);
+  background: url(../img/exchange-lab/tour.jpg);
   background-size: cover;
   background-position: center;
   min-height: 250px;
@@ -253,7 +253,7 @@ h3 {
 /*-- End Hero styling --*/
 
 .banner_area {
-  background: url(../img/home_img/banner-min.jpg);
+  background: url(../img/home/banner-min.jpg);
   min-height: 85vh;
   background-size: cover;
   background-position: top center;
@@ -742,7 +742,7 @@ p.card-subtitle {
 
 /*------------------- Learning Page CSS -------------------*/
 .banner_training {
-    background: url(../img/home_img/Learning.jpg);
+    background: url(../img/home/Learning.jpg);
     min-height: 85vh;
     background-size: cover;
     background-position: top center;
