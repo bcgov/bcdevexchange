@@ -1,6 +1,6 @@
 @model bcdevexchange.Components.PersonnelCard.PersonnelCardModel
 @* Required parameters: 'name', 'title', 'filename' *@
-@{string filePath = "img/about/team_headshots/"+Model.ImageFileName;}
+@{string filePath = "img/about/team-headshots/"+Model.ImageFileName;}
 @* Optional fields: 'twitter', 'linkedin', 'email' *@
 @{string emailHTML =  String.IsNullOrEmpty(Model.Email)? "" : 
     "<a class='icon' href='mailto:"+Model.Email+"'><i class='fa fa-envelope' alt='Send an email to"+Model.Name+"'></i></a>"
