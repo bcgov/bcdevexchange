@@ -22,6 +22,23 @@ const phases = {
     cpurequest: "100m",
     cpulimit: "500m"
   },
+  matomo: {
+    namespace: "ifttgq-tools",
+    name: `${name}`,
+    phase: "matomo",
+    changeId: changeId,
+    suffix: `-build-${changeId}`,
+    instance: `${name}-build-${changeId}`,
+    version: `${version}-${changeId}`,
+    tag: `build-${version}-${changeId}`,
+    aspdotnetenvironment: "Development",
+    minreplicas: "1",
+    maxreplicas: "1",
+    memoryrequest: "256Mi",
+    memorylimit: "1Gi",
+    cpurequest: "100m",
+    cpulimit: "500m"
+  },
   sonar: {
     namespace: "ifttgq-tools",
     name: "dotnet-sonar",
