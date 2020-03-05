@@ -110,6 +110,7 @@ const phases = {
 };
 
 // This callback forces the node process to exit as failure.
+
 process.on("unhandledRejection", reason => {
   console.log(reason);
   process.exit(1);
