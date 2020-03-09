@@ -35,7 +35,7 @@ namespace bcdevexchange
             services.AddSingleton(typeof(IEventBriteService), typeof(EventBriteService));
             services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddHealthChecks().AddCheck("Webserver is running", () => HealthCheckResult.Healthy("Ok"));
+            services.AddHealthChecks().AddCheck("Webserver is running!", () => HealthCheckResult.Healthy("Ok"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
