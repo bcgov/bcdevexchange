@@ -137,7 +137,7 @@ parameters:
     value: bcdevexchange
   - name: VERSION
     required: true
-    description: A suffix appended to all objects
+  - description: A suffix appended to all objects
     displayName: Name Suffix
     name: SUFFIX
     required: true
