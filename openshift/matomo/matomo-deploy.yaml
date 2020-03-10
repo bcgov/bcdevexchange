@@ -6,8 +6,8 @@ objects:
   - kind: DeploymentConfig
     apiVersion: "v1"
     metadata: 
-      name: "${NAME}",
-      generation: 1,
+      name: "${NAME}"
+      generation: 1
       labels: 
         app: matomo
         service: "${NAME}"
@@ -33,7 +33,7 @@ objects:
               - "${NAME}-proxy"
             from: 
               kind: ImageStreamTag
-              namespace: "${IMAGE_NAMESPACE}",
+              namespace: "${IMAGE_NAMESPACE}"
               name: "${SOURCE_IMAGE_NAME}-proxy:${PROXY_TAG_NAME}"
       replicas: 1
       test: false
@@ -49,7 +49,7 @@ objects:
             template: matomo-template
         spec: 
           volumes:
-            - name: "${NAME}-source",
+            - name: "${NAME}-source"
               emptyDir: {}
             - name: "${NAME}-config"
               persistentVolumeClaim": 
@@ -82,7 +82,7 @@ objects:
               volumeMounts: 
                 - mountPath: "/var/www/html"
                   name: matomo-source
-                - mountPath: "/var/www/html/config",
+                - mountPath: "/var/www/html/config"
                   name: matomo-config
             - image: "${NAME}-proxy"
               imagePullPolicy: Always
