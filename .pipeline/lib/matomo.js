@@ -14,10 +14,6 @@ module.exports = (settings)=>{
     'param':{}
 }))
 
-  objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-build.yaml`, {
-    'param':{}
-}))
-
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db-deploy.yaml`, {
     'param':{
       'TAG_NAME' : 'latest'
@@ -28,6 +24,10 @@ module.exports = (settings)=>{
   'param':{
     'GIT_REF': oc.git.ref
   }
+}))
+
+  objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-build.yaml`, {
+  'param':{}
 }))
 
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-deploy.yaml`, {
