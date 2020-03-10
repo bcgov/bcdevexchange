@@ -92,155 +92,156 @@ pipeline {
                 }
             }
         }
-        stage('MatomoSetup') {
+        // Matomo deployment code - uncomment to deploy Matomo again
+        // stage('MatomoSetup') {
+        //     agent { label 'build' }
+        //     when {
+        //         expression { return HAS_CHANGED == true;}
+        //     }
+        //     steps {
+        //         script{
+        //             echo "Performing Matomo setup ..."
+        //             sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run matomo -- --pr=${CHANGE_ID}"
+        //         }
+        //     }  
+        // }
+        stage('SonarScan') {
             agent { label 'build' }
             when {
                 expression { return HAS_CHANGED == true;}
             }
             steps {
+                notifyStageStatus('SonarScan', 'PENDING')
                 script{
-                    echo "Performing Matomo setup ..."
-                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run matomo -- --pr=${CHANGE_ID}"
+                    echo "Performing static SonarQube code analysis ..."
+                    SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME, SONAR_ROUTE_NAMESPACE).trim()
+                    SONARQUBE_PROJECT = "BCDevExchange"
+                    if (env.CHANGE_TARGET != "master")
+                    {
+                        SONARQUBE_PROJECT = SONARQUBE_PROJECT + "-PR-${CHANGE_ID}"
+                    }
+
+                    SONARQUBE_PWD = getSonarQubePwd().trim()
+                    echo "URL: ${SONARQUBE_URL}"
+                    echo "Project: ${SONARQUBE_PROJECT}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
                 }
             }  
+            post {
+                success{
+                    notifyStageStatus('SonarScan', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('SonarScan', 'FAILURE')
+                }
+                changed {
+                    script{
+                        // Comment on Pull Request if build changes to successful
+                        if(currentBuild.currentResult.equalsIgnoreCase('SUCCESS')) {
+                            echo "Posting SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}"
+                            commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}")
+                        }
+                    }
+                }
+            } 
         }
-        // stage('SonarScan') {
-        //     agent { label 'build' }
-        //     when {
-        //         expression { return HAS_CHANGED == true;}
-        //     }
-        //     steps {
-        //         notifyStageStatus('SonarScan', 'PENDING')
-        //         script{
-        //             echo "Performing static SonarQube code analysis ..."
-        //             SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME, SONAR_ROUTE_NAMESPACE).trim()
-        //             SONARQUBE_PROJECT = "BCDevExchange"
-        //             if (env.CHANGE_TARGET != "master")
-        //             {
-        //                 SONARQUBE_PROJECT = SONARQUBE_PROJECT + "-PR-${CHANGE_ID}"
-        //             }
-
-        //             SONARQUBE_PWD = getSonarQubePwd().trim()
-        //             echo "URL: ${SONARQUBE_URL}"
-        //             echo "Project: ${SONARQUBE_PROJECT}"
-        //             sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run sonar -- --pr=${CHANGE_ID} --sonarUrl=${SONARQUBE_URL} --sonarPwd=${SONARQUBE_PWD} --project=${SONARQUBE_PROJECT}"
-        //         }
-        //     }  
-        //     post {
-        //         success{
-        //             notifyStageStatus('SonarScan', 'SUCCESS')
-        //         }
-        //         failure{
-        //             notifyStageStatus('SonarScan', 'FAILURE')
-        //         }
-        //         changed {
-        //             script{
-        //                 // Comment on Pull Request if build changes to successful
-        //                 if(currentBuild.currentResult.equalsIgnoreCase('SUCCESS')) {
-        //                     echo "Posting SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}"
-        //                     commentOnPR("SonarQube Analysis: ${SONARQUBE_URL}/dashboard?id=${SONARQUBE_PROJECT}")
-        //                 }
-        //             }
-        //         }
-        //     } 
-        // }
-        // stage('Build') {
-        //     agent { label 'build' }
-        //     when {
-        //         expression { return HAS_CHANGED == true;}
-        //     }
-        //     steps {
-        //         notifyStageStatus('Build', 'PENDING')
-        //         echo "Building ..."
-        //         sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
-        //     }
-        //     post {
-        //         success{
-        //             notifyStageStatus('Build', 'SUCCESS')
-        //         }
-        //         failure{
-        //             notifyStageStatus('Build', 'FAILURE')
-        //         }
-        //     }
-        // }
-        // stage('Deploy (DEV)') {
-        //     agent { label 'deploy' }
-        //     when {
-        //         expression { return HAS_CHANGED == true;}
-        //     }
-        //     steps {
-        //         script{
-        //             notifyStageStatus('Deploy(Dev)', 'PENDING')
-        //             echo "Deploying to Dev..."
-        //             BEARER_TOKEN = getEventBriteBearerToken().trim()
-        //             echo "Token: ${BEARER_TOKEN}"
-        //             sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=dev"   
-        //         }
-        //     }
-        //     post {
-        //         success{
-        //             notifyStageStatus('Deploy(Dev)', 'SUCCESS')
-        //         }
-        //         failure{
-        //             notifyStageStatus('Deploy(Dev)', 'FAILURE')
-        //         }
-        //     }
-        // }
-        // stage('Deploy (TEST)') {
-        //     agent { label 'deploy' }
-        //     when {
-        //         expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
-        //         beforeInput true
-        //     }
-        //     input {
-        //         message "Should we continue with deployment to TEST?"
-        //         ok "Yes!"
-        //     }
-        //     steps {
-        //         script{
-        //         notifyStageStatus('Deploy(Test)', 'PENDING')
-        //         echo "Deploying to Test..."
-        //         BEARER_TOKEN = getEventBriteBearerToken().trim()
-        //         echo "Token: ${BEARER_TOKEN}"
-        //         sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=test"
-        //         }
-        //     }
-        //     post {
-        //         success{
-        //             notifyStageStatus('Deploy(Test)', 'SUCCESS')
-        //         }
-        //         failure{
-        //             notifyStageStatus('Deploy(Test)', 'FAILURE')
-        //         }
-        //     }
-        // }
-        // stage('Deploy (PROD)') {
-        //     agent { label 'deploy' }
-        //     when {
-        //         expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
-        //         beforeInput true
-        //     }
-        //     input {
-        //         message "Should we continue with deployment to PROD?"
-        //         ok "Yes!"
-        //     }
-        //     steps {
-        //         script{
-        //         notifyStageStatus('Deploy(Prod)', 'PENDING')
-        //         echo "Deploying to Prod..."
-        //         BEARER_TOKEN = getEventBriteBearerToken().trim()
-        //         echo "Token: ${BEARER_TOKEN}"
-        //         sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=prod"
-        //         }
-        //     }
-        //     post {
-        //         success{
-        //             notifyStageStatus('Deploy(Prod)', 'SUCCESS')
-        //         }
-        //         failure{
-        //             notifyStageStatus('Deploy(Prod)', 'FAILURE')
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            agent { label 'build' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
+            steps {
+                notifyStageStatus('Build', 'PENDING')
+                echo "Building ..."
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
+            }
+            post {
+                success{
+                    notifyStageStatus('Build', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Build', 'FAILURE')
+                }
+            }
+        }
+        stage('Deploy (DEV)') {
+            agent { label 'deploy' }
+            when {
+                expression { return HAS_CHANGED == true;}
+            }
+            steps {
+                script{
+                    notifyStageStatus('Deploy(Dev)', 'PENDING')
+                    echo "Deploying to Dev..."
+                    BEARER_TOKEN = getEventBriteBearerToken().trim()
+                    echo "Token: ${BEARER_TOKEN}"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=dev"   
+                }
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Dev)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Dev)', 'FAILURE')
+                }
+            }
+        }
+        stage('Deploy (TEST)') {
+            agent { label 'deploy' }
+            when {
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
+                beforeInput true
+            }
+            input {
+                message "Should we continue with deployment to TEST?"
+                ok "Yes!"
+            }
+            steps {
+                script{
+                notifyStageStatus('Deploy(Test)', 'PENDING')
+                echo "Deploying to Test..."
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "Token: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=test"
+                }
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Test)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Test)', 'FAILURE')
+                }
+            }
+        }
+        stage('Deploy (PROD)') {
+            agent { label 'deploy' }
+            when {
+                expression { return env.CHANGE_TARGET == 'master' && HAS_CHANGED == true;}
+                beforeInput true
+            }
+            input {
+                message "Should we continue with deployment to PROD?"
+                ok "Yes!"
+            }
+            steps {
+                script{
+                notifyStageStatus('Deploy(Prod)', 'PENDING')
+                echo "Deploying to Prod..."
+                BEARER_TOKEN = getEventBriteBearerToken().trim()
+                echo "Token: ${BEARER_TOKEN}"
+                sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --bt=${BEARER_TOKEN} --env=prod"
+                }
+            }
+            post {
+                success{
+                    notifyStageStatus('Deploy(Prod)', 'SUCCESS')
+                }
+                failure{
+                    notifyStageStatus('Deploy(Prod)', 'FAILURE')
+                }
+            }
+        }
     }
 }
