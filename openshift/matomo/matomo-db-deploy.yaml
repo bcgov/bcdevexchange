@@ -12,9 +12,9 @@ objects:
     name: "${NAME}"
     generation: 1
     labels:
-      app: matomo
-      service: "${NAME}"
-      template: matomo-template
+      - app: "matomo"
+      - service: "${NAME}"
+      - template: "matomo-template"
   spec:
     strategy:
       type: Recreate
@@ -40,14 +40,14 @@ objects:
     template:
       metadata:
         labels:
-          name: "${NAME}"
+          - name: "${NAME}"
       spec:
         volumes:
         - name: "${NAME}-data"
           persistentVolumeClaim:
             claimName: "${NAME}"
         containers:
-        - name: mariadb
+        - name: "mariadb"
           image: ''
           ports:
           - containerPort: 3306
@@ -124,8 +124,8 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      app: matomo
-      name: "${NAME}"
+      - app: "matomo"
+      - name: "${NAME}"
   spec:
     storageClassName: "${PERSISTENT_VOLUME_CLASS}"
     accessModes:
@@ -138,8 +138,8 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      app: matomo
-      name: "${NAME}"
+      - app: "matomo"
+      - name: "${NAME}"
   stringData:
     database-root-password: "${MYSQL_ROOT_PASSWORD}"
     database-password: "${MYSQL_PASSWORD}"
@@ -151,14 +151,14 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      app: matomo
-      service: "${NAME}"
-      template: matomo-template
+      - app: "matomo"
+      - service: "${NAME}"
+      - template: "matomo-template"
     annotations:
       template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mariadb")].port}
   spec:
     ports:
-    - name: mariadb
+    - name: "mariadb"
       protocol: TCP
       port: 3306
       targetPort: 3306
@@ -223,17 +223,17 @@ parameters:
   displayName: Persistent Volume Size
   description: The size of the persistent volume , e.g. 512Mi, 1Gi, 2Gi.
   required: true
-  value: 1Gi
+  value: "1Gi"
 - name: PERSISTENT_VOLUME_CLASS
   displayName: Persistent Volume Class name
   description: The class of the volume; gluster-file, gluster-block, gluster-file-db
   required: false
-  value: netapp-file-standard
+  value: "netapp-file-standard"
 - name: CPU_REQUEST
   displayName: Resources CPU Request
   description: The resources CPU request (in cores) for this build.
   required: true
-  value: 100m
+  value: "100m"
 - name: CPU_LIMIT
   displayName: Resources CPU Limit
   description: The resources CPU limit (in cores) for this build.
