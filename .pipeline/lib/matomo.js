@@ -34,7 +34,7 @@ module.exports = (settings)=>{
     'param':{
       'TAG_NAME' : '3.11.0-fpm',
       'PROXY_TAG_NAME' : 'latest',
-      'MATOMO_URL' : 'matomo.pathfinder.gov.bc.ca'
+      'MATOMO_URL' : 'matomo-bcdevexchange.pathfinder.gov.bc.ca'
     }
 }))
 
