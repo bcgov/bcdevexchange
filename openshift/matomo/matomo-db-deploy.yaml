@@ -188,7 +188,7 @@ parameters:
   displayName: Environment TAG name
   description: The TAG name for this environment, e.g., dev, test, prod
   required: true
-  value: prod
+  value: latest
 - name: MYSQL_DATABASE
   displayName: MariaDB Database Name
   description: The name of the MariaDB database.
@@ -228,7 +228,7 @@ parameters:
   displayName: Persistent Volume Class name
   description: The class of the volume; gluster-file, gluster-block, gluster-file-db
   required: false
-  value: "netapp-file-standard"
+  value: netapp-file-standard
 - name: CPU_REQUEST
   displayName: Resources CPU Request
   description: The resources CPU request (in cores) for this build.
