@@ -24,7 +24,7 @@ module.exports = (settings)=>{
     }
 }))
 
-objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-proxy-build.yaml`, {
+  objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-proxy-build.yaml`, {
   'param':{
     'GIT_REF': oc.git.ref
   }
