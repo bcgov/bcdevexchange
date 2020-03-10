@@ -92,6 +92,19 @@ pipeline {
                 }
             }
         }
+        // Matomo deployment code - uncomment to deploy Matomo again
+        // stage('MatomoSetup') {
+        //     agent { label 'build' }
+        //     when {
+        //         expression { return HAS_CHANGED == true;}
+        //     }
+        //     steps {
+        //         script{
+        //             echo "Performing Matomo setup ..."
+        //             sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run matomo -- --pr=${CHANGE_ID}"
+        //         }
+        //     }  
+        // }
         stage('SonarScan') {
             agent { label 'build' }
             when {
