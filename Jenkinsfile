@@ -100,7 +100,7 @@ pipeline {
             steps {
                 script{
                     echo "Performing Matomo setup ..."
-                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run matomo --"
+                    sh "cd .pipeline && chmod +777 npmw && ./npmw ci && ./npmw run matomo -- --pr=${CHANGE_ID}"
                 }
             }  
         }
