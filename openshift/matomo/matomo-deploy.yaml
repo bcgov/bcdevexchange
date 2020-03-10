@@ -9,9 +9,9 @@ objects:
     name: "${NAME}"
     generation: 1
     labels:
-      - app: "matomo"
-      - service: "${NAME}"
-      - template: "matomo-template"
+      app: "matomo"
+      service: "${NAME}"
+      template: "matomo-template"
   spec:
     strategy:
       type: Rolling
@@ -44,9 +44,9 @@ objects:
     template:
       metadata:
         labels:
-          - app: "matomo"
-          - deploymentconfig: "matomo"
-          - template: "matomo-template"
+          app: "matomo"
+          deploymentconfig: "matomo"
+          template: "matomo-template"
       spec:
         volumes:
         - name: "${NAME}-source"
@@ -116,8 +116,8 @@ objects:
   metadata:
     name: "${NAME}-config"
     labels:
-      - app: "matomo"
-      - name: "${NAME}"
+      app: "matomo"
+      name: "${NAME}"
   spec:
     storageClassName: "${PERSISTENT_VOLUME_CLASS}"
     accessModes:
@@ -130,8 +130,8 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      - app: "${NAME}"
-      - name: "${NAME}"
+      app: "${NAME}"
+      name: "${NAME}"
   spec:
     host: "${MATOMO_URL}"
     tls:
@@ -145,9 +145,9 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      - app: "matomo"
-      - service: "${NAME}"
-      - template: "matomo-template"
+      app: "matomo"
+      service: "${NAME}"
+      template: "matomo-template"
   spec:
     ports:
     - name: 8080-tcp

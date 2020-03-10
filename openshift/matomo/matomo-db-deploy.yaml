@@ -12,9 +12,9 @@ objects:
     name: "${NAME}"
     generation: 1
     labels:
-      - app: "matomo"
-      - service: "${NAME}"
-      - template: "matomo-template"
+      app: "matomo"
+      service: "${NAME}"
+      template: "matomo-template"
   spec:
     strategy:
       type: Recreate
@@ -40,7 +40,7 @@ objects:
     template:
       metadata:
         labels:
-          - name: "${NAME}"
+          name: "${NAME}"
       spec:
         volumes:
         - name: "${NAME}-data"
@@ -124,8 +124,8 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      - app: "matomo"
-      - name: "${NAME}"
+      app: "matomo"
+      name: "${NAME}"
   spec:
     storageClassName: "${PERSISTENT_VOLUME_CLASS}"
     accessModes:
@@ -138,8 +138,8 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      - app: "matomo"
-      - name: "${NAME}"
+      app: "matomo"
+      name: "${NAME}"
   stringData:
     database-root-password: "${MYSQL_ROOT_PASSWORD}"
     database-password: "${MYSQL_PASSWORD}"
@@ -151,9 +151,9 @@ objects:
   metadata:
     name: "${NAME}"
     labels:
-      - app: "matomo"
-      - service: "${NAME}"
-      - template: "matomo-template"
+      app: "matomo"
+      service: "${NAME}"
+      template: "matomo-template"
     annotations:
       template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mariadb")].port}
   spec:
