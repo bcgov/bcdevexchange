@@ -10,6 +10,7 @@
     "sonar": "node sonar.js",
     "clean": "node clean.js",
     "deploy": "node deploy.js",
+    "matomo": "node matomo.js",
     "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
   },
   "repository": {

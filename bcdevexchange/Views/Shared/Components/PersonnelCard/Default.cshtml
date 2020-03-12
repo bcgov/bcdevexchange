@@ -16,9 +16,9 @@
     <img src=@filePath class='card-img-top' alt='Test Person'>
     <div class='card-body'>
         <h5 class='card-title'>@Model.Name</h5>
-        <div class='d-flex align-items-baseline justify-content-between'>
+        <div class='social-links'>
             <p class='card-subtitle mr-2'>@Model.Role</p>
-            <div class='d-flex align-items-start'>
+            <div class='social-icons'>
                @Html.Raw(emailHTML)
                @Html.Raw(twitterHTML)
                @Html.Raw(linkedinHTML)

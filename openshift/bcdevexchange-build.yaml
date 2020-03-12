@@ -83,11 +83,13 @@ parameters:
       The name assigned to all of the resources defined in this template.
     required: true
     value: bcdevexchange
+
   - name: SOURCE_REPOSITORY_URL
     displayName: Git Repository URL
     description: The URL of the repository with your application source code.
     required: true
     value: "https://github.com/bcgov/bcdevexchange.git"
+ 
   - name: SOURCE_REPOSITORY_REF
     displayName: Git Reference
     description: >-
@@ -95,6 +97,7 @@ parameters:
       not using the default branch.
     required: true
     value: master
+
   - name: SOURCE_CONTEXT_DIR
     displayName: Context Directory
     description: >-
@@ -102,17 +105,20 @@ parameters:
       your repository.
     required: false
     value: ""
+
   - name: VERSION
     required: true
   - description: A suffix appended to all objects
     displayName: Name Suffix
     name: SUFFIX
     required: true
+
   - name: DOTNET_STARTUP_PROJECT
     displayName: DotNet Startup Project
     description: The path to the startup project for the .Net application.
     value: bcdevexchange/bcdevexchange.csproj
     required: false
+
   - name: DOTNET_TEST_PROJECTS
     displayName: DotNet Test Project(s)
     description: >-
@@ -122,44 +128,35 @@ parameters:
     value: |-
       bcdevexchange.Tests/bcdevexchange.Tests.csproj
     required: false
+
   - name: DOTNET_RM_SRC
     displayName: Remove DotNet source code
     description:
       When set to true, the source code will not be included in the final image.
     value: "true"
     required: false
+
   - name: CPU_LIMIT
     displayName: Resources CPU Limit
     description: The resources CPU limit (in cores) for this build.
     value: "1"
     required: false
+
   - name: MEMORY_LIMIT
     displayName: Resources Memory Limit
     description: The resources Memory limit (in Mi, Gi, etc) for this build.
     value: 6Gi
     required: false
+
   - name: CPU_REQUEST
     displayName: Resources CPU Request
     description: The resources CPU request (in cores) for this build.
     value: "1"
     required: false
+    
   - name: MEMORY_REQUEST
     displayName: Resources Memory Request
     description: The resources Memory request (in Mi, Gi, etc) for this build.
     value: 4Gi
     required: false
-  - name: SONAR_TOKEN
-    displayName: Sonar Token
-    description: The Sonar token required to access the sonar server
-    value: "be9bbf0aaa33fc714028ccd9ac163538a9fff089"
-    required: false
-  - name: SONAR_PROJECT
-    displayName: Sonar Project
-    description: The Sonar project identifier
-    value: "bcdevexchange"
-    required: false
-  - name: SONAR_URL
-    displayName: Sonar URL
-    description: The sonar server url
-    value: "https://sonarqube-ifttgq-tools.pathfinder.gov.bc.ca"
-    required: false
+  
