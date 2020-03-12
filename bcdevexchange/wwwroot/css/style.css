@@ -650,15 +650,65 @@ div.timeline-content li{
 }
 
 .card-staff .card-body {
-  padding: 1.25rem 0;
+  padding: 1rem 0;
+}
+
+.card-staff .card-body .social-links {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.card-staff .card-body .social-links .social-icons {
+  display: flex;
+  align-items: flex-start;
 }
 
 .card-staff a.icon {
   color: #fff;
   height: auto;
   line-height: 1.2 !important; /* Matches p.card-subtitle */
-  padding-left: 10px;
+  margin-left: 14px;
 }
+/* Responsive styling for staff cards */
+@media (max-width: 575px) {
+  .card-staff {
+    display: block;
+    padding: 15px 0;
+  }
+  .card-staff .card-img-top {
+    float: left;
+    margin-right: 2rem;
+    width: 30%;
+    height: auto;
+  }
+  .card-staff .card-body {
+    padding: 0.25rem 0;
+  }
+  .card-staff .card-body .card-title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .card-staff .card-body .social-links {
+    display: block;
+  }
+  .card-staff .card-body .social-links .card-subtitle {
+    margin: 0 0 25px;
+    font-size: 0.8rem;
+  }
+  .card-staff .card-body .social-links .social-icons {
+    display: block;
+    text-align: left;
+  }
+  .card-staff a.icon { /* This is the social icons */
+    padding: 7px 9px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 20px 10px 20px 0;
+  }
+}
+
 
 .card-deck-wrapper {
     text-align: center;
@@ -682,8 +732,14 @@ p.card-subtitle {
     font-weight: 300;
     line-height: 1.2;
     letter-spacing: 0.1px; 
-} 
+}
+
 /* Responsive styling for the deck */
+@media (max-width: 575px) {
+  .card-deck-wrapper {
+    padding: 0 1rem;
+  }
+}
 @media (min-width: 0) {
   .card-deck .card {
     flex: 0 0 calc(100% - 30px);
