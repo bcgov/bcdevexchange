@@ -150,7 +150,6 @@ h3 {
   margin: 0 auto;
 }
 
-
 /* Digital Marketplace banner
 =============================*/
 .digital-marketplace-banner {
@@ -171,9 +170,6 @@ h3 {
   text-decoration: underline;
   white-space: nowrap;
 }
-
-  
-
 
 .top-content {
   color: #ffffff;
@@ -634,6 +630,7 @@ div.timeline-content li{
     left: 0%;
   }
 }
+
 /*------------------- End Timeline Styling -------------------*/
 
 
@@ -709,7 +706,6 @@ div.timeline-content li{
   }
 }
 
-
 .card-deck-wrapper {
     text-align: center;
     max-width: 60rem;
@@ -740,6 +736,7 @@ p.card-subtitle {
     padding: 0 1rem;
   }
 }
+
 @media (min-width: 0) {
   .card-deck .card {
     flex: 0 0 calc(100% - 30px);
@@ -891,7 +888,6 @@ p.card-subtitle {
   padding: 2rem 0;
 }
 
-
 /* Navbar overrides
 ===============================*/
 .navbar-toggler {
@@ -939,6 +935,7 @@ p.card-subtitle {
     opacity: 0.5;
     font-size: 0.85rem;
 }
+
 
 
 
@@ -1067,6 +1064,7 @@ p.card-subtitle {
     margin-left: 20px !important;
     width: 100% !important;
   }
+
   .container {
     max-width: 100%;
   }
