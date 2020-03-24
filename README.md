@@ -1,41 +1,59 @@
-# bcdevexchange
-This Repository is for the BCDevExchange website.
+# **BC DevExchange**
+
+The BCDevExchange is a web application that represents a supportive community enabling the government in British Columbia, Canada to deliver better digital services.
+
+## Project Architecture
+
+![&quot;TechnicalArchitechture&quot;](bcdevexchange/wwwroot/img/technical\_architecture/architecture.png)
+
+## Technologies/Tools Used
+
+- **BCDK** : The Jenkins pipeline for deployment is being set up by using BC Gov&#39;s tool named bcdk. More details can be found here:[https://github.com/david-kerins/bcdk](https://github.com/david-kerins/bcdk)
+- **SonarQube** : SonarQube is an open-source platform developed by SonarSource to detect bugs, code smells, and security vulnerabilities. More details can be found here:[https://www.sonarqube.org/](https://www.sonarqube.org/)
+- **Matomo** : Matomo is a free and open source web analytics application. It is being used to track online visits to the bcdevexchange website and display reports. More details can be found here:[https://matomo.org/](https://matomo.org/)
 
 
-The tech-stack is a static razor website.
-!["Technical Architechture"](bcdevexchange/wwwroot/img/technical_architecture/architecture.png)
+## Contributing
 
-# Local development.
-This website is generated using .Net Core 2.2
+Features should be implemented in feature branches. Create a pull request against the develop branch to have your work reviewed for subsequent deployment. The develop branch contains all approved code. The master branch contains work that has passed the Quality Assurance process and is ready to be deployed to production. Hotfixes can be merged directly to master via a pull request, but should be merged back into the develop branch as well.
 
 
-## Windows
+## Development Environment
 
-## Mac
+**Dependencies**
 
-## Linux
-Install dotnet 2.2 Core if it's not already installed
-https://docs.microsoft.com/en-us/dotnet/core/install/linux-package-manager-ubuntu-1804
+- .Net Core 2.2
+- Docker
 
-Make certaing the version is 2.2 by running
+**Run Locally**
 
-`dotnet --version`
+- Install .Net Core 2.2 [https://dotnet.microsoft.com/download/dotnet-core/2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+- Make an .env file locally and place the BEARER\_TOKEN needed from the site administrator. This BEARER\_TOKEN is required for pulling the data from the Eventbrite API.
+- Run the project using command dotnet run from the terminal.
 
-If version 3.* is running, it will need to be downgraded
 
-To run the site locally execute the command, `dotnet run`, in the bcdevexchange folder.
+## Deployment
 
-It will be hosted on the url `http://localhost:5000`
+**Projects** : We have four projects in the Openshift
 
-If you require hot reloading the web page will need to be run through VS codes debug and run feature as Razor and .cshtml files are excluded from `dotnet   watch run` functionality.
+- ifttgq-tools: This project is for deploying Jenkins pipeline and any infrastructural setup like matomo and sonar.
+- ifttgq-dev: This project is for deploying pull request
+- ifttgq-test: This is an intermediate project which ensures the code is correct before deploying it to the prod project.
+- ifttgq-prod: This project reflects the current status of master branch.
 
-# Running the `Learning` page locally
+**Environment** : We have three environments:
 
-In order for the learning page to load locally a `.env` file must be created.  The `.env` is listed in the `.gitignore` file to prevent secrets from getting committed and made public.  To generate the `.env` file save a copy of `.env-example`, and rename it `.env`.  Then get a copy of the BEARER_TOKEN needed from the site administrator.
+| **OpenShift Project** | **Name** | **URL** |
+| --- | --- | --- |
+| ifttgq-dev | Development | https://bcdevexchange-dev-{PR}-ifttgq-dev.pathfinder.gov.bc.ca|
+| ifttgq-test | Testing | https://bcdevexchange-test-ifttgq-test.pathfinder.gov.bc.ca|
+| ifttgq-prod | Production | https://bcdevexchange-prod-ifttgq-prod.pathfinder.gov.bc.ca|
 
-The Learning page should now be accessible locally.  If it does not render properly in debugging mode, try running the project from the terminal using the command `dotnet run`.
+**Deployment Process**
 
-# Contributing to the page.
+The &quot;ifttgq-tools&quot; OpenShift project is used to trigger the deployment process for all environments. On creation of every pull request against the develop branch, a deployment containing the pull request number starts in the dev project. The deployment gets updated on every change to the pull request. The develop branch reflects the current pull request deployment in the dev project. To deploy to the Test and Prod environment, merge the develop branch into the master branch. &quot;ifttgq-prod&quot; has been configured to start the deployment process for production automatically when commits are made to the master branch.
 
-Feel like helping out?  Spot a problem?  Feel free to fork the repos and make a pull request, or raise an issue for us to review.
 
+## Team
+
+The Procurement Concierge is currently operated by the BC Developers&#39; Exchange within the Government of British Columbia.
