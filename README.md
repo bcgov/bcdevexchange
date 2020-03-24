@@ -56,4 +56,4 @@ The &quot;ifttgq-tools&quot; OpenShift project is used to trigger the deployment
 
 ## Team
 
-The Procurement Concierge is currently operated by the BC Developers&#39; Exchange within the Government of British Columbia.
+The bcdevexchange is currently operated by the BC DevExchange Lab within the Government of British Columbia.
