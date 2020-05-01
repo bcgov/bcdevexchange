@@ -18,11 +18,47 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 <!-- What happens? section start -->
 <div class="section_main bg-light text-body">
     <div class="container">
-        <div class="row">
-            <div class="col text-center">
+        <div class="row text-center">
+            <div class="col">
                 <h2 class="pb-5">What happens at the Lab?</h2>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 px-lg-4">
+                <div class="card">
+                    <img src="../img/exchange_lab_photos/agile-mindset.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-1">
+                        <p class="card-text">Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 px-lg-4">
+                <div class="card">
+                    <img src="../img/exchange_lab_photos/openly-sharing.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-1">
+                        <p class="card-text">Openly sharing their progress and struggles on a regular basis, teams help each other improve their practices and solve problems.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 px-lg-4">
+                <div class="card">
+                    <img src="../img/exchange_lab_photos/testing.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-1">
+                        <p class="card-text">Incrementally delivering a digital product and testing it with end users every few weeks, teams release a minimum viable product within a year.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 px-lg-4">
+                <div class="card">
+                    <img src="../img/exchange_lab_photos/graduation.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-1">
+                        <p class="card-text">Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="covid-warning text-center m-auto"><i class="fa fa-exclamation-triangle"></i> Lab teams are currently working remotely from home until further notice due to the coronavirus.</div>
+        </div>
+        <!--
         @await Component.InvokeAsync("TextWithSideImage", new { 
             SubTitle="Teams in residence are trained in Agile mindset and methods, and supported to use modern DevOps processes and technology.",
             ImageFilePath="exchange_lab_photos/agile-mindset.jpg"
@@ -41,6 +77,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
             SubTitle="Upon graduation from the Lab, teams return to their home organization where they continue improving their product and spawn new digital delivery teams through modeling and mentorship.",
             ImageFilePath="exchange_lab_photos/graduation.jpg"
         })
+        -->
     </div>
 </div>
 <!-- What happens? section end -->
@@ -52,7 +89,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         <div class="row pb-5">
             <div class="col-md-9 m-auto">
                 <h2><i class="fa fa-hourglass"></i> Timeline</h2>
-                <p class="lead">Not every partner's journey is the same, but given what we've seen when the right conditions are in place, here's what you can expect when you invest in a Lab residency:</p>
+                <p class="lead">Not every teams's journey is the same, but given what we've seen when the right conditions are in place, here's what you can expect when you invest in a Lab residency:</p>
             </div>
         </div>
     </div>
@@ -157,49 +194,53 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 
 <!-- Benefits section start -->
 <div class="section_main bg-white text-body">
-    <div class="container">
+<div class="container">
         <div class="row pb-5">
             <div class="col-md-9 m-auto text-center">
                 <h3>While in residence at the Exchange Lab, your team will benefit from:</h3>
             </div>
         </div>
 
-        @await Component.InvokeAsync("TextWithSideImage", new { 
-            TextOnLeft=true,
-            Title="A Place to Call Home",
-            SubTitle="Insulated from the status quo operations of your home organization, your team will have a dedicated room where they can focus and sprint towards their goal.",
-            ImageFilePath="exchange_lab_photos/place.jpg"
-        })
-        @await Component.InvokeAsync("TextWithSideImage", new { 
-            TextOnLeft=true,
-            Title="Training & Coaching",
-            SubTitle="We will facilitate formal training for your team, help them make connections with other community members, and help bring your organization along for the journey.",
-            ImageFilePath="exchange_lab_photos/coaching.jpg"
-        }) 
-        @await Component.InvokeAsync("TextWithSideImage", new { 
-            TextOnLeft=true,
-            Title="Experts on Tap",
-            SubTitle="Your team will have access to experts who can offer guidance in Service Design, Privacy and Security, Behavioural Insights, Integrated Data, and Social Media.",
-            ImageFilePath="exchange_lab_photos/experts.jpg"
+        <div class="row">
+            <div class="col-md-11 col-lg-9 m-auto">
+                @await Component.InvokeAsync("TextWithSideImage", new { 
+                    TextOnLeft=true,
+                    Title="A Place to Call Home",
+                    SubTitle="Insulated from the status quo operations of your home organization, your team will have a dedicated room where they can focus and sprint towards their goal.",
+                    ImageFilePath="exchange_lab_photos/place.jpg"
+                })
+                @await Component.InvokeAsync("TextWithSideImage", new { 
+                    TextOnLeft=true,
+                    Title="Training & Coaching",
+                    SubTitle="We will facilitate formal training for your team, help them make connections with other community members, and help bring your organization along for the journey.",
+                    ImageFilePath="exchange_lab_photos/coaching.jpg"
+                }) 
+                @await Component.InvokeAsync("TextWithSideImage", new { 
+                    TextOnLeft=true,
+                    Title="Experts on Tap",
+                    SubTitle="Your team will have access to experts who can offer guidance in Service Design, Privacy and Security, Behavioural Insights, Integrated Data, and Social Media.",
+                    ImageFilePath="exchange_lab_photos/experts.jpg"
 
-        })
-        @await Component.InvokeAsync("TextWithSideImage", new { 
-            TextOnLeft=true,
-            Title="Platform Services",
-            SubTitle="Your team will get access to and support to use a suite of DevOps tools, including a hybrid-cloud container platform, so they can fully control the development and deployment of their product.",
-            ImageFilePath="exchange_lab_photos/platform-services.jpg"
-        })        
-        @await Component.InvokeAsync("TextWithSideImage", new { 
-            TextOnLeft=true,
-            Title="Community",
-            SubTitle="Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.",
-            ImageFilePath="exchange_lab_photos/community.jpg"
-        })        
+                })
+                @await Component.InvokeAsync("TextWithSideImage", new { 
+                    TextOnLeft=true,
+                    Title="Platform Services",
+                    SubTitle="Your team will get access to and support to use a suite of DevOps tools, including a hybrid-cloud container platform, so they can fully control the development and deployment of their product.",
+                    ImageFilePath="exchange_lab_photos/platform-services.jpg"
+                })        
+                @await Component.InvokeAsync("TextWithSideImage", new { 
+                    TextOnLeft=true,
+                    Title="Community",
+                    SubTitle="Surrounded by other teams who are striving to improve their practices and products, your team will be encouraged and supported as they learn.",
+                    ImageFilePath="exchange_lab_photos/community.jpg"
+                }) 
+           </div>
+       </div>
     </div>
 </div>
 <!-- Benefits section end -->
 
-<div class="section_main dark_bg">
+<div class="section_main light_bg">
     <div class="container">
         <div class="row d-flex flex-md-row-reverse">
             <div class="col-md-6">
@@ -225,6 +266,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                     <h2>Tour the Lab</h2>
                     <p class="lead">We host tours every month. Join us!</a></p>
                     <a class="blue_btn" href="https://www.eventbrite.ca/e/take-a-walk-on-the-agile-side-tour-of-bc-govs-exchange-lab-tickets-43946375793" target="_blank">Pick a date <i class="fa fa-external-link"></i></a>
+                    <div class="covid-warning"><i class="fa fa-exclamation-triangle"></i> Tours are currently on hold until further notice due to the coronavirus.</div>
                 </div>
             </div>
         </div>
