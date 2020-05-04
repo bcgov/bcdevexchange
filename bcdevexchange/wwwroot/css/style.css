@@ -97,8 +97,13 @@ p {
 
 small {
   font-size: 85%;
-  font-weight: 300 !important;
-  opacity: 0.4;
+}
+
+.covid-warning {
+  color: red;
+  font-size: 0.9em;
+  line-height: 1.2;
+  padding: 20px 0;
 }
 
 .address {
@@ -1164,7 +1169,6 @@ p.card-subtitle {
   display: block;
   font-size: 1.05rem;
   line-height: 1.4em;
-  font-weight: 300;
   letter-spacing: -0.25px;
   margin: 1em 0;
   opacity: 0.8;
