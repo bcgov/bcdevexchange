@@ -1,6 +1,6 @@
 ﻿namespace bcdevexchange
 {
-    public static class Constants
+    public static class Constants 
     {
         public const string CourseFormatId = "9";
 
