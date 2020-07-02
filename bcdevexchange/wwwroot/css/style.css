@@ -1145,7 +1145,7 @@ p.card-subtitle {
 
 /*-- Begin Teaser styling --*/
 .teaser-img-left, .teaser-img-right {
-  padding: 80px 0;
+  padding: 60px 0;
   min-height: 80vh;
 }
 
