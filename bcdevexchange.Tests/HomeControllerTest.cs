@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace bcdevexchange.Tests
-{
+{ 
     [TestClass]
     public class HomeControllerTest
     {
