@@ -15,7 +15,7 @@ namespace bcdevexchange.Tests
     [TestClass]
     public class HomeControllerTest
     {
-        //Arrange
+        // Arrange
         Mock<IEventBriteService> eventbriteMock = new Mock<IEventBriteService>();
         IMemoryCache memCache = new MemoryCache(new MemoryCacheOptions());
 
@@ -43,30 +43,30 @@ namespace bcdevexchange.Tests
         [TestMethod]
         public void Mock_GetViewResultIndex_Test() //Confirms route returns view
         {
-            //Arrange
+            // Arrange
             APISetup();
 
             HomeController controller = new HomeController(memCache, eventbriteMock.Object, new NullLogger<HomeController>());
 
-            //Act
+            // Act
             var result = controller.Index();
 
-            //Assert
+            // Assert
             Assert.IsInstanceOfType(result, typeof(ActionResult));
         }
 
         [TestMethod]
         public async Task Mock_GetViewResultLearning_Test() //Confirms route returns view
         {
-            //Arrange
+            // Arrange
             APISetup();
             HomeController controller = new HomeController(memCache, eventbriteMock.Object, new NullLogger<HomeController>());
 
-            //Act
+            // Act
             var result = await controller.GetEvents() as ViewResult;
             var model = result.ViewData.Model as Dictionary<string, IList<Event>>;
 
-            //Assert
+            // Assert
             Assert.IsNotNull(model);
             var events = model["events"];
             var courses = model["courses"];
