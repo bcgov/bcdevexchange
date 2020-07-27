@@ -122,8 +122,9 @@ Backgrounds
   background-color: #fdd068;
   color: #181818;
   position: fixed;
-  top: 68px;
+  top: 80px;
   z-index: 900;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.5)!important;
 }
 
 .close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
