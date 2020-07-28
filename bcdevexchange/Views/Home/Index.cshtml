@@ -3,57 +3,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="landing">
+    <div class="container">
+        <div class="alert alert-warning alert-digital-marketplace alert-dismissible fade show" role="alert">
+            Looking for <strong>Code With Us</strong> and <strong>Sprint With Us</strong> opportunities? They've moved to the new <strong>Digital Marketplace</strong>.
+            <a href="https://digital.gov.bc.ca/marketplace" target="_blank" class="btn btn-black">Visit site <i class="fa fa-external-link"></i></a>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
     <!-- header-banner start -->
     <div class="hero home-hero">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-lg-8">
-                    <div class="hero-text bg-overlay pb-5">We're a supportive community enabling the government in British Columbia, Canada to deliver better digital services.</div>
+                    <div class="hero-text bg-overlay">We're a supportive community in British Columbia, Canada enabling the government to deliver better digital services.</div>
                 </div>
             </div>
         </div>
     </div>
     <!-- header-banner end -->
     <!-- Exchange Lab teaser start / 'teaser-img-left' -->
-    <div class="teaser-img-left dark_bg">
+    <div class="teaser-img-left bg-secondary">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="teaser-name">Exchange Lab</div>
+                    <div class="teaser-name"><i class="fa fa-users"></i> Exchange Lab</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md mr-md-5 mb-5 mb-md-0">
                     <a href="ExchangeLab">
-                        <img class="img-fluid" src="img/home_img/exchange-lab-teaser.jpg" alt="Exchange Lab">
+                        <img class="img-fluid img-clickable" src="img/home_img/exchange-lab-teaser.jpg" alt="Exchange Lab">
                     </a>
                 </div>
-                <div class="col-md align-self-center">
+                <div class="col-md align-self-start">
                     <div class="teaser">
                         <title>Want to create capability in your organization to deliver digital services?</title>
                         <subtitle>We help B.C. government organizations assemble digital delivery teams. At the Exchange Lab, we host teams in residence where we support them in a positive, collaborative environment.</subtitle>
                         <stat>14+</stat>
-                        <stat-description>Digital delivery teams got their start here</stat-description>
-                        <a href="ExchangeLab" class="blue_btn">Learn More</a>
+                        <stat-description>Digital delivery teams have got their start here</stat-description>
+                        <a class="btn btn-blue" href="ExchangeLab">Learn More <i class="fa fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
 
             <!--Return to the Lab Video teaser start -->
-            <div class="row py-5 bg_dark">
-                <div class="col text-center">
-                    <div class="teaser">
-                        <div><span class="badge badge-pill badge-light">COVID-19 Update</span></div>
-                        <title class="pb-4">We're ready to welcome you back to the Lab!</title>
-                    </div>
-                    <div>
-                        <iframe style="width: 448px; height: 252px; max-width: 100%" src="https://www.youtube.com/embed/83GbRjWogak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="row bg-secondary">
+                <div class="col-md align-self-center text-center">
+                    <div class="teaser pt-4">
+                        <div class="teaser-name text-warning mb-1"><i class="fa fa-disease"></i> COVID-19</div>
+                        <h5 class="pb-4">We're ready to welcome you back to the Lab!</h5>
                     </div>
                     <div class="py-2">
                         <a href="../docs/Return-to-Workplace-Playbook.pdf" download>Download the <span class="font-weight-bold">Return to Workplace Playbook</span> <i class="fa fa-download"></i></a>
                     </div>
                     <div>
                         <a href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" target="_blank">Subscribe to the <span class="font-weight-bold">Exchange Lab newsletter</span> <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+                <div class="col-md mr-md-5 mb-5 mb-md-0">
+                    <div class="pt-5">
+                        <iframe style="width: 448px; height: 252px; max-width: 100%" src="https://www.youtube.com/embed/83GbRjWogak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -63,26 +75,28 @@
     <!-- Exchange Lab teaser end -->
     
     <!-- DevOps Platform teaser start / "teaser-img-right" -->
-    <div class="teaser-img-right light_bg">
+    <div class="teaser-img-right bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="teaser-name">DevOps Platform</div>
+                    <div class="teaser-name"><i class="fa fa-server"></i> Platform</div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-center">
+                <div class="col-md mr-md-5 mb-5 mb-md-0 align-self-start">
                     <div class="teaser">
                         <title>Still deploying apps the hard way?</title>
                         <subtitle>Our DevOps platform enables digital delivery teams in the B.C. government to develop and deploy their applications quickly, securely, and at scale.</subtitle>
                         <stat>100+</stat>
                         <stat-description>Apps running on the platform</stat-description>
-                        <a href="DevOpsPlatform" class="blue_btn">Learn More</a>
+                        <a href="DevOpsPlatform" class="btn btn-blue">Learn More
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md">
                     <a href="DevOpsPlatform">
-                        <img class="img-fluid" src="img/home_img/devops-platform-teaser.jpg" alt="DevOps Platform">
+                        <img class="img-fluid img-clickable" src="img/home_img/devops-platform-teaser.jpg" alt="DevOps Platform">
                     </a>
                 </div>
             </div>
@@ -92,27 +106,29 @@
     <!-- DevOps Platform teaser end -->
     
     <!-- Learning teaser start -->
-    <div class="teaser-img-left dark_bg">
+    <div class="teaser-img-left bg-secondary">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="teaser-name">Learning</div>
+                    <div class="teaser-name"><i class="fa fa-graduation-cap"></i> Learning</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md mr-md-5 mb-5 mb-md-0">
                     <a href="/learning">
-                        <img class="img-fluid" src="img/home_img/learning-teaser.jpg" alt="image">
+                        <img class="img-fluid img-clickable" src="img/home_img/learning-teaser.jpg" alt="image">
                     </a>
                 </div>
                 <div class="col-md align-self-center">
                     <div class="teaser">
                         <title>Want to 'be more agile,' but not sure how?</title>
                         <subtitle>We can help you understand and adopt new approaches to teamwork and technology like Agile, Scrum, and DevOps. You might even have some fun while you're at it!</subtitle>
-                        <stat>1400+</stat>
+                        <stat>1,400+</stat>
                         <stat-description>People from across the B.C. government have taken part in training and learning events we've hosted</stat-description>
 
-                        <a href="/learning" class="blue_btn">Explore Courses and Events</a>
+                        <a href="/learning" class="btn btn-blue">Explore Courses
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -121,42 +137,135 @@
     <!-- Learning teaser end -->
     
     <!-- Community section start -->
-    <div class="section_main light_bg">
+    <div class="section_main bg-dark">
         <div class="section_inner">
-            <div class="home-container">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="heading2">Be a part of the community</h2>
-                        <br>
-                        <br>
+                    <div class="col">
+                        <div class="teaser-name"><i class="fa fa-comments-o"></i> Community</div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md mr-md-5 mb-5 mb-md-0">
-                        <h2 class="mb-4">
-                            <i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        </h2>
-                        <p class="mb-5">Our newsletter will keep you up-to-date on events and learning opportunities, and what's happening at the Exchange Lab.</p>
-                        <a class="blue_btn" href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" target="_blank">Subscribe <i class="fa fa-external-link"></i></a>
+                    <div class="col-md mr-md-4 mb-5 mb-md-0">
+                        <h2 class="mb-4">Newsletter</h2>
+                        <p class="mb-4">Stay up-to-date on events, learning opportunities, and what's happening at the Exchange Lab.</p>
+                        <a class="btn btn-blue" href="https://us3.list-manage.com/subscribe?u=2cd8863adab4f39ade7cbee34&id=b331c22b50" target="_blank">Subscribe <i class="fa fa-envelope"></i></a>
                     </div>
                     <div class="col-md">
-                        <h2 class="mb-4">
-                            <i class="fa fa-comments" aria-hidden="true"></i> 
-                        </h2>
-                        <p class="mb-5">Join 1,000+ community members on our messaging platform, RocketChat. Connect, get help, and offer your knowledge.</p>
-                        <div class="small_text">Already have an IDIR or a GitHub account associated to the bcgov org?</div>
-                        <a href="https://chat.pathfinder.gov.bc.ca/home" class="blue_btn">Join RocketChat <i class="fa fa-external-link"></i></a>
-                        <div class="small_text mt-5">Don't have an IDIR or BC Gov GitHub account? <span class="text-nowrap"><a href="mailto:BCDevExchange@gov.bc.ca">Request an invitation <i class="fa fa-external-link"></i></a></span></div>
+                        <img src="img/Icons/Rocket.Chat_Logo.svg" class="rocket-chat mb-4">
+                        <p class="mb-4">Join 1,000+ members on our community messaging platform. Connect, get help, and offer your knowledge.</p>
+                        <div class="small_text text-muted">Already have an IDIR or a GitHub account associated to the bcgov org?</div>
+                        <a href="https://chat.pathfinder.gov.bc.ca/home" class="btn btn-blue">Join RocketChat <i class="fa fa-external-link"></i></a>
+                        <div class="small_text text-muted mt-5">Don't have an IDIR or bcgov-associated GitHub account? <span class="text-nowrap"><a href="mailto:BCDevExchange@gov.bc.ca">Request an invitation <i class="fa fa-envelope"></i></a></span></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Community section end -->
+    
+    <!-- Podcast Teaser section start -->
+    <div class="section_main bg-secondary">
+        <div class="container">
+            <div class="row d-flex flex-row-reverse">
+                <div class="col-md">
+                    <img src="img/home_img/ari-podcasting.jpg" alt="Ari Hershberg, Community Practice Lead">
+                </div>
+                <div class="col-md-6 pr-md-5 align-self-center">
+                    <h1 class="display-4 text-warning my-3">The Exchange Podcast <i class="fa fa-microphone"></i></h1>
+                    <p class="lead text-light"><span class="font-weight-bold">Ari Hershberg</span> talks with members of the digital government community.</p>
+                </div>
+            </div>
+            <div class="row pt-5 pb-4">
+                <div class="col col-sm-11 col-md-9">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0">Recent Episodes</h4>
+                        <a href="https://bcdevexchange.libsyn.com" target="_blank"> View all <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-11 col-md-9">
+                    <div class="card-group">
+                        <!-- Episode 2 / Spencer Tickner -->
+                        <div class="card card-podcast mr-sm-3">
+                            <a href="https://bcdevexchange.libsyn.com/how-agile-can-work-in-government" target="_blank">
+                                <img class="card-img-top img-clickable" src="img/home_img/podcast-teasers/spencer-2.jpg" alt="Spencer Tickner">
+                            </a>
+                            <div class="card-body">
+                                <div class="episode-date">Episode 2 &bull; June 11, 2020</div>
+                                <h5 class="card-title">How Agile Can Work in Government</h5>
+                                <p class="card-subtitle"><span class="font-weight-bold">Spencer Tickner</span>, Executive Director & Chief Technology Officer at the Ministry of Education, shares stories about being a product owner and explains Agile in a way that's easy to grasp.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://bcdevexchange.libsyn.com/how-agile-can-work-in-government" target="_blank" class="btn btn-blue">Listen on Libsyn <i class="fa fa-lg fa-play-circle-o"></i> </a>
+                            </div>
+                        </div>
+                        <!-- Episode 1 / Todd Wilson -->
+                        <div class="card card-podcast rounded ml-sm-3">
+                            <a href="https://bcdevexchange.libsyn.com/introducing-change-in-the-government" target="_blank" alt="Go to podcast episode page">
+                                <img class="card-img-top img-clickable" src="img/home_img/podcast-teasers/todd-2.jpg" alt="Todd Wilson">
+                            </a>
+                            <div class="card-body">
+                                <div class="episode-date">Episode 1 &bull; May 14, 2020</div>
+                                <h5 class="card-title">Introducing Change in Government</h5>
+                                <p class="card-subtitle">Former Director of Technology Solutions at the BCDevExchange, <span class="font-weight-bold">Todd Wilson</span>, shares about the struggles and rewards of creating the BCDevExchange and trying to introduce change in the government.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://bcdevexchange.libsyn.com/introducing-change-in-the-government" target="_blank" class="btn btn-blue">Listen on Libsyn <i class="fa fa-lg fa-play-circle-o"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="row pt-5 pb-3">
+                <div class="col">
+                    <h4>How to Subscribe</h4>
+                </div>
+            </div>
+            <div class="row text-white-50">
+                <div class="col-sm pr-sm-5">
+                    <div class="d-flex align-items-center mb-3">
+                        <div><img class="podcast-icon" src="img/Icons/Podcasts_(iOS).svg"></div>
+                        <h5 class="mb-0 ml-3">iOS</h5>
+                    </div>
+                    <p>Open the Podcasts app on your phone:</p>
+                    <ul>
+                        <li>Tap the LIBRARY button at the bottom of your app</li>
+                        <li>Choose the option ADD A PODCAST BY URL and enter the RSS link: <span class="text-blue">https://bcdevexchange.libsyn.com/rss</span>
+                        <li>Tap SUBSCRIBE</li>
+                        <li>Tap the DONE button at the top right</li>
+                        <li>Tap on The Exchange Podcast logo to access the episodes</li>
+                    </ul>
+                </div>
+                <div class="col-sm pl-sm-5">
+                    <div class="d-flex align-items-center mb-3">
+                        <img class="podcast-icon" src="img/Icons/Google_Podcasts_icon.svg">
+                        <h5 class="mb-0 ml-3">Android</h5>
+                    </div>
+                    <p>Visit the Google Play Store to find a podcast player that suits you. These steps should be similar in all applications:</p>
+                    <ul>
+                        <li>Tap on the + sign at the top right of the screen</li>
+                        <li>Select "Add an RSS Feed"</li>
+                        <li>Enter the RSS link: <span class="text-blue">https://bcdevexchange.libsyn.com/rss</span>
+                        <li>Tap "Add"</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row text-white-50">
+                <div class="col-sm-10 col-md-6 m-auto">
+                    <p>If using another podcast application, subscribe by visiting <a href="https://bcdevexchange.libsyn.com/" target="_blank">https://bcdevexchange.libsyn.com/</a> and clicking the RSS icon, or entering the RSS link: <span class="text-blue">https://bcdevexchange.libsyn.com/rss</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Podcast Teaser section end -->
 </div>
-<div class="digital-marketplace-banner">
+<div class="banner">
     <div class="container text-center">
-        <p>The BCDevExchange is helping the BC Public Service deliver on government's digital transformation. Learn more at <a href="http://digital.gov.bc.ca" target="_blank
-            ">Digital.gov.bc.ca <i class="fa fa-arrow-right"></i></a></p>
+        We're part of government's digital transformation. Learn more at <a href="http://digital.gov.bc.ca" target="_blank
+            ">Digital.gov.bc.ca <i class="fa fa-external-link"></i></a>
     </div>
 </div>

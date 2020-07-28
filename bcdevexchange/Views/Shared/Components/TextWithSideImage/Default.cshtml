@@ -1,7 +1,7 @@
 @model bcdevexchange.Components.TextWithSideImage.TextWithSideImageModel
 
 @{string titleHTML = !String.IsNullOrEmpty(Model.Title)?"<title>"+Model.Title+"</title>": "" ;}
-@{string buttonHtml = !String.IsNullOrEmpty(Model.ButtonUrl)?"<a href='"+Model.ButtonUrl+"' class='blue_btn'>Learn More</a>": "" ;}
+@{string buttonHtml = !String.IsNullOrEmpty(Model.ButtonUrl)?"<a href='"+Model.ButtonUrl+"' target='_blank' class='btn btn-blue'>Learn More <i class='fa fa-external-link'></i></a>": "" ;}
 @{string subtitleHtml = !String.IsNullOrEmpty(Model.SubTitle)?  "<subtitle>"+@Model.SubTitle.Replace("NEWLINE", "</subtitle><subtitle>")+"</subtitle>" :"";}
 @{if (Model.TextOnLeft)
 {    
