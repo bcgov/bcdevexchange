@@ -67,6 +67,13 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                 Email="shelly.han@gov.bc.ca"
             })
             @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Patrick Simonian",
+                Role = "DevOps Platform Administrator",
+                ImageFileName = "patrick.jpg",
+                LinkedIn= "https://www.linkedin.com/in/patrick-simonian-a2b818132/",
+                Email="patrick.simonian@gov.bc.ca"
+            })
+            @await Component.InvokeAsync("PersonnelCard", new { 
                 Name = "Cailey Jones",
                 Role = "DevOps Platform Administrator",
                 ImageFileName = "cailey.jpg",
