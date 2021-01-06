@@ -1,3 +1,6 @@
+[![img](https://img.shields.io/badge/Lifecycle-Retired-d45500)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
+The project is no longer being used and/or supported.
+
 # **BC DevExchange**
 
 The BCDevExchange is a web application that represents a supportive community enabling the government in British Columbia, Canada to deliver better digital services.
