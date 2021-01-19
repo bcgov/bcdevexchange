@@ -108,10 +108,11 @@ parameters:
 
   - name: VERSION
     required: true
+    value: latest
+
   - description: A suffix appended to all objects
     displayName: Name Suffix
     name: SUFFIX
-    required: true
 
   - name: DOTNET_STARTUP_PROJECT
     displayName: DotNet Startup Project

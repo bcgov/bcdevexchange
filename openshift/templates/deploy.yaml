@@ -6,14 +6,15 @@ labels:
   tier: backend
 metadata:
   name: "${NAME}-deployment-template"
-  creationTimestamp: null
 objects:
   - kind: Service
     apiVersion: v1
     metadata:
-      name: "${NAME}${SUFFIX}"
+      name: "${NAME}"
       annotations:
         description: Exposes and load balances the application pods.
+      labels:
+        app: "${NAME}"
     spec:
       ports:
         - name: 8080-tcp
@@ -21,29 +22,36 @@ objects:
           port: 8080
           targetPort: 8080
       selector:
-        name: "${NAME}${SUFFIX}"
+        app: ${NAME}
       type: ClusterIP
       sessionAffinity: None
   - kind: Route
     apiVersion: v1
     metadata:
-      name: "${NAME}${SUFFIX}"
+      name: "${NAME}"
+      labels:
+        app: "${NAME}"
     spec:
       host: "${HOST}"
-      path: ""
       tls:
-        insecureEdgeTerminationPolicy: Redirect
         termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+        # certificate: |-
+        #   ${TLS_CERT_PEM}
+        # key: |-
+        #   ${TLS_KEY_PEM}
+        # caCertificate: |-
+        #   ${TLS_CACERT_PEM}
       to:
         kind: Service
-        name: "${NAME}${SUFFIX}"
+        name: "${NAME}"
         weight: 100
       port:
         targetPort: 8080-tcp
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
-      name: "${NAME}${SUFFIX}"
+      name: "${NAME}"
       annotations:
         description: "Defines how to deploy ${NAME}"
     spec:
@@ -66,15 +74,15 @@ objects:
             from:
               kind: ImageStreamTag
               namespace: "${IMAGE_NAMESPACE}"
-              name: "${NAME}:${VERSION}"
-      replicas: 1
+              name: "${NAME}:${SOURCE_IMAGE_TAG}"
+      replicas: ${{REPLICA_COUNT}}
       selector:
-        name: ${NAME}${SUFFIX}
+        app: ${NAME}
       template:
         metadata:
-          name: "${NAME}${SUFFIX}"
+          name: "${NAME}"
           labels:
-            name: ${NAME}${SUFFIX}
+            app: ${NAME}
         spec:
           containers:
             - name: "${NAME}"
@@ -82,11 +90,12 @@ objects:
               ports:
                 - containerPort: 8080
                   protocol: TCP
+              envFrom:
+                - secretRef:
+                    name: bcdevx-creds
               env:
                 - name: ASPNETCORE_ENVIRONMENT
-                  value: "${ASPNETCORE_ENVIRONMENT}"
-                - name: BEARER_TOKEN
-                  value: "${BEARER_TOKEN}"  
+                  value: "${ASPNETCORE_ENVIRONMENT}" 
               resources:
                 limits:
                   cpu: "${CPU_LIMIT}"
@@ -117,13 +126,13 @@ objects:
   - kind: HorizontalPodAutoscaler
     apiVersion: autoscaling/v1
     metadata:
-      name: "${NAME}${SUFFIX}"
+      name: "${NAME}"
       labels:
-        app: "${NAME}${SUFFIX}"
+        app: "${NAME}"
     spec:
       scaleTargetRef:
         kind: DeploymentConfig
-        name: "${NAME}${SUFFIX}"
+        name: "${NAME}"
         apiVersion: v1
       minReplicas: "${{MIN_REPLICAS}}"
       maxReplicas: "${{MAX_REPLICAS}}"
@@ -135,11 +144,7 @@ parameters:
       The name assigned to all of the resources defined in this template.
     required: true
     value: bcdevexchange
-  - name: VERSION
-    required: true
-  - description: A suffix appended to all objects
-    displayName: Name Suffix
-    name: SUFFIX
+  - name: SOURCE_IMAGE_TAG
     required: true
   - name: HOST
     displayName: Application Hostname
@@ -149,9 +154,9 @@ parameters:
     value: ""
   - name: ASPNETCORE_ENVIRONMENT
     displayName: AspNetCore Environment
-    description: >-
-      The ASP Net Core deployment environment setting, e.g., Development,
-      Staging, Production
+    description: |
+      The ASP Net Core deployment environment setting, e.g.
+      Development, Staging, or Production.
     required: true
     value: Development
   - name: BEARER_TOKEN
@@ -166,27 +171,33 @@ parameters:
       The namespace of the OpenShift project containing the imagestream for the
       application.
     required: false
-    value: ifttgq-tools
+    value: fd34fb-tools
   - name: CPU_LIMIT
     displayName: CPU Limit
     description: Maximum amount of CPU the container can use.
     required: true
-    value: 500m
+    value: 250m
   - name: MEMORY_LIMIT
     displayName: Memory Limit
     description: Maximum amount of memory the container can use.
     required: true
-    value: 1Gi
+    value: 512Mi
   - name: CPU_REQUEST
     displayName: CPU Request
     description: Starting amount of CPU the container can use.
     required: true
-    value: 100m
+    value: 60m
   - name: MEMORY_REQUEST
     displayName: Memory Request
     description: Starting amount of memory the container can use.
     required: true
-    value: 256Mi
+    value: 128Mi
+  - name: REPLICA_COUNT
+    displayName: Initial Replica Count
+    description: |
+      The number of pods to initially spin up when the application
+      is deployed.
+    required: true
   - name: MIN_REPLICAS
     displayName: Minimum Replica count
     description: Minimum number of replicas
@@ -197,3 +208,20 @@ parameters:
     description: Maximum number of replicas
     required: true
     value: "2"
+  - name: TLS_CERT_PEM
+    description: TLS certificate data in PEM format.
+    displayName: TLS Certificate
+    required: true
+  - name: TLS_KEY_PEM
+    description: |
+      TLS certificate private key data in PEM format. This will be in
+      the possession of the person who created the Certificate Signing
+      Request (CSR).
+    displayName: TLS Private Key
+    required: true
+  - name: TLS_CACERT_PEM
+    description: |
+      TLS certificate authority certificate data in PEM format. If you
+      got your certificate from an iStore request, use L1KChain.txt.
+    displayName: TLS Certificate Authority Certificate
+    required: true

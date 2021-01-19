@@ -341,4 +341,5 @@ node_modules/
 
 # This is to exclude environment file
 .env
-
+*secret*
+*.pem

@@ -57,3 +57,11 @@ The &quot;ifttgq-tools&quot; OpenShift project is used to trigger the deployment
 ## Team
 
 The bcdevexchange is currently operated by the BC DevExchange Lab within the Government of British Columbia.
+
+--- NOTES
+
+➜  bcdevexchange git:(master) ✗ oc process -f openshift/templates/secrets.yaml --param-file=./openshift/bcdevx-dev-secrets.properties| oc apply -f -
+
+➜  bcdevexchange git:(master) ✗ oc process -f openshift/nsp-tools.yaml -p NAMESPACE=$(oc project --short)| oc apply -f -
+externalnetwork.security.devops.gov.bc.ca/all-things-external created
+networksecuritypolicy.security.devops.gov.bc.ca/builder-to-internet created
