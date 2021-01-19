@@ -60,8 +60,20 @@ The bcdevexchange is currently operated by the BC DevExchange Lab within the Gov
 
 --- NOTES
 
-➜  bcdevexchange git:(master) ✗ oc process -f openshift/templates/secrets.yaml --param-file=./openshift/bcdevx-dev-secrets.properties| oc apply -f -
-
 ➜  bcdevexchange git:(master) ✗ oc process -f openshift/nsp-tools.yaml -p NAMESPACE=$(oc project --short)| oc apply -f -
 externalnetwork.security.devops.gov.bc.ca/all-things-external created
 networksecuritypolicy.security.devops.gov.bc.ca/builder-to-internet created
+
+
+➜  bcdevexchange git:(master) ✗ oc process -f openshift/templates/nsp.yaml -p NAMESPACE=$(oc project --short) | oc create -f -
+externalnetwork.security.devops.gov.bc.ca/all-things-external created
+networksecuritypolicy.security.devops.gov.bc.ca/server-to-internet created
+
+➜  bcdevexchange git:(master) ✗ oc process -f openshift/templates/secrets.yaml --param-file=./openshift/bcdevx-secrets.properties| oc apply -f -
+secret/bcdevx-creds created
+
+oc process -f openshift/templates/deploy.yaml --param-file=openshift/bcdevx-dev.properties -p TLS_CERT_PEM="$(cat ./openshift/certificate.pem)" -p TLS_KEY_PEM="$(cat ./openshift/key.pem)" -p TLS_CACERT_PEM="$(cat ./openshift/ca.pem)"| oc apply -f -
+service/bcdevexchange unchanged
+route.route.openshift.io/bcdevexchange unchanged
+deploymentconfig.apps.openshift.io/bcdevexchange configured
+horizontalpodautoscaler.autoscaling/bcdevexchange configured
