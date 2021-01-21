@@ -77,3 +77,9 @@ service/bcdevexchange unchanged
 route.route.openshift.io/bcdevexchange unchanged
 deploymentconfig.apps.openshift.io/bcdevexchange configured
 horizontalpodautoscaler.autoscaling/bcdevexchange configured
+
+
+# MATOMO
+
+➜  bcdevexchange git:(master) ✗ oc process -f openshift/templates/matomo-secrets.yaml --param-file=./openshift/matomo-secrets.properties| oc apply -f -
+secret/matomo-creds created
