@@ -55,6 +55,22 @@ objects:
           - 'role=server'
       destination:
         - - 'ext:name=all-things-external'
+  - apiVersion: security.devops.gov.bc.ca/v1alpha1
+    kind: NetworkSecurityPolicy
+    metadata:
+      name: matomo-frontend-to-db
+      labels:
+        app: matomo
+    spec:
+      description: |
+        allow the matomo pod(s) to communicate with
+        the database
+      source:
+        - - $namespace=${NAMESPACE}
+          - 'role=frontend'
+      destination:
+        - - $namespace=${NAMESPACE}
+          - 'role=db'
 parameters:
   - name: NAMESPACE
     description: |

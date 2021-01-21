@@ -11,7 +11,6 @@ objects:
     labels:
       app: "matomo"
       service: "${NAME}"
-      template: "matomo-template"
   spec:
     strategy:
       type: Rolling
@@ -46,24 +45,27 @@ objects:
     test: false
     selector:
       app: matomo
-      deploymentconfig: "${NAME}"
-      template: matomo-template
+      role: frontend
     template:
       metadata:
+        name: "${NAME}"
         labels:
-          app: "matomo"
-          deploymentconfig: "matomo"
-          template: "matomo-template"
+          app: matomo
+          role: frontend
       spec:
         volumes:
-        - name: "${NAME}-source"
-          emptyDir: {}
-        - name: "${NAME}-config"
-          persistentVolumeClaim:
-            claimName: "${NAME}-config"
+          - name: source-vol
+            emptyDir: {}
+          - name: config-vol
+            persistentVolumeClaim:
+              claimName: "${NAME}-config"
         containers:
-        - image: "${SOURCE_IMAGE_NAME}"
+        - name: matomo
+          image: "${SOURCE_IMAGE_NAME}"
           imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+              protocol: TCP
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 1
@@ -72,10 +74,6 @@ objects:
             tcpSocket:
               port: 9000
             timeoutSeconds: 5
-          name: matomo
-          ports:
-          - containerPort: 9000
-            protocol: TCP
           readinessProbe:
             failureThreshold: 3
             initialDelaySeconds: 1
@@ -87,11 +85,12 @@ objects:
           resources: {}
           terminationMessagePath: "/dev/termination-log"
           volumeMounts:
-          - mountPath: "/var/www/html"
-            name: matomo-source
-          - mountPath: "/var/www/html/config"
-            name: matomo-config
-        - image: "${NAME}-proxy"
+            - name: config-vol
+              mountPath: /var/www/html/config
+            - name: source-vol
+              mountPath: /var/www/html
+        - name: "${NAME}-proxy"
+          image: "${NAME}-proxy"
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -101,7 +100,6 @@ objects:
             tcpSocket:
               port: 8080
             timeoutSeconds: 1
-          name: "${NAME}-proxy"
           ports:
           - containerPort: 8080
             protocol: TCP
@@ -113,11 +111,10 @@ objects:
             tcpSocket:
               port: 8080
             timeoutSeconds: 1
-          resources: {}
-          terminationMessagePath: "/dev/termination-log"
           volumeMounts:
-          - mountPath: "/var/www/html"
-            name: matomo-source
+            - name: source-vol
+              mountPath: /var/www/html
+          terminationMessagePath: "/dev/termination-log"
 - kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
@@ -132,37 +129,59 @@ objects:
     resources:
       requests:
         storage: "${PERSISTENT_VOLUME_SIZE}"
+# - kind: Route
+#   apiVersion: v1
+#   metadata:
+#     name: "${NAME}"
+#     labels:
+#       app: "${NAME}"
+#       name: "${NAME}"
+#   spec:
+#     host: "${MATOMO_URL}"
+#     tls:
+#       insecureEdgeTerminationPolicy: Redirect
+#       termination: edge
+#     to:
+#       kind: Service
+#       name: "${NAME}"
 - kind: Route
   apiVersion: v1
   metadata:
     name: "${NAME}"
     labels:
       app: "${NAME}"
-      name: "${NAME}"
   spec:
-    host: "${MATOMO_URL}"
+    host: "${HOST}"
     tls:
-      insecureEdgeTerminationPolicy: Redirect
       termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+      certificate: |-
+        ${TLS_CERT_PEM}
+      key: |-
+        ${TLS_KEY_PEM}
+      caCertificate: |-
+        ${TLS_CACERT_PEM}
     to:
       kind: Service
       name: "${NAME}"
+      weight: 100
+    port:
+      targetPort: 8080-tcp
 - kind: Service
   apiVersion: v1
   metadata:
     name: "${NAME}"
     labels:
       app: "matomo"
-      service: "${NAME}"
-      template: "matomo-template"
   spec:
     ports:
-    - name: 8080-tcp
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
+      - name: 8080-tcp
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
     selector:
-      deploymentconfig: "${NAME}"
+      app: matomo
+      role: frontend
     type: ClusterIP
     sessionAffinity: None
 parameters:
@@ -177,7 +196,7 @@ parameters:
   required: true
   description: The namespace of the OpenShift project containing the imagestream for
     the application.
-  value: ifttgq-tools
+  value: fd34fb-tools
 - name: SOURCE_IMAGE_NAME
   displayName: Source Image Name
   description: The name of the image to use for this resource.
@@ -229,3 +248,24 @@ parameters:
   description: The resources Memory limit (in Mi, Gi, etc) for this build.
   required: true
   value: 512Mi
+- name: HOST
+  displayName: Host
+  description: The host domain name used for the route.
+  value: "matomo.bcdevexchange.org"
+- name: TLS_CERT_PEM
+  description: TLS certificate data in PEM format.
+  displayName: TLS Certificate
+  # required: true
+- name: TLS_KEY_PEM
+  description: |
+    TLS certificate private key data in PEM format. This will be in
+    the possession of the person who created the Certificate Signing
+    Request (CSR).
+  displayName: TLS Private Key
+  # required: true
+- name: TLS_CACERT_PEM
+  description: |
+    TLS certificate authority certificate data in PEM format. If you
+    got your certificate from an iStore request, use L1KChain.txt.
+  displayName: TLS Certificate Authority Certificate
+  # required: true
