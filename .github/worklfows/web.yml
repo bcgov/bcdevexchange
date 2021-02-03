@@ -1,0 +1,27 @@
+name: Build Web
+on:
+  push:
+    paths:
+      - "bcdevexchange/**"
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: ./
+jobs:
+  s2i-build:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Image Build
+        env:
+          NAMESPACE: fd34fb-tools
+          BUILD_NAME: bcdevexchange
+          IMAGE_NAME: bcdevexchange
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          version: "latest"
+          openshift_server_url: ${{ secrets.OpenShiftServerURL}}
+          parameters: '{"apitoken": "${{ secrets.OpenShiftToken }}", "acceptUntrustedCerts": "true"}'
+          cmd: |
+            'version'
+            'start-build ${BUILD_NAME} -n ${NAMESPACE} --follow'
