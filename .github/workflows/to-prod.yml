@@ -1,0 +1,24 @@
+name: Promote to Prod
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: ./
+jobs:
+  s2i-build:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Image Build
+        env:
+          NAMESPACE: fd34fb-tools
+          BUILD_NAME: bcdevexchange
+          IMAGE_NAME: bcdevexchange
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          version: "latest"
+          openshift_server_url: ${{ secrets.OpenShiftServerURL}}
+          parameters: '{"apitoken": "${{ secrets.OpenShiftToken }}", "acceptUntrustedCerts": "true"}'
+          cmd: |
+            'version'
+            'tag -n ${NAMESPACE}:test ${IMAGE_NAME}:prod'
