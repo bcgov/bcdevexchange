@@ -5,8 +5,7 @@ defaults:
   run:
     working-directory: ./
 jobs:
-  s2i-build:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Image Build
