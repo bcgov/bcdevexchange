@@ -46,7 +46,7 @@ namespace bcdevexchange
                 app.UseDeveloperExceptionPage();
                 logger.LogInformation("In Development environment");
             }
-            else
+            else 
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseStatusCodePagesWithRedirects("/Home/Error?code={0}");
