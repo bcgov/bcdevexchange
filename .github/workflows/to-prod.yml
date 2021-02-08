@@ -20,4 +20,4 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OpenShiftToken }}", "acceptUntrustedCerts": "true"}'
           cmd: |
             'version'
-            'tag -n ${NAMESPACE}:test ${IMAGE_NAME}:prod'
+            'tag -n ${NAMESPACE} ${NAMESPACE}:test ${IMAGE_NAME}:prod'
