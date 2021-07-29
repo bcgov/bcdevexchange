@@ -1,3 +1,4 @@
+# This is used to generate a wildcard SSL cert for the BC dev exchange.
 # Run the following command to (re)generate a CSR
 # openssl req -new -sha256 -nodes \
 # -out bcdevexchange.org.csr -newkey rsa:2048 \
@@ -15,5 +16,5 @@ ST=British Columbia
 L=Victoria
 O=Government of the Province of British Columbia
 OU=Citizens' Services
-CN=bcdevexchange.org
+CN=*.bcdevexchange.org
 emailAddress=jonathan.sharman@gov.bc.ca
