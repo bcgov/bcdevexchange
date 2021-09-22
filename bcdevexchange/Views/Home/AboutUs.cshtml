@@ -13,101 +13,33 @@ Layout = "~/Views/Shared/_Layout.cshtml";
     </div>
 </div>
 
-<div class="section_main bg-dark">
+<div class="section_main bg-secondary">
     <h2 class="text-center">Our Team</h2>
     <div class="card-deck-wrapper">
         <div class="card-deck">
             @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Rumon Carter",
-                Role = "Executive Director",
-                ImageFileName = "rumon.jpg",
-                TwitterLink= "https://twitter.com/rumon",
-                LinkedIn= "https://www.linkedin.com/in/rumon/",
-                Email="Rumon.Carter@gov.bc.ca"
+                Name = "Catherine Chernoff",
+                Role = "Executive Director, Strategic Design & Delivery",
+                ImageFileName = "jordan.jpg",
+                Email="Catherine.Chernoff@gov.bc.ca"
             })    
             @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Heather Remacle",
-                Role = "Senior Director, Lab Operations",
-                ImageFileName = "heather.jpg",
-                LinkedIn= "https://www.linkedin.com/in/heatherlr/",
-                Email="Heather.Remacle@gov.bc.ca"
+                Name = "Jordan Samis",
+                Role = "Director, Digital Delivery",
+                ImageFileName = "jordan.jpg",
+                Email="Jordan.Samis@gov.bc.ca"
+            })    
+            @await Component.InvokeAsync("PersonnelCard", new { 
+                Name = "Jesus Hernandez Tapia",
+                Role = "Agile Coach",
+                ImageFileName = "jesus.jpg",
+                Email="Jesus.HernandezTapia@gov.bc.ca"
             })
             @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Justin Hewitt",
-                Role = "A/Senior Director DevOps Platform Services",
-                ImageFileName = "justin.jpg",
-                LinkedIn= "https://www.linkedin.com/in/justin-hewitt-ab116999/",
-                Email="justin.hewitt@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Olena Mitovska",
-                Role = "Product Director, DevOps Container Platform",
-                ImageFileName = "olena.jpg",
-                LinkedIn= "https://www.linkedin.com/in/olena-mitovska-16a1901/",
-                Email="olena.mitovska@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Nick Corcoran",
-                Role = "Security Architect",
-                ImageFileName = "nick.jpg",
-                Email="nick.corcoran@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Shea Stewart",
-                Role = "OpenShift Platform & Security Consultant",
-                ImageFileName = "shea.jpg",
-                TwitterLink= "https://twitter.com/stewartshea",
-                LinkedIn= "https://www.linkedin.com/in/sheastewart/",
-                Email="shea.stewart@arctiq.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Shelly Han",
-                Role = "DevOps Platform Administrator",
-                ImageFileName = "shelly.png",
-                Email="shelly.han@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Patrick Simonian",
-                Role = "DevOps Platform Administrator",
-                ImageFileName = "patrick.jpg",
-                LinkedIn= "https://www.linkedin.com/in/patrick-simonian-a2b818132/",
-                Email="patrick.simonian@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Cailey Jones",
-                Role = "DevOps Platform Administrator",
-                ImageFileName = "cailey.jpg",
-                Email="cailey.jones@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Jason Leach",
-                Role = "Developer & Mobile Strategist",
-                ImageFileName = "jason.jpg",
-                Email="jason.leach@fullboar.ca"
-            }) 
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Jonathan Sharman",
-                Role = "Developer",
-                ImageFileName = "jon.jpg",
-                Email="Jonathan.Sharman@gov.bc.ca"
-            })            
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Parul Mishra Dubedy",
-                Role = "Full Stack Developer",
-                ImageFileName = "parul.jpg",
-                Email="parul.dubedy@gov.bc.ca"
-            }) 
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Luke Gonis",
-                Role = "Scrum Master",
-                ImageFileName = "luke.jpg",
-                Email="Luke.Gonis@gov.bc.ca"
-            })
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Tolu Aniemena-Osazuwa",
-                Role = "Scrum Master",
-                ImageFileName = "tolu.jpg",
-                Email="tolu.osazuwa@gov.bc.ca"
+                Name = "Brian Finn",
+                Role = "Senior UX Researcher",
+                ImageFileName = "jesus.jpg",
+                Email="Brian.Finn@gov.bc.ca"
             })
             @await Component.InvokeAsync("PersonnelCard", new { 
                 Name = "Dea De Jarisco",
@@ -124,28 +56,10 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                 LinkedIn= "https://www.linkedin.com/in/arihershberg/",
                 Email="ari.hershberg@gov.bc.ca"
             })            
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Nanthini Mathavan",
-                Role = "Scrum Master",
-                ImageFileName = "nan.jpg",
-                Email="Nanthini.Mathavan@gov.bc.ca"
-            })            
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Mark Wilson",
-                Role = "Research & Design",
-                ImageFileName = "mark.jpg",
-                Email="Mark.Wilson@gov.bc.ca"
-            })            
-            @await Component.InvokeAsync("PersonnelCard", new { 
-                Name = "Inderdeep Singh",
-                Role = "UX Designer",
-                ImageFileName = "inder.jpg",
-                LinkedIn= "https://www.linkedin.com/in/inderdeepsinghgill/",
-                Email="inderdeep.singh@gov.bc.ca"
-            })            
         </div>
     </div>
 </div>
+<!--
 <div class="section_main bg-secondary">
     <div class="container">
         <div class="row">
@@ -163,3 +77,4 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         </div>
     </div>
 </div>
+-->
